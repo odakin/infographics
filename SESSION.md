@@ -16,12 +16,23 @@
 - HTML 版 (`index.html` + `style.css`) は **web 配布用代替** として残置
 
 第 2 段 (= 2026-05-19 16:00) Editorial light theme への refactor
-- **black → cream paper bg** (= 印刷インク代削減、 editorial 標準)
-- **font**: TeX Gyre Pagella → **Libertinus Serif + Libertinus Math + Libertinus Sans** (= 最も refined な free math font ファミリー、 Pagella より優美)
-- **card 高さ**: 70mm → 48mm (= data 行の下に 22mm の vacuum gap があった bug を解消)
-- **palette muted** (= 高彩度 8 色から、 muted earth tone 系へ。 印刷 + cream bg で映える色相)
-- **decoration 削減**: glass effect / drop shadow / gradient 重ね を排除、 hairline border + whitespace のみで modern editorial 化
-- 結果 138 KB の PDF (= subset embed font 込み) 、 1 page A4 横置き
+- black → cream paper bg、 Libertinus Serif/Math/Sans、 card 70→48mm、 muted palette、 decoration 削減
+
+第 3 段 (= 2026-05-19 17:00) 字サイズ底上げ + 距離 row + icon 強化
+- **`Numbers = OldStyle` → `Lining`** (= 古い式数字をやめて modern lining numerals、 「数字がダサい」 解消)
+- **font サイズ底上げ**: body 系を 7→8pt、 plot label 7.5→9pt 等、 A4 で読みやすい大きさに
+- **共動距離 D_C 行追加** (= 5 列構成): 「光は X 億年前のもの、 でも今は Y 億光年先」 の expansion 教育的に有効、 飽和点 462 億光年 = 観測可能宇宙の縁が timeline で可視化
+- **card 48→56mm** (= 距離追加分を吸収)
+- **icon 強化**:
+  - inflation: outer glow + quantum fluctuation dots
+  - QGP: 背景 soup gradient + 波線 gluon
+  - BBN: ⁴He を中心に配置 (= 25% mass の主産物として強調)、 D/³He/⁷Li を周辺
+  - balance: 波線追加 + dots layered
+  - recombination: H atom orbit + CMB photon escape 矢印
+  - first stars: halo 二重円 + 電離領域 dashed
+  - DE: 太い 3 矢印 + 副次矢印 + 膨張背景円
+  - galaxy: spiral arms + 中心 bulge
+- 結果 145 KB の PDF
 
 ## 要対応 (open)
 
