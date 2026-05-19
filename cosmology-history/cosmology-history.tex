@@ -44,6 +44,9 @@
 \definecolor{c7}{HTML}{6B4F9E}   % 8 DE / accel
 \definecolor{c8}{HTML}{8E3D7E}   % 9 today
 
+% Hero-band gradient endpoint: deep cool blue (for high-contrast red→blue)
+\definecolor{coolend}{HTML}{1E3A8A}
+
 \definecolor{plotrad}{HTML}{C73E3A}
 \definecolor{plotmat}{HTML}{2E8B8B}
 \definecolor{plotde}{HTML}{6B4F9E}
@@ -283,7 +286,7 @@
     at (289, 199) {%
       \tikz[baseline=-0.5ex]{\fill[c0] (0,0) circle (1mm);}\,高温(初期)
       \tikz[baseline=-0.5ex]{\draw[fgmute, line width=0.3pt, ->, >={Stealth[length=1.5mm]}] (0,0) -- (10mm,0);} 時間
-      \tikz[baseline=-0.5ex]{\fill[c8] (0,0) circle (1mm);}\,低温(現在)%
+      \tikz[baseline=-0.5ex]{\fill[coolend] (0,0) circle (1mm);}\,低温(現在)%
   };
   \node[anchor=base east, font=\fontsize{7.5}{9}\selectfont\itshape, text=fgmute]
     at (289, 193.5) {標準 $\Lambda$CDM (Planck 2018) に基づく代表値};
@@ -291,13 +294,9 @@
   \draw[bgcardb, line width=0.3pt] (8, 189) -- (289, 189);
 
   % ====================== HERO BAND ======================
-  \shade[left color=c0, right color=c8] (8, 183) rectangle (289, 186.5);
-  % 9 stage ticks
-  \foreach \i/\x in {1/22.5, 2/54, 3/85.5, 4/117, 5/148.5, 6/180, 7/211.5, 8/243, 9/274.5} {
-    \node[circle, fill=bgpage, draw=fgmute, line width=0.25pt,
-          font=\fontsize{6}{7}\selectfont\sffamily\bfseries, text=fgstrong,
-          inner sep=0pt, minimum size=3.2mm] at (\x, 184.75) {\i};
-  }
+  % Red → deep cool blue gradient (strong hot-to-cold contrast).
+  % Stage numbers are shown only on card badges; ticks here are removed.
+  \shade[left color=c0, right color=coolend] (8, 183) rectangle (289, 186.5);
 
   % ====================== TIMELINE: 9 STAGE CARDS (30mm wide, 56mm tall) ======================
   \newcommand{\cardYmid}{150}
@@ -576,19 +575,19 @@
 
   \begin{scope}[shift={(96, 18)}]
     \begin{axis}[
-      width=196mm, height=88mm,
+      width=188mm, height=92mm,
       xmode=log, ymode=log,
       xmin=1e-7, xmax=2,
-      ymin=1e-5, ymax=1e20,
+      ymin=1e-5, ymax=1e16,
       axis line style={fgmute, line width=0.35pt},
       tick style={fgmute, line width=0.3pt},
       tick label style={font=\fontsize{7.5}{9}\selectfont, text=fgmute},
       xlabel style={font=\fontsize{8.5}{10}\selectfont, text=fg},
-      ylabel style={font=\fontsize{8.5}{10}\selectfont, text=fg, yshift=-2mm},
+      ylabel style={font=\fontsize{8.5}{10}\selectfont, text=fg, yshift=-1.5mm},
       xlabel={スケール因子 $a$ \quad(現在 $a_{0} = 1$)},
       ylabel={エネルギー密度 (相対値)},
       xtick={1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1, 1},
-      ytick={1e-5, 1, 1e5, 1e10, 1e15, 1e20},
+      ytick={1e-5, 1, 1e5, 1e10, 1e15},
       grid=major,
       grid style={grid, line width=0.2pt, dashed},
       clip mode=individual,
@@ -596,9 +595,10 @@
       every axis plot/.append style={line cap=round},
     ]
 
-      \fill[plotrad, opacity=0.09] (axis cs:1e-7,1e-5) rectangle (axis cs:2.9e-4,1e20);
-      \fill[plotmat, opacity=0.08] (axis cs:2.9e-4,1e-5) rectangle (axis cs:0.75,1e20);
-      \fill[plotde,  opacity=0.11] (axis cs:0.75,1e-5)   rectangle (axis cs:2,1e20);
+      % Era background bands (= now within tighter ymax)
+      \fill[plotrad, opacity=0.09] (axis cs:1e-7,1e-5) rectangle (axis cs:2.9e-4,1e16);
+      \fill[plotmat, opacity=0.08] (axis cs:2.9e-4,1e-5) rectangle (axis cs:0.75,1e16);
+      \fill[plotde,  opacity=0.11] (axis cs:0.75,1e-5)   rectangle (axis cs:2,1e16);
 
       \addplot[fill=plotrad, fill opacity=0.16, draw=none, domain=1e-7:2, samples=80]
         {1.22e-4 * x^(-4)} \closedcycle;
@@ -614,47 +614,57 @@
       \addplot[plotde, line width=1.3pt, domain=1e-7:2, samples=2]
         {1};
 
+      % Crossover markers
       \node[circle, fill=bgcard, draw=fgstrong, line width=0.6pt, inner sep=0pt, minimum size=1.9mm]
         at (axis cs:2.9e-4, 1.7e10) {};
       \node[circle, fill=fgstrong, inner sep=0pt, minimum size=0.9mm]
         at (axis cs:2.9e-4, 1.7e10) {};
-
       \node[circle, fill=bgcard, draw=plotde, line width=0.6pt, inner sep=0pt, minimum size=1.7mm]
         at (axis cs:0.59, 2.05) {};
       \node[circle, fill=bgcard, draw=plotde, line width=0.6pt, inner sep=0pt, minimum size=1.9mm]
         at (axis cs:0.75, 1) {};
 
-      \draw[fgfaint, dashed, line width=0.35pt] (axis cs:1, 1e-5) -- (axis cs:1, 1e15);
-      \node[font=\fontsize{7.5}{9}\selectfont, text=fgmute, anchor=south] at (axis cs:1, 1e15) {現在};
+      % "現在" marker on right edge
+      \draw[fgfaint, dashed, line width=0.35pt] (axis cs:1, 1e-5) -- (axis cs:1, 5e12);
+      \node[font=\fontsize{7.5}{9}\selectfont, text=fgmute, anchor=south] at (axis cs:1, 5e12) {現在};
 
-      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotrad] at (axis cs:1e-5, 1e20) {放射優勢};
-      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotmat] at (axis cs:1e-2, 1e20) {物質優勢};
-      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde,  anchor=east] at (axis cs:1.8, 1e20) {DE 優勢};
+      % Era labels (inside plot, just below ymax)
+      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotrad] at (axis cs:1e-5, 3e15) {放射優勢};
+      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotmat] at (axis cs:1e-2, 3e15) {物質優勢};
+      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde,  anchor=east] at (axis cs:1.8, 3e15) {DE 優勢};
 
+      % In-plot line labels
       \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotrad,
             fill=bgcard, fill opacity=0.92, text opacity=1, inner sep=0.9mm, rounded corners=0.5mm,
             draw=plotrad!30!bgcard, line width=0.25pt]
-        at (axis cs:1.5e-4, 5e14) {放射 $\rho_{\text{rad}} \propto a^{-4}$};
+        at (axis cs:5e-5, 1e12) {放射 $\rho_{\text{rad}} \propto a^{-4}$};
       \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotmat,
             fill=bgcard, fill opacity=0.92, text opacity=1, inner sep=0.9mm, rounded corners=0.5mm,
             draw=plotmat!30!bgcard, line width=0.25pt]
-        at (axis cs:5e-3, 5e6) {物質 $\rho_{m} \propto a^{-3}$};
+        at (axis cs:5e-3, 1e6) {物質 $\rho_{m} \propto a^{-3}$};
       \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde,
             fill=bgcard, fill opacity=0.92, text opacity=1, inner sep=0.9mm, rounded corners=0.5mm,
             draw=plotde!30!bgcard, line width=0.25pt]
         at (axis cs:1e-3, 1) {暗黒エネルギー $\rho_{\Lambda} = $ const};
 
-      \draw[fgmute, dashed, line width=0.3pt] (axis cs:2.9e-4, 1.7e10) -- (axis cs:8e-3, 5e16);
-      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=fgstrong, anchor=west] at (axis cs:8e-3, 5e16) {物質-放射等価};
-      \node[font=\fontsize{8}{10}\selectfont, text=fgmute, anchor=west] at (axis cs:8e-3, 5e14) {$z \approx 3\,400$};
+      % Annotations: SOLID lines with Stealth arrowheads pointing from label TO marker
+      % M-R equality
+      \draw[fgmute, -{Stealth[length=1.3mm,width=1mm]}, line width=0.45pt]
+        (axis cs:8e-3, 5e13) -- (axis cs:2.9e-4, 1.7e10);
+      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=fgstrong, anchor=west] at (axis cs:8e-3, 5e13) {物質-放射等価};
+      \node[font=\fontsize{8}{10}\selectfont, text=fgmute, anchor=west] at (axis cs:8e-3, 5e12) {$z \approx 3\,400$};
 
-      \draw[plotde, dashed, line width=0.3pt] (axis cs:0.59, 2.05) -- (axis cs:0.1, 1e-3);
-      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde, anchor=east] at (axis cs:0.09, 1e-3) {加速膨張開始};
-      \node[font=\fontsize{8}{10}\selectfont, text=plotde, anchor=east] at (axis cs:0.09, 1e-4) {$z \approx 0.7$, $a \approx 0.59$};
+      % Acceleration onset (shifted left)
+      \draw[plotde, -{Stealth[length=1.3mm,width=1mm]}, line width=0.5pt]
+        (axis cs:0.04, 5e-4) -- (axis cs:0.59, 2.05);
+      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde, anchor=west] at (axis cs:0.04, 5e-4) {加速膨張開始};
+      \node[font=\fontsize{8}{10}\selectfont, text=plotde, anchor=west] at (axis cs:0.04, 5e-5) {$z \approx 0.7$, $a \approx 0.59$};
 
-      \draw[plotde, dashed, line width=0.3pt] (axis cs:0.75, 1) -- (axis cs:1.7, 5e-4);
-      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde, anchor=east] at (axis cs:1.9, 5e-4) {DE 優勢};
-      \node[font=\fontsize{8}{10}\selectfont, text=plotde, anchor=east] at (axis cs:1.9, 5e-5) {$z \approx 0.33$, $a \approx 0.75$};
+      % DE dominance (shifted left)
+      \draw[plotde, -{Stealth[length=1.3mm,width=1mm]}, line width=0.5pt]
+        (axis cs:1.2, 1e-3) -- (axis cs:0.75, 1);
+      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde, anchor=west] at (axis cs:1.2, 1e-3) {DE 優勢};
+      \node[font=\fontsize{8}{10}\selectfont, text=plotde, anchor=west] at (axis cs:1.2, 1e-4) {$z \approx 0.33$, $a \approx 0.75$};
 
     \end{axis}
   \end{scope}

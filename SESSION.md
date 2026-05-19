@@ -18,6 +18,14 @@
 第 2 段 (= 2026-05-19 16:00) Editorial light theme への refactor
 - black → cream paper bg、 Libertinus Serif/Math/Sans、 card 70→48mm、 muted palette、 decoration 削減
 
+第 7 段 (= 2026-05-19 21:00) plot 修正 6 点
+- **hero band gradient**: 赤→紫 (= c0→c8) は同系色で対比弱、 赤→**deep cool blue** (`coolend` = HTML 1E3A8A) に変更、 hot↔cold の物理対比が直感的に
+- **hero band tick 番号削除**: ❶❷❸... と card badge で番号が **2 度書かれていた重複** を解消、 hero band は pure gradient に
+- **y 軸ラベルが card 外にはみ出し**: plot width 196→**188mm** に縮小、 card 内 (= 92〜287) に確実 fit
+- **plot 上部の白い余白**: `ymax=1e20` (= 25 decade、 上部使用率低) → `1e16` (= 21 decade、 全 decade 有意義) に圧縮、 era label 位置を ymax 内部 (= `3e15`) へ
+- **加速膨張開始 / DE 優勢 annotation 右はみ出し**: 全体的に左寄せ、 anchor を east→west に変えて両 annotation を plot 内に確実 fit
+- **破線 leader → 実線 + Stealth arrow**: 視認性 UP、 矢印が label→marker 方向で「これを指している」 が明確化
+
 第 6 段 (= 2026-05-19 20:00) data ブロックを真の align 環境に統合
 - 旧 \datarow (3 個別 TikZ node を行ごとに配置) → 新 \databox で **1 個の `$\begin{array}{r@{\;}c@{\;}l}...\end{array}$`** に統合、 各 card は 1 ノード呼び出し
 - 結果: 「ラベル右揃え / 関係記号中央 / 値左揃え」 の真の math 表組 (= LaTeX align/aligned 環境と同等)、 行間 baseline は math engine 管理で精密整列
