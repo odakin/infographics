@@ -561,11 +561,10 @@
 
   % ====================== DENSITY PLOT ======================
   \node[card, anchor=south west, minimum width=199mm, minimum height=104mm] at (90, 14) {};
-  \node[anchor=base west, font=\fontsize{10}{12}\selectfont\sffamily\bfseries, text=fgstrong]
-    at (94, 114) {宇宙の主要成分のエネルギー密度};
-  % Subtitle is placed INSIDE the axis env (= as a node at rel axis cs)
-  % so it sits in pgfplots' top padding zone, removing the visible gap
-  % between subtitle and data area.
+  % Title and subtitle are both rendered INSIDE the axis env as a multi-
+  % line `title=` so pgfplots manages spacing; this eliminates the gap
+  % that came from putting them as separate nodes with internal padding
+  % between them and the data area.
 
   % Plot scope: shifted inward + explicit xshift/yshift on axis labels so they
   % render WELL INSIDE the card frame (pgfplots default places labels just
@@ -573,6 +572,8 @@
   \begin{scope}[shift={(106, 28)}]
     \begin{axis}[
       width=176mm, height=80mm,
+      title={\fontsize{10}{12}\selectfont\sffamily\bfseries\color{fgstrong}宇宙の主要成分のエネルギー密度\\[-0.5mm]\fontsize{7.5}{9.5}\selectfont\normalfont\itshape\color{fgmute}対数-対数 plot。 era 境界の $z$ は $\Lambda$CDM ($\Omega_{m}=0.3$, $\Omega_{\Lambda}=0.7$) より},
+      title style={anchor=south west, at={(rel axis cs:0, 1)}, align=left, yshift=0.5mm, inner sep=0pt},
       xmode=log, ymode=log,
       xmin=1e-7, xmax=2,
       ymin=1e-5, ymax=1e16,
@@ -684,10 +685,7 @@
       \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde, anchor=west] at (axis cs:1.2, 1e-3) {DE 優勢};
       \node[font=\fontsize{8}{10}\selectfont, text=plotde, anchor=west] at (axis cs:1.2, 1e-4) {$z \approx 0.33$, $a \approx 0.75$};
 
-      % Subtitle placed inside the axis env at the top padding zone,
-      % so there is no visible gap between subtitle and data area.
-      \node[anchor=south west, font=\fontsize{7.5}{9.5}\selectfont\itshape, text=fgmute]
-        at (rel axis cs:0, 1.005) {対数-対数 plot。 era 境界の $z$ は $\Lambda$CDM ($\Omega_{m} = 0.3$, $\Omega_{\Lambda} = 0.7$) より};
+      % (Title + subtitle are set via the `title=` axis option above.)
 
     \end{axis}
   \end{scope}
