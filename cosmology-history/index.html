@@ -2,11 +2,11 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=1920, initial-scale=0.5">
+  <meta name="viewport" content="width=1180, initial-scale=0.65">
   <title>宇宙の歴史 — 赤方偏移・宇宙年齢・温度</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -18,12 +18,16 @@
     <div class="title-block">
       <h1>宇宙の歴史</h1>
       <p class="subtitle">赤方偏移 <em>z</em> ・宇宙年齢 <em>t</em> ・温度 <em>T<sub>γ</sub></em> で読む 138 億年</p>
-      <p class="model-note">標準 ΛCDM 宇宙論 (Planck 2018) に基づく代表値・近似</p>
     </div>
-    <div class="legend-axis">
-      <div class="axis-tick"><span>高温</span><span class="dot" style="background:hsl(0,85%,55%)"></span></div>
-      <div class="axis-arrow">←  時間  →</div>
-      <div class="axis-tick"><span class="dot" style="background:hsl(280,50%,55%)"></span><span>低温</span></div>
+    <div class="header-meta">
+      <div class="legend-axis">
+        <span class="dot" style="background:hsl(0,85%,60%)"></span>
+        <span>高温 (初期)</span>
+        <span class="arrow">─────  時間  ─────▶</span>
+        <span>低温 (現在)</span>
+        <span class="dot" style="background:hsl(280,55%,60%)"></span>
+      </div>
+      <p class="model-note">標準 ΛCDM (Planck 2018) に基づく代表値</p>
     </div>
   </header>
 
@@ -31,14 +35,14 @@
   <section class="hero-band" aria-hidden="true">
     <div class="grad"></div>
     <div class="stage-ticks">
-      <span style="left: 0%">❶</span>
-      <span style="left: 12.5%">❷</span>
-      <span style="left: 25%">❸</span>
-      <span style="left: 37.5%">❹</span>
-      <span style="left: 50%">❺</span>
-      <span style="left: 62.5%">❻</span>
-      <span style="left: 75%">❼</span>
-      <span style="left: 87.5%">❽</span>
+      <span style="left: 6.25%">❶</span>
+      <span style="left: 18.75%">❷</span>
+      <span style="left: 31.25%">❸</span>
+      <span style="left: 43.75%">❹</span>
+      <span style="left: 56.25%">❺</span>
+      <span style="left: 68.75%">❻</span>
+      <span style="left: 81.25%">❼</span>
+      <span style="left: 93.75%">❽</span>
     </div>
   </section>
 
@@ -51,223 +55,220 @@
         <svg viewBox="-50 -50 100 100" aria-label="放射状の膨張">
           <defs><radialGradient id="ig1"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".5" stop-color="#ffd479"/><stop offset="1" stop-color="#ff4d4d" stop-opacity="0"/></radialGradient></defs>
           <circle r="38" fill="url(#ig1)"/>
-          <g stroke="#ffeaa7" stroke-width="2" stroke-linecap="round" opacity=".85">
+          <g stroke="#ffeaa7" stroke-width="2.5" stroke-linecap="round" opacity=".9">
             <line x1="0" y1="-18" x2="0" y2="-42"/><line x1="0" y1="18" x2="0" y2="42"/>
             <line x1="-18" y1="0" x2="-42" y2="0"/><line x1="18" y1="0" x2="42" y2="0"/>
             <line x1="-13" y1="-13" x2="-30" y2="-30"/><line x1="13" y1="13" x2="30" y2="30"/>
             <line x1="-13" y1="13" x2="-30" y2="30"/><line x1="13" y1="-13" x2="30" y2="-30"/>
           </g>
         </svg>
-        <figcaption>急膨張</figcaption>
       </figure>
       <dl class="data">
-        <dt>赤方偏移 <em>z</em></dt><dd>非常に大きい <small>(モデル依存)</small></dd>
-        <dt>宇宙年齢 <em>t</em></dt><dd>10<sup>−36</sup> 〜 10<sup>−32</sup> 秒</dd>
-        <dt>現在から</dt><dd>約 138 億年前</dd>
-        <dt>光子温度 <em>T<sub>γ</sub></em></dt><dd>非常に高温</dd>
+        <dt><em>z</em></dt><dd>非常に大 <small>(モデル依存)</small></dd>
+        <dt><em>t</em></dt><dd>10<sup>−36</sup>〜10<sup>−32</sup> 秒</dd>
+        <dt>過去</dt><dd>≈ 138 億年前</dd>
+        <dt><em>T<sub>γ</sub></em></dt><dd>超高温</dd>
       </dl>
-      <p class="desc">急激な膨張で量子ゆらぎが macro 化、 後の構造形成の種に。</p>
+      <p class="desc">急膨張で量子ゆらぎが macro 化、 構造形成の種に。</p>
     </article>
 
     <article class="stage" style="--c: 1">
-      <header class="stage-head"><span class="num">2</span><h2>クォーク-グルーオン<wbr>プラズマ → ハドロン化</h2></header>
+      <header class="stage-head"><span class="num">2</span><h2>QGP → ハドロン化</h2></header>
       <figure class="icon">
         <svg viewBox="-50 -50 100 100" aria-label="3 クォークが結合して陽子に">
-          <g stroke="#ffd479" stroke-width="1.2" opacity=".6" fill="none">
+          <g stroke="#ffd479" stroke-width="1.5" opacity=".6" fill="none">
             <path d="M -18 -10 Q 0 0 18 -10 M -18 10 Q 0 0 18 10 M 0 -18 Q 0 0 0 18" stroke-dasharray="2 3"/>
           </g>
-          <circle cx="-18" cy="-10" r="9" fill="#ff6b6b"/>
-          <text x="-18" y="-7" text-anchor="middle" font-size="9" fill="#fff" font-weight="600">u</text>
-          <circle cx="18" cy="-10" r="9" fill="#ff6b6b"/>
-          <text x="18" y="-7" text-anchor="middle" font-size="9" fill="#fff" font-weight="600">u</text>
-          <circle cx="0" cy="18" r="9" fill="#74b9ff"/>
-          <text x="0" y="21" text-anchor="middle" font-size="9" fill="#fff" font-weight="600">d</text>
-          <circle cx="0" cy="0" r="22" fill="none" stroke="#ffd479" stroke-width="1.5" stroke-dasharray="3 3" opacity=".5"/>
+          <circle cx="-18" cy="-10" r="10" fill="#ff6b6b"/>
+          <text x="-18" y="-6" text-anchor="middle" font-size="10" fill="#fff" font-weight="700">u</text>
+          <circle cx="18" cy="-10" r="10" fill="#ff6b6b"/>
+          <text x="18" y="-6" text-anchor="middle" font-size="10" fill="#fff" font-weight="700">u</text>
+          <circle cx="0" cy="18" r="10" fill="#74b9ff"/>
+          <text x="0" y="22" text-anchor="middle" font-size="10" fill="#fff" font-weight="700">d</text>
+          <circle r="26" fill="none" stroke="#ffd479" stroke-width="1.5" stroke-dasharray="3 3" opacity=".5"/>
         </svg>
-        <figcaption>陽子・中性子の形成</figcaption>
       </figure>
       <dl class="data">
-        <dt>赤方偏移 <em>z</em></dt><dd><em>z</em> ≳ 10<sup>12</sup></dd>
-        <dt>宇宙年齢 <em>t</em></dt><dd>10<sup>−6</sup> 〜 10<sup>−5</sup> 秒</dd>
-        <dt>現在から</dt><dd>約 138 億年前</dd>
-        <dt>光子温度 <em>T<sub>γ</sub></em></dt><dd><em>T<sub>γ</sub></em> ≳ 10<sup>12</sup> K <small>(≈ 90 MeV)</small></dd>
+        <dt><em>z</em></dt><dd>≳ 10<sup>12</sup></dd>
+        <dt><em>t</em></dt><dd>10<sup>−6</sup>〜10<sup>−5</sup> 秒</dd>
+        <dt>過去</dt><dd>≈ 138 億年前</dd>
+        <dt><em>T<sub>γ</sub></em></dt><dd>≳ 10<sup>12</sup> K <small>(≈ 90 MeV)</small></dd>
       </dl>
-      <p class="desc">クォーク-グルーオンプラズマが冷えてハドロン化、 陽子と中性子に閉じ込められる。</p>
+      <p class="desc">QGP が冷えてハドロン化、 陽子・中性子に閉じ込め。</p>
     </article>
 
     <article class="stage" style="--c: 2">
-      <header class="stage-head"><span class="num">3</span><h2>ビッグバン元素合成 (BBN)</h2></header>
-      <figure class="icon">
+      <header class="stage-head"><span class="num">3</span><h2>ビッグバン<wbr>元素合成 (BBN)</h2></header>
+      <figure class="icon nuclei">
         <svg viewBox="-50 -50 100 100" aria-label="BBN で合成される 4 核種">
           <!-- ²H (D): 1p + 1n -->
-          <g transform="translate(-30,-22)">
-            <circle cx="-3" cy="0" r="4" fill="#ff6b6b"/>
-            <circle cx="3" cy="0" r="4" fill="#74b9ff"/>
-            <text x="0" y="14" text-anchor="middle" font-size="7" fill="currentColor" font-weight="600">²H (D)</text>
+          <g transform="translate(-28,-20)">
+            <circle cx="-3.5" cy="0" r="4.5" fill="#ff6b6b"/>
+            <circle cx="3.5" cy="0" r="4.5" fill="#74b9ff"/>
+            <text x="0" y="16" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">²H (D)</text>
           </g>
           <!-- ³He: 2p + 1n -->
-          <g transform="translate(30,-22)">
-            <circle cx="-3.5" cy="-2" r="4" fill="#ff6b6b"/>
-            <circle cx="3.5" cy="-2" r="4" fill="#ff6b6b"/>
-            <circle cx="0" cy="4" r="4" fill="#74b9ff"/>
-            <text x="0" y="16" text-anchor="middle" font-size="7" fill="currentColor" font-weight="600">³He</text>
+          <g transform="translate(28,-20)">
+            <circle cx="-4" cy="-2.5" r="4.5" fill="#ff6b6b"/>
+            <circle cx="4" cy="-2.5" r="4.5" fill="#ff6b6b"/>
+            <circle cx="0" cy="4.5" r="4.5" fill="#74b9ff"/>
+            <text x="0" y="18" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">³He</text>
           </g>
           <!-- ⁴He (alpha): 2p + 2n -->
-          <g transform="translate(-30,20)">
-            <circle cx="-3.5" cy="-3" r="4" fill="#ff6b6b"/>
-            <circle cx="3.5" cy="-3" r="4" fill="#ff6b6b"/>
-            <circle cx="-3.5" cy="3" r="4" fill="#74b9ff"/>
-            <circle cx="3.5" cy="3" r="4" fill="#74b9ff"/>
-            <text x="0" y="16" text-anchor="middle" font-size="7" fill="currentColor" font-weight="600">⁴He</text>
+          <g transform="translate(-28,22)">
+            <circle cx="-4" cy="-3.5" r="4.5" fill="#ff6b6b"/>
+            <circle cx="4" cy="-3.5" r="4.5" fill="#ff6b6b"/>
+            <circle cx="-4" cy="3.5" r="4.5" fill="#74b9ff"/>
+            <circle cx="4" cy="3.5" r="4.5" fill="#74b9ff"/>
+            <text x="0" y="17" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">⁴He</text>
           </g>
           <!-- ⁷Li: 3p + 4n -->
-          <g transform="translate(30,20)">
-            <circle cx="-5" cy="-3" r="3" fill="#ff6b6b"/>
-            <circle cx="0" cy="-5" r="3" fill="#ff6b6b"/>
-            <circle cx="5" cy="-3" r="3" fill="#ff6b6b"/>
-            <circle cx="-5" cy="3" r="3" fill="#74b9ff"/>
-            <circle cx="0" cy="5" r="3" fill="#74b9ff"/>
-            <circle cx="5" cy="3" r="3" fill="#74b9ff"/>
-            <circle cx="0" cy="0" r="3" fill="#74b9ff"/>
-            <text x="0" y="16" text-anchor="middle" font-size="7" fill="currentColor" font-weight="600">⁷Li</text>
+          <g transform="translate(28,22)">
+            <circle cx="-5.5" cy="-3.5" r="3.3" fill="#ff6b6b"/>
+            <circle cx="0" cy="-5.5" r="3.3" fill="#ff6b6b"/>
+            <circle cx="5.5" cy="-3.5" r="3.3" fill="#ff6b6b"/>
+            <circle cx="-5.5" cy="3.5" r="3.3" fill="#74b9ff"/>
+            <circle cx="0" cy="5.5" r="3.3" fill="#74b9ff"/>
+            <circle cx="5.5" cy="3.5" r="3.3" fill="#74b9ff"/>
+            <circle cx="0" cy="0" r="3.3" fill="#74b9ff"/>
+            <text x="0" y="17" text-anchor="middle" font-size="8" fill="currentColor" font-weight="700">⁷Li</text>
           </g>
         </svg>
-        <figcaption>軽元素の原子核合成 <small>(<span class="dot-r"></span> 陽子 / <span class="dot-b"></span> 中性子)</small></figcaption>
       </figure>
       <dl class="data">
-        <dt>赤方偏移 <em>z</em></dt><dd>4×10<sup>8</sup> 〜 4×10<sup>9</sup></dd>
-        <dt>宇宙年齢 <em>t</em></dt><dd>1 秒 〜 約 20 分</dd>
-        <dt>現在から</dt><dd>約 138 億年前</dd>
-        <dt>光子温度 <em>T<sub>γ</sub></em></dt><dd>3×10<sup>8</sup> 〜 10<sup>10</sup> K <small>(≈ 0.03 〜 1 MeV)</small></dd>
+        <dt><em>z</em></dt><dd>4×10<sup>8</sup>〜4×10<sup>9</sup></dd>
+        <dt><em>t</em></dt><dd>1 秒〜約 20 分</dd>
+        <dt>過去</dt><dd>≈ 138 億年前</dd>
+        <dt><em>T<sub>γ</sub></em></dt><dd>0.03〜1 MeV</dd>
       </dl>
-      <p class="desc"><strong>重水素 (²H)・³He・⁴He・少量の ⁷Li</strong> の原子核が合成される (= ¹H は既存)。</p>
+      <p class="desc"><strong>²H・³He・⁴He・⁷Li</strong> が合成 (= ¹H は既存)。</p>
     </article>
 
     <article class="stage" style="--c: 3">
       <header class="stage-head"><span class="num">4</span><h2>物質-放射等価</h2></header>
       <figure class="icon">
         <svg viewBox="-50 -50 100 100" aria-label="天秤で物質と放射が釣り合う">
-          <line x1="0" y1="-30" x2="0" y2="20" stroke="currentColor" stroke-width="2"/>
-          <line x1="-32" y1="-30" x2="32" y2="-30" stroke="currentColor" stroke-width="2"/>
-          <g transform="translate(-28,-10)">
-            <line x1="0" y1="-20" x2="-7" y2="-3" stroke="currentColor" stroke-width="1"/>
-            <line x1="0" y1="-20" x2="7" y2="-3" stroke="currentColor" stroke-width="1"/>
-            <rect x="-12" y="-3" width="24" height="10" fill="none" stroke="currentColor" stroke-width="1.5" rx="2"/>
-            <path d="M-9 12 q3 -5 6 0 t6 0 t6 0" stroke="hsl(40,90%,60%)" stroke-width="2" fill="none"/>
+          <line x1="0" y1="-28" x2="0" y2="22" stroke="currentColor" stroke-width="2.5"/>
+          <line x1="-34" y1="-28" x2="34" y2="-28" stroke="currentColor" stroke-width="2.5"/>
+          <g transform="translate(-30,-10)">
+            <line x1="0" y1="-18" x2="-8" y2="-2" stroke="currentColor" stroke-width="1.2"/>
+            <line x1="0" y1="-18" x2="8" y2="-2" stroke="currentColor" stroke-width="1.2"/>
+            <rect x="-13" y="-2" width="26" height="10" fill="none" stroke="currentColor" stroke-width="1.8" rx="2"/>
+            <path d="M-10 14 q3 -5 6 0 t6 0 t6 0" stroke="hsl(40,90%,60%)" stroke-width="2.2" fill="none"/>
           </g>
-          <g transform="translate(28,-10)">
-            <line x1="0" y1="-20" x2="-7" y2="-3" stroke="currentColor" stroke-width="1"/>
-            <line x1="0" y1="-20" x2="7" y2="-3" stroke="currentColor" stroke-width="1"/>
-            <rect x="-12" y="-3" width="24" height="10" fill="none" stroke="currentColor" stroke-width="1.5" rx="2"/>
-            <g transform="translate(0,12)">
-              <circle cx="-6" r="2.5" fill="hsl(200,70%,60%)"/>
-              <circle cx="0" r="2.5" fill="hsl(200,70%,60%)"/>
-              <circle cx="6" r="2.5" fill="hsl(200,70%,60%)"/>
+          <g transform="translate(30,-10)">
+            <line x1="0" y1="-18" x2="-8" y2="-2" stroke="currentColor" stroke-width="1.2"/>
+            <line x1="0" y1="-18" x2="8" y2="-2" stroke="currentColor" stroke-width="1.2"/>
+            <rect x="-13" y="-2" width="26" height="10" fill="none" stroke="currentColor" stroke-width="1.8" rx="2"/>
+            <g transform="translate(0,14)">
+              <circle cx="-6" r="3" fill="hsl(200,75%,62%)"/>
+              <circle cx="0" r="3" fill="hsl(200,75%,62%)"/>
+              <circle cx="6" r="3" fill="hsl(200,75%,62%)"/>
             </g>
           </g>
-          <polygon points="0,25 -8,40 8,40" fill="currentColor"/>
+          <polygon points="0,28 -9,42 9,42" fill="currentColor"/>
         </svg>
-        <figcaption>放射優勢 → 物質優勢</figcaption>
       </figure>
       <dl class="data">
-        <dt>赤方偏移 <em>z</em></dt><dd>≈ 3 400</dd>
-        <dt>宇宙年齢 <em>t</em></dt><dd>≈ 5 万年</dd>
-        <dt>現在から</dt><dd>約 138 億年前</dd>
-        <dt>光子温度 <em>T<sub>γ</sub></em></dt><dd>≈ 9 000 K <small>(≈ 0.8 eV)</small></dd>
+        <dt><em>z</em></dt><dd>≈ 3 400</dd>
+        <dt><em>t</em></dt><dd>≈ 5 万年</dd>
+        <dt>過去</dt><dd>≈ 138 億年前</dd>
+        <dt><em>T<sub>γ</sub></em></dt><dd>≈ 9 000 K <small>(≈ 0.8 eV)</small></dd>
       </dl>
-      <p class="desc">放射と物質のエネルギー密度が等しくなり、 以後は物質優勢の膨張に。</p>
+      <p class="desc">放射と物質のエネルギー密度が等しく、 以後 物質優勢へ。</p>
     </article>
 
     <article class="stage" style="--c: 4">
       <header class="stage-head"><span class="num">5</span><h2>再結合 / CMB 放射</h2></header>
       <figure class="icon">
         <svg viewBox="-50 -50 100 100" aria-label="電子と陽子が結合し、 CMB が自由に伝播">
-          <circle cx="-12" cy="0" r="8" fill="#ff6b6b"/>
-          <text x="-12" y="3" text-anchor="middle" font-size="9" fill="#fff" font-weight="600">p</text>
-          <circle cx="12" cy="0" r="4" fill="#a29bfe"/>
-          <text x="12" y="-7" text-anchor="middle" font-size="6" fill="currentColor">e⁻</text>
-          <path d="M -42 -25 q 6 4 12 0 t 12 0" stroke="hsl(180,70%,55%)" stroke-width="2" fill="none"/>
-          <path d="M 18 -28 q 6 4 12 0 t 12 0" stroke="hsl(180,70%,55%)" stroke-width="2" fill="none"/>
-          <path d="M -42 25 q 6 -4 12 0 t 12 0" stroke="hsl(180,70%,55%)" stroke-width="2" fill="none"/>
-          <path d="M 18 25 q 6 -4 12 0 t 12 0" stroke="hsl(180,70%,55%)" stroke-width="2" fill="none"/>
-          <circle cx="0" cy="0" r="20" fill="none" stroke="hsl(180,70%,55%)" stroke-width="1" stroke-dasharray="3 3" opacity=".4"/>
+          <circle cx="-14" cy="0" r="9" fill="#ff6b6b"/>
+          <text x="-14" y="3.5" text-anchor="middle" font-size="10" fill="#fff" font-weight="700">p</text>
+          <circle cx="14" cy="0" r="5" fill="#a29bfe"/>
+          <text x="14" y="-8" text-anchor="middle" font-size="7" fill="currentColor">e⁻</text>
+          <path d="M -44 -25 q 6 4 12 0 t 12 0" stroke="hsl(180,75%,58%)" stroke-width="2.2" fill="none"/>
+          <path d="M 18 -28 q 6 4 12 0 t 12 0" stroke="hsl(180,75%,58%)" stroke-width="2.2" fill="none"/>
+          <path d="M -44 25 q 6 -4 12 0 t 12 0" stroke="hsl(180,75%,58%)" stroke-width="2.2" fill="none"/>
+          <path d="M 18 25 q 6 -4 12 0 t 12 0" stroke="hsl(180,75%,58%)" stroke-width="2.2" fill="none"/>
+          <circle r="22" fill="none" stroke="hsl(180,75%,58%)" stroke-width="1.2" stroke-dasharray="3 3" opacity=".4"/>
         </svg>
-        <figcaption>中性原子の形成 + 光の解放</figcaption>
       </figure>
       <dl class="data">
-        <dt>赤方偏移 <em>z</em></dt><dd>≈ 1 100</dd>
-        <dt>宇宙年齢 <em>t</em></dt><dd>≈ 38 万年</dd>
-        <dt>現在から</dt><dd>約 138 億年前</dd>
-        <dt>光子温度 <em>T<sub>γ</sub></em></dt><dd>≈ 3 000 K <small>(≈ 0.26 eV)</small></dd>
+        <dt><em>z</em></dt><dd>≈ 1 100</dd>
+        <dt><em>t</em></dt><dd>≈ 38 万年</dd>
+        <dt>過去</dt><dd>≈ 138 億年前</dd>
+        <dt><em>T<sub>γ</sub></em></dt><dd>≈ 3 000 K <small>(≈ 0.26 eV)</small></dd>
       </dl>
-      <p class="desc">電子と陽子が結合して中性原子ができ、 光 (CMB) が自由に伝播するようになる。</p>
+      <p class="desc">電子+陽子 → 中性原子、 CMB が自由に伝播するように。</p>
     </article>
 
     <article class="stage" style="--c: 5">
       <header class="stage-head"><span class="num">6</span><h2>最初の星・銀河 / 再電離</h2></header>
       <figure class="icon">
         <svg viewBox="-50 -50 100 100" aria-label="最初の星が周囲のガスを再電離">
-          <g opacity=".5">
-            <circle cx="-30" cy="-25" r="1.5" fill="currentColor"/>
-            <circle cx="25" cy="-30" r="1" fill="currentColor"/>
-            <circle cx="-35" cy="15" r="1.2" fill="currentColor"/>
-            <circle cx="35" cy="25" r="1" fill="currentColor"/>
-            <circle cx="20" cy="35" r="1.3" fill="currentColor"/>
+          <g opacity=".55">
+            <circle cx="-32" cy="-28" r="1.6" fill="currentColor"/>
+            <circle cx="28" cy="-32" r="1.2" fill="currentColor"/>
+            <circle cx="-36" cy="16" r="1.3" fill="currentColor"/>
+            <circle cx="36" cy="26" r="1.2" fill="currentColor"/>
+            <circle cx="22" cy="36" r="1.4" fill="currentColor"/>
           </g>
-          <g transform="translate(0,0)">
-            <circle r="6" fill="hsl(50,100%,75%)"/>
-            <g stroke="hsl(50,100%,70%)" stroke-width="1.8" stroke-linecap="round" opacity=".85">
-              <line x1="0" y1="-10" x2="0" y2="-20"/><line x1="0" y1="10" x2="0" y2="20"/>
-              <line x1="-10" y1="0" x2="-20" y2="0"/><line x1="10" y1="0" x2="20" y2="0"/>
-              <line x1="-7" y1="-7" x2="-14" y2="-14"/><line x1="7" y1="7" x2="14" y2="14"/>
-              <line x1="-7" y1="7" x2="-14" y2="14"/><line x1="7" y1="-7" x2="14" y2="-14"/>
+          <g>
+            <circle r="7" fill="hsl(50,100%,78%)"/>
+            <g stroke="hsl(50,100%,72%)" stroke-width="2.2" stroke-linecap="round" opacity=".9">
+              <line x1="0" y1="-11" x2="0" y2="-22"/><line x1="0" y1="11" x2="0" y2="22"/>
+              <line x1="-11" y1="0" x2="-22" y2="0"/><line x1="11" y1="0" x2="22" y2="0"/>
+              <line x1="-8" y1="-8" x2="-16" y2="-16"/><line x1="8" y1="8" x2="16" y2="16"/>
+              <line x1="-8" y1="8" x2="-16" y2="16"/><line x1="8" y1="-8" x2="16" y2="-16"/>
             </g>
-            <circle r="32" fill="none" stroke="hsl(180,70%,55%)" stroke-width="1" stroke-dasharray="2 4" opacity=".5"/>
-            <circle r="40" fill="none" stroke="hsl(180,70%,55%)" stroke-width=".8" stroke-dasharray="2 4" opacity=".3"/>
+            <circle r="34" fill="none" stroke="hsl(180,70%,58%)" stroke-width="1.2" stroke-dasharray="2 4" opacity=".5"/>
+            <circle r="42" fill="none" stroke="hsl(180,70%,58%)" stroke-width="1" stroke-dasharray="2 4" opacity=".3"/>
           </g>
         </svg>
-        <figcaption>星の紫外光が中性ガスを電離</figcaption>
       </figure>
       <dl class="data">
-        <dt>赤方偏移 <em>z</em></dt><dd>≈ 20 〜 6</dd>
-        <dt>宇宙年齢 <em>t</em></dt><dd>約 2 〜 10 億年</dd>
-        <dt>現在から</dt><dd>約 128 〜 136 億年前</dd>
-        <dt>光子温度 <em>T<sub>γ</sub></em></dt><dd>≈ 20 〜 60 K</dd>
+        <dt><em>z</em></dt><dd>≈ 20〜6</dd>
+        <dt><em>t</em></dt><dd>約 2〜10 億年</dd>
+        <dt>過去</dt><dd>128〜136 億年前</dd>
+        <dt><em>T<sub>γ</sub></em></dt><dd>≈ 20〜60 K</dd>
       </dl>
-      <p class="desc">最初の星・銀河が形成され、 <strong>その紫外光が周囲の中性ガスを再電離する</strong>。</p>
+      <p class="desc">最初の星の<strong>紫外光が中性ガスを再電離</strong>。</p>
     </article>
 
     <article class="stage" style="--c: 6">
-      <header class="stage-head"><span class="num">7</span><h2>加速膨張開始 / 暗黒エネルギー優勢</h2></header>
+      <header class="stage-head"><span class="num">7</span><h2>加速膨張 / 暗黒エネルギー優勢</h2></header>
       <figure class="icon">
         <svg viewBox="-50 -50 100 100" aria-label="3 方向への加速膨張">
-          <circle r="6" fill="hsl(260,60%,70%)" opacity=".9"/>
-          <g stroke="hsl(260,60%,70%)" stroke-width="2.5" stroke-linecap="round" fill="hsl(260,60%,70%)">
-            <g transform="rotate(0)"><line x1="0" y1="-12" x2="0" y2="-32"/><polygon points="0,-38 -5,-30 5,-30"/></g>
-            <g transform="rotate(120)"><line x1="0" y1="-12" x2="0" y2="-32"/><polygon points="0,-38 -5,-30 5,-30"/></g>
-            <g transform="rotate(240)"><line x1="0" y1="-12" x2="0" y2="-32"/><polygon points="0,-38 -5,-30 5,-30"/></g>
+          <circle r="7" fill="hsl(260,65%,72%)" opacity=".95"/>
+          <g stroke="hsl(260,65%,72%)" stroke-width="3" stroke-linecap="round" fill="hsl(260,65%,72%)">
+            <g transform="rotate(0)"><line x1="0" y1="-13" x2="0" y2="-32"/><polygon points="0,-38 -6,-30 6,-30"/></g>
+            <g transform="rotate(120)"><line x1="0" y1="-13" x2="0" y2="-32"/><polygon points="0,-38 -6,-30 6,-30"/></g>
+            <g transform="rotate(240)"><line x1="0" y1="-13" x2="0" y2="-32"/><polygon points="0,-38 -6,-30 6,-30"/></g>
           </g>
-          <g opacity=".4" stroke="hsl(260,60%,70%)" stroke-width="1.5" fill="none">
-            <g transform="rotate(60)"><line x1="0" y1="-14" x2="0" y2="-25"/></g>
-            <g transform="rotate(180)"><line x1="0" y1="-14" x2="0" y2="-25"/></g>
-            <g transform="rotate(300)"><line x1="0" y1="-14" x2="0" y2="-25"/></g>
+          <g opacity=".4" stroke="hsl(260,65%,72%)" stroke-width="1.5" fill="none">
+            <g transform="rotate(60)"><line x1="0" y1="-15" x2="0" y2="-26"/></g>
+            <g transform="rotate(180)"><line x1="0" y1="-15" x2="0" y2="-26"/></g>
+            <g transform="rotate(300)"><line x1="0" y1="-15" x2="0" y2="-26"/></g>
           </g>
         </svg>
-        <figcaption>暗黒エネルギーによる加速</figcaption>
       </figure>
       <dl class="data twocol">
-        <div>
-          <dt>加速開始</dt>
-          <dd><em>z</em> ≈ 0.7 ・<em>t</em> ≈ 76 億年<br><small>= 62 億年前</small></dd>
-          <dt><em>T<sub>γ</sub></em></dt><dd>≈ 4.6 K</dd>
+        <div class="col">
+          <dt class="hd">加速開始</dt>
+          <dd><em>z</em> ≈ 0.7</dd>
+          <dd><em>t</em> ≈ 76 億年</dd>
+          <dd><small>= 62 億年前</small></dd>
+          <dd><em>T<sub>γ</sub></em> ≈ 4.6 K</dd>
         </div>
-        <div>
-          <dt>DE 優勢</dt>
-          <dd><em>z</em> ≈ 0.33 ・<em>t</em> ≈ 102 億年<br><small>= 36 億年前</small></dd>
-          <dt><em>T<sub>γ</sub></em></dt><dd>≈ 3.5 K</dd>
+        <div class="col">
+          <dt class="hd">DE 優勢</dt>
+          <dd><em>z</em> ≈ 0.33</dd>
+          <dd><em>t</em> ≈ 102 億年</dd>
+          <dd><small>= 36 億年前</small></dd>
+          <dd><em>T<sub>γ</sub></em> ≈ 3.5 K</dd>
         </div>
       </dl>
-      <p class="desc">減速膨張 → 加速膨張に転じ、 やがて暗黒エネルギーが物質より優勢に。</p>
+      <p class="desc">減速 → 加速膨張へ転じ、 やがて DE が物質より優勢に。</p>
     </article>
 
     <article class="stage" style="--c: 7">
@@ -275,167 +276,247 @@
       <figure class="icon">
         <svg viewBox="-50 -50 100 100" aria-label="現在の宇宙: 銀河・星・惑星">
           <g opacity=".7">
-            <circle cx="-32" cy="-30" r="1.2" fill="currentColor"/>
-            <circle cx="-15" cy="-38" r="1" fill="currentColor"/>
-            <circle cx="22" cy="-32" r="1.4" fill="currentColor"/>
-            <circle cx="38" cy="-15" r="1" fill="currentColor"/>
-            <circle cx="-38" cy="10" r="1.1" fill="currentColor"/>
-            <circle cx="35" cy="20" r="1.3" fill="currentColor"/>
-            <circle cx="-20" cy="35" r="1" fill="currentColor"/>
-            <circle cx="15" cy="38" r="1.2" fill="currentColor"/>
+            <circle cx="-32" cy="-30" r="1.3" fill="currentColor"/>
+            <circle cx="-12" cy="-40" r="1" fill="currentColor"/>
+            <circle cx="24" cy="-32" r="1.5" fill="currentColor"/>
+            <circle cx="40" cy="-15" r="1" fill="currentColor"/>
+            <circle cx="-40" cy="10" r="1.2" fill="currentColor"/>
+            <circle cx="37" cy="22" r="1.4" fill="currentColor"/>
+            <circle cx="-20" cy="38" r="1" fill="currentColor"/>
+            <circle cx="15" cy="40" r="1.3" fill="currentColor"/>
           </g>
           <g transform="rotate(20)">
-            <ellipse rx="28" ry="12" fill="none" stroke="hsl(220,80%,75%)" stroke-width="1.5" opacity=".4"/>
-            <ellipse rx="24" ry="9" fill="none" stroke="hsl(220,80%,80%)" stroke-width="1.8" opacity=".7"/>
-            <ellipse rx="18" ry="6" fill="hsl(220,80%,85%)" opacity=".3"/>
-            <circle r="5" fill="hsl(50,100%,80%)"/>
+            <ellipse rx="30" ry="13" fill="none" stroke="hsl(220,80%,78%)" stroke-width="1.5" opacity=".45"/>
+            <ellipse rx="25" ry="9.5" fill="none" stroke="hsl(220,80%,82%)" stroke-width="2" opacity=".75"/>
+            <ellipse rx="19" ry="6.5" fill="hsl(220,80%,86%)" opacity=".35"/>
+            <circle r="5.5" fill="hsl(50,100%,82%)"/>
           </g>
         </svg>
-        <figcaption>銀河・星・惑星のある宇宙</figcaption>
       </figure>
       <dl class="data">
-        <dt>赤方偏移 <em>z</em></dt><dd>0</dd>
-        <dt>宇宙年齢 <em>t</em></dt><dd>≈ 138 億年</dd>
-        <dt>現在から</dt><dd>0 年前 (今)</dd>
-        <dt>光子温度 <em>T<sub>γ</sub></em></dt><dd>2.725 K (CMB)</dd>
+        <dt><em>z</em></dt><dd>0</dd>
+        <dt><em>t</em></dt><dd>≈ 138 億年</dd>
+        <dt>過去</dt><dd>0 年前 (今)</dd>
+        <dt><em>T<sub>γ</sub></em></dt><dd>2.725 K <small>(CMB)</small></dd>
       </dl>
-      <p class="desc">銀河・星・惑星が存在する、 ダークエネルギー優勢の宇宙。</p>
+      <p class="desc">銀河・星・惑星のある DE 優勢の宇宙。</p>
     </article>
 
   </section>
 
-  <!-- ───────── Side info panels ───────── -->
-  <section class="info-grid">
+  <!-- ───────── Bottom row: info stack (left) + density plot (right) ───────── -->
+  <section class="bottom-row">
 
-    <aside class="info-card">
-      <h3>赤方偏移</h3>
-      <div class="formula-block">
-        <div class="formula" id="zdef"></div>
-        <div class="formula" id="zscale"></div>
-      </div>
-      <p class="caption"><em>z</em> は過去ほど、 遠い宇宙ほど大きい。 <em>a</em> は宇宙のスケール因子 (現在 <em>a</em><sub>0</sub> = 1)。</p>
-    </aside>
+    <div class="info-stack">
 
-    <aside class="info-card">
-      <h3>BBN の核物理メモ</h3>
-      <table class="bbn-table">
-        <tr><td>陽子質量 <em>m<sub>p</sub></em></td><td>≈ 938.3 MeV/<em>c</em>²</td></tr>
-        <tr><td>中性子質量 <em>m<sub>n</sub></em></td><td>≈ 939.6 MeV/<em>c</em>²</td></tr>
-        <tr><td>質量差 Δ<em>m</em></td><td>≈ 1.293 MeV</td></tr>
-      </table>
-      <p class="caption">この Δ<em>m</em> > <em>T</em> となる温度で n/p 比が freeze-out、 BBN の ⁴He 比 (≈ 25%) を支配する。</p>
-    </aside>
+      <aside class="info-card">
+        <h3>赤方偏移</h3>
+        <div class="formula-block">
+          <div class="formula" id="zdef"></div>
+          <div class="formula" id="zscale"></div>
+        </div>
+        <p class="caption"><em>z</em> は過去ほど、 遠い宇宙ほど大きい。 <em>a</em> はスケール因子。</p>
+      </aside>
 
-    <aside class="info-card">
-      <h3>温度 ↔ エネルギー換算</h3>
-      <table class="conv-table">
-        <tr><td>1 MeV</td><td>≈ 1.16 × 10<sup>10</sup> K</td></tr>
-        <tr><td>100 MeV</td><td>≈ 1.16 × 10<sup>12</sup> K</td></tr>
-        <tr><td>0.1 MeV</td><td>≈ 1.16 × 10<sup>9</sup> K</td></tr>
-        <tr><td>1 eV</td><td>≈ 1.16 × 10<sup>4</sup> K</td></tr>
-        <tr class="hl"><td>現在 <em>T<sub>γ</sub></em></td><td>= 2.725 K (CMB)</td></tr>
-      </table>
-    </aside>
+      <aside class="info-card">
+        <h3>BBN の核物理メモ</h3>
+        <table class="bbn-table">
+          <tr><td>陽子 <em>m<sub>p</sub></em></td><td>938.3 MeV/<em>c</em>²</td></tr>
+          <tr><td>中性子 <em>m<sub>n</sub></em></td><td>939.6 MeV/<em>c</em>²</td></tr>
+          <tr><td>質量差 Δ<em>m</em></td><td>1.293 MeV</td></tr>
+        </table>
+        <p class="caption">Δ<em>m</em> &gt; <em>T</em> で n/p 比が freeze-out、 ⁴He 質量比 ≈ 25%。</p>
+      </aside>
 
-  </section>
+      <aside class="info-card">
+        <h3>温度 ↔ エネルギー</h3>
+        <table class="conv-table">
+          <tr><td>1 MeV</td><td>1.16 × 10<sup>10</sup> K</td></tr>
+          <tr><td>0.1 MeV</td><td>1.16 × 10<sup>9</sup> K</td></tr>
+          <tr><td>1 eV</td><td>1.16 × 10<sup>4</sup> K</td></tr>
+          <tr class="hl"><td>現在 <em>T<sub>γ</sub></em></td><td>2.725 K</td></tr>
+        </table>
+      </aside>
 
-  <!-- ───────── Density vs scale factor plot ───────── -->
-  <section class="plot-section">
-    <header class="plot-head">
-      <h3>宇宙の主要成分のエネルギー密度</h3>
-      <p class="caption">対数-対数 plot。 加速膨張開始 (<em>z</em> ≈ 0.7) と DE 優勢 (<em>z</em> ≈ 0.33) は別の事象 — 2 本の縦線で区別している。</p>
-    </header>
-
-    <svg class="density-plot" viewBox="0 0 900 480" role="img" aria-label="エネルギー密度と スケール因子 の関係">
-      <defs>
-        <clipPath id="plotClip">
-          <rect x="80" y="30" width="690" height="370"/>
-        </clipPath>
-        <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
-          <polygon points="0 0, 8 4, 0 8" fill="currentColor"/>
-        </marker>
-      </defs>
-
-      <!-- Axes -->
-      <g class="axis">
-        <!-- X axis -->
-        <line x1="80" y1="400" x2="770" y2="400"/>
-        <!-- Y axis -->
-        <line x1="80" y1="30" x2="80" y2="400"/>
-
-        <!-- X gridlines & labels (every decade, log a from -8 to 0) -->
-        <g class="grid-x">
-          <line x1="166" y1="30" x2="166" y2="400"/><text x="166" y="420">10⁻⁷</text>
-          <line x1="252" y1="30" x2="252" y2="400"/><text x="252" y="420">10⁻⁶</text>
-          <line x1="338" y1="30" x2="338" y2="400"/><text x="338" y="420">10⁻⁵</text>
-          <line x1="424" y1="30" x2="424" y2="400"/><text x="424" y="420">10⁻⁴</text>
-          <line x1="510" y1="30" x2="510" y2="400"/><text x="510" y="420">10⁻³</text>
-          <line x1="596" y1="30" x2="596" y2="400"/><text x="596" y="420">10⁻²</text>
-          <line x1="682" y1="30" x2="682" y2="400"/><text x="682" y="420">10⁻¹</text>
-          <line x1="768" y1="30" x2="768" y2="400"/><text x="768" y="420">1</text>
-        </g>
-        <text x="80" y="420" text-anchor="middle">10⁻⁸</text>
-        <text x="425" y="455" text-anchor="middle" class="axis-label">スケール因子 <tspan font-style="italic">a</tspan>   (現在 <tspan font-style="italic">a</tspan>₀ = 1)</text>
-
-        <!-- Y gridlines & labels (log ρ from -10 to 20, every 5 decades) -->
-        <g class="grid-y">
-          <line x1="80" y1="338" x2="770" y2="338"/><text x="72" y="342" text-anchor="end">10⁻⁵</text>
-          <line x1="80" y1="277" x2="770" y2="277"/><text x="72" y="281" text-anchor="end">1</text>
-          <line x1="80" y1="215" x2="770" y2="215"/><text x="72" y="219" text-anchor="end">10⁵</text>
-          <line x1="80" y1="153" x2="770" y2="153"/><text x="72" y="157" text-anchor="end">10¹⁰</text>
-          <line x1="80" y1="91" x2="770" y2="91"/><text x="72" y="95" text-anchor="end">10¹⁵</text>
-          <line x1="80" y1="30" x2="770" y2="30"/><text x="72" y="34" text-anchor="end">10²⁰</text>
-        </g>
-        <text transform="translate(22,215) rotate(-90)" text-anchor="middle" class="axis-label">エネルギー密度 (相対値)</text>
-      </g>
-
-      <!-- Plot lines (clipped) -->
-      <g clip-path="url(#plotClip)">
-        <!-- Radiation: ρ_rad ∝ a⁻⁴, normalized so crosses matter at a=2.9e-4 (= log a -3.54, ρ=1.7e10) -->
-        <line class="line-rad" x1="80" y1="-60" x2="770" y2="325"/>
-        <!-- Matter: ρ_m ∝ a⁻³, normalized so equals ρ_Λ at a=0.75 (log a -0.125) -->
-        <line class="line-mat" x1="80" y1="-10" x2="770" y2="282"/>
-        <!-- Dark energy: constant at ρ=1 (y=277) -->
-        <line class="line-de" x1="80" y1="277" x2="770" y2="277"/>
-      </g>
-
-      <!-- Vertical reference lines -->
-      <g class="vline-group">
-        <!-- M-R equality at a ≈ 2.9e-4 → log a ≈ -3.54 → x = 80 + (8-3.54)*86.25 = 80 + 4.46*86.25 ≈ 465 -->
-        <line class="vline" x1="465" y1="30" x2="465" y2="400" stroke-dasharray="6 4"/>
-        <text x="465" y="22" text-anchor="middle" class="vline-label">物質-放射等価</text>
-        <text x="465" y="46" text-anchor="middle" class="vline-sub"><tspan font-style="italic">z</tspan> ≈ 3 400</text>
-
-        <!-- Acceleration onset at a ≈ 0.59 → log a ≈ -0.229 → x = 80 + 7.77*86.25 ≈ 750 -->
-        <!-- DE dominance at a ≈ 0.75 → log a ≈ -0.125 → x = 80 + 7.875*86.25 ≈ 759 -->
-        <!-- These are very close; offset labels above/below -->
-        <line class="vline accel" x1="715" y1="30" x2="715" y2="400" stroke-dasharray="6 4"/>
-        <text x="700" y="22" text-anchor="end" class="vline-label accel">加速膨張<tspan dx="2">開始</tspan></text>
-        <text x="700" y="46" text-anchor="end" class="vline-sub accel"><tspan font-style="italic">z</tspan> ≈ 0.7</text>
-
-        <line class="vline de" x1="755" y1="30" x2="755" y2="400" stroke-dasharray="6 4"/>
-        <text x="770" y="22" text-anchor="start" class="vline-label de">DE 優勢</text>
-        <text x="770" y="46" text-anchor="start" class="vline-sub de"><tspan font-style="italic">z</tspan> ≈ 0.33</text>
-      </g>
-
-      <!-- Line labels -->
-      <g class="line-labels">
-        <text x="180" y="120" class="lbl-rad">放射  <tspan>ρ<tspan baseline-shift="sub">rad</tspan> ∝ a⁻⁴</tspan></text>
-        <text x="200" y="200" class="lbl-mat">物質  <tspan>ρ<tspan baseline-shift="sub">m</tspan> ∝ a⁻³</tspan></text>
-        <text x="450" y="270" class="lbl-de">暗黒エネルギー  <tspan>ρ<tspan baseline-shift="sub">Λ</tspan> = const</tspan></text>
-      </g>
-    </svg>
-
-    <div class="plot-legend">
-      <span class="lg-item"><span class="sw line-rad"></span> 放射 ∝ <em>a</em><sup>−4</sup></span>
-      <span class="lg-item"><span class="sw line-mat"></span> 物質 ∝ <em>a</em><sup>−3</sup></span>
-      <span class="lg-item"><span class="sw line-de"></span> 暗黒エネルギー = const</span>
     </div>
+
+    <!-- ──────── Density plot (redesigned) ──────── -->
+    <section class="plot-section">
+      <header class="plot-head">
+        <h3>宇宙の主要成分のエネルギー密度</h3>
+        <p class="caption">対数-対数 plot。 era 境界の z は ΛCDM (Ω<sub>m</sub>=0.3, Ω<sub>Λ</sub>=0.7) より。</p>
+      </header>
+
+      <svg class="density-plot" viewBox="0 0 900 380" role="img" aria-label="エネルギー密度と スケール因子 の関係">
+        <defs>
+          <clipPath id="plotClip">
+            <rect x="60" y="30" width="800" height="280"/>
+          </clipPath>
+          <!-- Era background gradients -->
+          <linearGradient id="bgRad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="hsl(15,90%,60%)" stop-opacity="0.16"/>
+            <stop offset="1" stop-color="hsl(15,90%,60%)" stop-opacity="0.02"/>
+          </linearGradient>
+          <linearGradient id="bgMat" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="hsl(195,75%,58%)" stop-opacity="0.13"/>
+            <stop offset="1" stop-color="hsl(195,75%,58%)" stop-opacity="0.02"/>
+          </linearGradient>
+          <linearGradient id="bgDE" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="hsl(265,65%,68%)" stop-opacity="0.18"/>
+            <stop offset="1" stop-color="hsl(265,65%,68%)" stop-opacity="0.03"/>
+          </linearGradient>
+          <!-- Line area fills (gradient fading down) -->
+          <linearGradient id="fillRad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="hsl(15,90%,62%)" stop-opacity="0.32"/>
+            <stop offset="1" stop-color="hsl(15,90%,62%)" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="fillMat" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="hsl(195,75%,58%)" stop-opacity="0.28"/>
+            <stop offset="1" stop-color="hsl(195,75%,58%)" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="fillDE" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="hsl(265,65%,68%)" stop-opacity="0.3"/>
+            <stop offset="1" stop-color="hsl(265,65%,68%)" stop-opacity="0"/>
+          </linearGradient>
+          <filter id="lineGlow" x="-10%" y="-10%" width="120%" height="120%">
+            <feGaussianBlur stdDeviation="1.8" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- Era background bands (clipped) -->
+        <g clip-path="url(#plotClip)">
+          <!-- Radiation era: a < 2.9e-4 → x < 444 -->
+          <rect x="60" y="30" width="384" height="280" fill="url(#bgRad)"/>
+          <!-- Matter era: 2.9e-4 < a < 0.75 → 444 < x < 824 -->
+          <rect x="444" y="30" width="380" height="280" fill="url(#bgMat)"/>
+          <!-- DE era: a > 0.75 → x > 824 -->
+          <rect x="824" y="30" width="36" height="280" fill="url(#bgDE)"/>
+        </g>
+
+        <!-- Era labels above plot -->
+        <g class="era-labels">
+          <text x="252" y="22" text-anchor="middle" class="era-lbl rad">放射優勢</text>
+          <text x="634" y="22" text-anchor="middle" class="era-lbl mat">物質優勢</text>
+          <text x="842" y="22" text-anchor="end" class="era-lbl de">DE 優勢</text>
+        </g>
+
+        <!-- Subtle gridlines -->
+        <g class="grid">
+          <g class="grid-x">
+            <line x1="171" y1="30" x2="171" y2="310"/>
+            <line x1="282" y1="30" x2="282" y2="310"/>
+            <line x1="393" y1="30" x2="393" y2="310"/>
+            <line x1="505" y1="30" x2="505" y2="310"/>
+            <line x1="616" y1="30" x2="616" y2="310"/>
+            <line x1="727" y1="30" x2="727" y2="310"/>
+            <line x1="838" y1="30" x2="838" y2="310"/>
+          </g>
+          <g class="grid-y">
+            <line x1="60" y1="282" x2="860" y2="282"/>
+            <line x1="60" y1="235" x2="860" y2="235"/>
+            <line x1="60" y1="189" x2="860" y2="189"/>
+            <line x1="60" y1="142" x2="860" y2="142"/>
+            <line x1="60" y1="95" x2="860" y2="95"/>
+            <line x1="60" y1="49" x2="860" y2="49"/>
+          </g>
+        </g>
+
+        <!-- Area fills under lines (clipped) -->
+        <g clip-path="url(#plotClip)">
+          <!-- Radiation area: line from (60, -25) to (860, 272), then close to baseline -->
+          <path d="M 60 30 L 60 -25 L 860 272 L 860 310 L 60 310 Z" fill="url(#fillRad)" opacity="0.5"/>
+          <!-- Matter area: line from (60, -10) to (860, 239) -->
+          <path d="M 60 30 L 60 -10 L 860 239 L 860 310 L 60 310 Z" fill="url(#fillMat)" opacity="0.5"/>
+          <!-- DE area: horizontal line at y=235 -->
+          <path d="M 60 235 L 860 235 L 860 310 L 60 310 Z" fill="url(#fillDE)" opacity="0.4"/>
+        </g>
+
+        <!-- Main lines (clipped) -->
+        <g clip-path="url(#plotClip)" filter="url(#lineGlow)">
+          <line class="line-rad" x1="60" y1="-25" x2="860" y2="272"/>
+          <line class="line-mat" x1="60" y1="-10" x2="860" y2="239"/>
+          <line class="line-de"  x1="60" y1="235" x2="860" y2="235"/>
+        </g>
+
+        <!-- Crossover & onset markers -->
+        <g class="markers">
+          <!-- M-R equality (a=2.9e-4) -->
+          <circle cx="444" cy="140" r="6" class="mk-mr"/>
+          <circle cx="444" cy="140" r="2.5" class="mk-mr-inner"/>
+          <!-- Acceleration onset on matter line (a=0.59) -->
+          <circle cx="812" cy="232" r="5" class="mk-acc"/>
+          <circle cx="812" cy="232" r="2" class="mk-acc-inner"/>
+          <!-- DE dominance (a=0.75, m=DE crossing) -->
+          <circle cx="824" cy="235" r="6" class="mk-de"/>
+          <circle cx="824" cy="235" r="2.5" class="mk-de-inner"/>
+        </g>
+
+        <!-- Annotation leader lines + labels -->
+        <g class="annotations">
+          <!-- M-R equality: leader to upper area -->
+          <line class="leader" x1="444" y1="140" x2="500" y2="78"/>
+          <text x="505" y="76" class="anno-title">物質-放射等価</text>
+          <text x="505" y="89" class="anno-sub"><tspan font-style="italic">z</tspan> ≈ 3 400</text>
+          <!-- Acceleration onset: leader below -->
+          <line class="leader" x1="812" y1="232" x2="730" y2="346"/>
+          <text x="725" y="358" text-anchor="end" class="anno-title accel">加速膨張開始</text>
+          <text x="725" y="371" text-anchor="end" class="anno-sub accel"><tspan font-style="italic">z</tspan> ≈ 0.7  /  <tspan font-style="italic">a</tspan> ≈ 0.59</text>
+          <!-- DE dominance: leader below right -->
+          <line class="leader" x1="824" y1="235" x2="870" y2="346"/>
+          <text x="875" y="358" class="anno-title de">DE 優勢</text>
+          <text x="875" y="371" class="anno-sub de"><tspan font-style="italic">z</tspan> ≈ 0.33 / <tspan font-style="italic">a</tspan> ≈ 0.75</text>
+        </g>
+
+        <!-- Direct in-plot line labels -->
+        <g class="line-labels">
+          <text x="210" y="118" class="lbl-rad">放射  ρ<tspan baseline-shift="sub">rad</tspan> ∝ <tspan font-style="italic">a</tspan>⁻⁴</text>
+          <text x="240" y="200" class="lbl-mat">物質  ρ<tspan baseline-shift="sub">m</tspan> ∝ <tspan font-style="italic">a</tspan>⁻³</text>
+          <text x="380" y="224" class="lbl-de">暗黒エネルギー  ρ<tspan baseline-shift="sub">Λ</tspan> = const</text>
+        </g>
+
+        <!-- "現在 a=1" marker on right edge -->
+        <g class="now-marker">
+          <line x1="838" y1="30" x2="838" y2="310" class="now-line"/>
+          <text x="838" y="42" text-anchor="middle" class="now-lbl">現在</text>
+        </g>
+
+        <!-- Axes (drawn on top of bands for crispness) -->
+        <g class="axis">
+          <line x1="60" y1="310" x2="860" y2="310" class="ax-x"/>
+          <line x1="60" y1="30" x2="60" y2="310" class="ax-y"/>
+          <!-- X tick labels -->
+          <g class="tick-x">
+            <text x="60"  y="324" text-anchor="middle">10⁻⁷</text>
+            <text x="171" y="324" text-anchor="middle">10⁻⁶</text>
+            <text x="282" y="324" text-anchor="middle">10⁻⁵</text>
+            <text x="393" y="324" text-anchor="middle">10⁻⁴</text>
+            <text x="505" y="324" text-anchor="middle">10⁻³</text>
+            <text x="616" y="324" text-anchor="middle">10⁻²</text>
+            <text x="727" y="324" text-anchor="middle">10⁻¹</text>
+            <text x="838" y="324" text-anchor="middle">1</text>
+          </g>
+          <!-- Y tick labels -->
+          <g class="tick-y">
+            <text x="52" y="286" text-anchor="end">10⁻⁵</text>
+            <text x="52" y="239" text-anchor="end">1</text>
+            <text x="52" y="193" text-anchor="end">10⁵</text>
+            <text x="52" y="146" text-anchor="end">10¹⁰</text>
+            <text x="52" y="99"  text-anchor="end">10¹⁵</text>
+            <text x="52" y="53"  text-anchor="end">10²⁰</text>
+          </g>
+          <!-- Axis titles -->
+          <text x="460" y="345" text-anchor="middle" class="ax-title">スケール因子 <tspan font-style="italic">a</tspan>  (現在 <tspan font-style="italic">a</tspan>₀ = 1)</text>
+          <text transform="translate(16,170) rotate(-90)" text-anchor="middle" class="ax-title">エネルギー密度 (相対値)</text>
+        </g>
+
+      </svg>
+    </section>
+
   </section>
 
   <footer class="page-footer">
-    <p>※ 数値は標準 ΛCDM 宇宙論 (Planck 2018) に基づく代表値・近似。 <em>T<sub>γ</sub></em> はスケール因子に反比例 (<em>T<sub>γ</sub></em> = 2.725 × (1+<em>z</em>) K)。</p>
-    <p>元 infographic からの修正点と典拠は <a href="NOTES.md">NOTES.md</a> 参照。</p>
+    <p>数値は標準 ΛCDM (Planck 2018) 代表値・近似。 <em>T<sub>γ</sub></em> = 2.725 × (1+<em>z</em>) K。 元 infographic からの修正点と典拠は <a href="NOTES.md">NOTES.md</a> 参照</p>
   </footer>
 
 </main>
@@ -447,7 +528,7 @@
     const renderKatex = () => {
       if (!window.katex) { setTimeout(renderKatex, 30); return; }
       katex.render('z = \\dfrac{\\lambda_{\\text{obs}} - \\lambda_{\\text{emit}}}{\\lambda_{\\text{emit}}}', document.getElementById('zdef'), {displayMode: true});
-      katex.render('1 + z = \\dfrac{a_0}{a} = \\dfrac{1}{a}', document.getElementById('zscale'), {displayMode: true});
+      katex.render('1 + z = \\dfrac{a_0}{a}', document.getElementById('zscale'), {displayMode: true});
     };
     renderKatex();
   });
