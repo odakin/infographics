@@ -8,18 +8,20 @@
 
 ## 直近の変更 (2026-05-19)
 
-**LaTeX/TikZ への primary 移行** (= HTML 版で発覚した数式 clip / font OS 依存 / ベースライン整列の構造的弱点を解消):
+**LaTeX/TikZ への primary 移行 + editorial light theme への refactor**:
 
-- `cosmology-history.tex` (LuaLaTeX + ltjsarticle + TikZ + pgfplots) + `Makefile` 新規作成
-- font: TeX Gyre Pagella (Latin) + Pagella Math (math) + Hiragino Mincho/Sans (Japanese, macOS native subset embed)
-- TikZ で 8 stage card + アイコン (= 陽子/中性子配置で核種を描き分け) + 温度勾配 hero band + 3 info card
-- pgfplots で era 背景 band + 温度勾配 palette と整合した line color + crossover marker + leader 付き annotation
-- 解消した HTML 版の問題:
-  - 赤方偏移式の clip → LaTeX 数式 native で絶対 clip しない
-  - font の OS 依存・ダサさ → Hiragino を subset embed、 print fidelity 保証
-  - 配置の揃え崩れ → TikZ 絶対座標で 1mm 単位
-  - DE 優勢 annotation の見切れ → plot 内座標で確実に配置
-- HTML 版 (`index.html` + `style.css`) は **web 配布用代替** として残す (= 削除しない、 用途分担)
+第 1 段 (= 2026-05-19 14:00) LaTeX/TikZ への primary 移行
+- `cosmology-history.tex` (LuaLaTeX + article + luatexja + TikZ + pgfplots) + `Makefile` 新規作成
+- 解消した HTML 版の問題: 数式 clip / font OS 依存 / 配置揃え / annotation 見切れ
+- HTML 版 (`index.html` + `style.css`) は **web 配布用代替** として残置
+
+第 2 段 (= 2026-05-19 16:00) Editorial light theme への refactor
+- **black → cream paper bg** (= 印刷インク代削減、 editorial 標準)
+- **font**: TeX Gyre Pagella → **Libertinus Serif + Libertinus Math + Libertinus Sans** (= 最も refined な free math font ファミリー、 Pagella より優美)
+- **card 高さ**: 70mm → 48mm (= data 行の下に 22mm の vacuum gap があった bug を解消)
+- **palette muted** (= 高彩度 8 色から、 muted earth tone 系へ。 印刷 + cream bg で映える色相)
+- **decoration 削減**: glass effect / drop shadow / gradient 重ね を排除、 hairline border + whitespace のみで modern editorial 化
+- 結果 138 KB の PDF (= subset embed font 込み) 、 1 page A4 横置き
 
 ## 要対応 (open)
 

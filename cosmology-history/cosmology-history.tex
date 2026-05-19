@@ -1,5 +1,7 @@
 % ============================================================
 % Cosmology history infographic — A4 landscape, LuaLaTeX
+% Light editorial style: Libertinus Serif/Math + Hiragino,
+% cream background, restrained palette, modern whitespace.
 % Compile: lualatex cosmology-history.tex
 % ============================================================
 \documentclass[10pt]{article}
@@ -16,43 +18,56 @@
 \usepackage{unicode-math}
 
 % ---- Fonts ----
-\setmainfont{TeX Gyre Pagella}
-\setsansfont[Scale=0.94]{TeX Gyre Heros}
-\setmonofont[Scale=0.88]{TeX Gyre Cursor}
-\setmathfont{TeX Gyre Pagella Math}
+\setmainfont{LibertinusSerif}[
+  Extension      = .otf,
+  UprightFont    = *-Regular,
+  ItalicFont     = *-Italic,
+  BoldFont       = *-Semibold,
+  BoldItalicFont = *-SemiboldItalic,
+  Numbers        = OldStyle,
+]
+\setsansfont{LibertinusSans}[
+  Extension   = .otf,
+  UprightFont = *-Regular,
+  ItalicFont  = *-Italic,
+  BoldFont    = *-Bold,
+]
+\setmathfont{LibertinusMath-Regular.otf}
+\setmonofont{LibertinusMono-Regular.otf}
 
-% Japanese fonts: Hiragino on macOS (PostScript names from TTC).
+% Japanese: Hiragino on macOS. Mincho for body (refined), Sans for emphasis.
 \setmainjfont{HiraMinProN-W3}[BoldFont=HiraMinProN-W6]
 \setsansjfont{HiraginoSans-W3}[BoldFont=HiraginoSans-W6]
 
-% ---- Colors (= matching the HTML version palette) ----
-\definecolor{c0}{HTML}{ED4242}  % stage 1 inflation
-\definecolor{c1}{HTML}{ED7C28}  % 2 QGP
-\definecolor{c2}{HTML}{D9B821}  % 3 BBN
-\definecolor{c3}{HTML}{8FAB37}  % 4 M-R equality
-\definecolor{c4}{HTML}{42C4C4}  % 5 recombination
-\definecolor{c5}{HTML}{4F88E1}  % 6 first stars
-\definecolor{c6}{HTML}{8F6BD9}  % 7 DE
-\definecolor{c7}{HTML}{B354B3}  % 8 today
+% ---- Palette: warm-to-cool temperature gradient, MUTED for light bg ----
+\definecolor{c0}{HTML}{C73E3A}   % 1 inflation - deep red
+\definecolor{c1}{HTML}{D2693C}   % 2 QGP       - rust orange
+\definecolor{c2}{HTML}{C2942B}   % 3 BBN       - goldenrod
+\definecolor{c3}{HTML}{6F8E2F}   % 4 M-R equal - olive
+\definecolor{c4}{HTML}{2E8B8B}   % 5 recomb    - teal
+\definecolor{c5}{HTML}{3865A1}   % 6 stars     - cobalt
+\definecolor{c6}{HTML}{6B4F9E}   % 7 DE        - amethyst
+\definecolor{c7}{HTML}{8E3D7E}   % 8 today     - magenta
 
-\definecolor{plotrad}{HTML}{F26A2E}
-\definecolor{plotmat}{HTML}{38ADD9}
-\definecolor{plotde}{HTML}{8E68C7}
+\definecolor{plotrad}{HTML}{C73E3A}
+\definecolor{plotmat}{HTML}{2E8B8B}
+\definecolor{plotde}{HTML}{6B4F9E}
 
-\definecolor{nucp}{HTML}{FF6B6B}
-\definecolor{nucn}{HTML}{74B9FF}
+\definecolor{nucp}{HTML}{C73E3A}
+\definecolor{nucn}{HTML}{3865A1}
 
-% Dark theme
-\definecolor{bgpage}{HTML}{0E1224}
-\definecolor{bgcard}{HTML}{16182C}
-\definecolor{bgcardb}{HTML}{262B40}
-\definecolor{fgstrong}{HTML}{F4F5F9}
-\definecolor{fg}{HTML}{D6D9E3}
-\definecolor{fgmute}{HTML}{8E95A8}
-\definecolor{fgfaint}{HTML}{4A5168}
-\definecolor{grid}{HTML}{2A3045}
+% ---- Light theme surface tokens ----
+\definecolor{bgpage}{HTML}{FBF8F2}     % cream paper
+\definecolor{bgcard}{HTML}{FFFFFF}     % white card
+\definecolor{bgcardb}{HTML}{E5E0D5}    % warm hairline
+\definecolor{bgalt}{HTML}{F4EFE5}      % subtle alternate
+\definecolor{fgstrong}{HTML}{1A1D26}   % near-black charcoal
+\definecolor{fg}{HTML}{2E323F}
+\definecolor{fgmute}{HTML}{6E7280}
+\definecolor{fgfaint}{HTML}{A8A89E}
+\definecolor{grid}{HTML}{E8E3D6}
 
-% ---- Background fill ----
+% Background fill (= cream paper)
 \AddToShipoutPictureBG*{\AtPageLowerLeft{\color{bgpage}\rule{\paperwidth}{\paperheight}}}
 
 \pagestyle{empty}
@@ -61,79 +76,68 @@
 % ---- TikZ styles ----
 \tikzset{
   card/.style={
-    draw=bgcardb, line width=0.3pt,
-    fill=bgcard, rounded corners=1.4mm,
+    draw=bgcardb, line width=0.25pt,
+    fill=bgcard,
     inner sep=0pt, outer sep=0pt,
   },
-  cardaccent/.style={fill=#1, draw=none},
   stagenum/.style={
     circle, draw=none, fill=#1, text=white,
     font=\sffamily\bfseries\footnotesize,
     inner sep=0pt, minimum size=4mm,
   },
-  datalbl/.style={font=\fontsize{6}{7.5}\selectfont\sffamily, text=fgmute, anchor=west, inner sep=0pt},
-  dataval/.style={font=\fontsize{7}{8.5}\selectfont\sffamily\bfseries, text=fg, anchor=west, inner sep=0pt},
-  caption/.style={font=\fontsize{6.5}{8}\selectfont\sffamily, text=fgmute},
-  desctext/.style={font=\fontsize{6.5}{8}\selectfont\sffamily, text=fg, align=left},
   proton/.style={circle, fill=nucp, inner sep=0pt, minimum size=#1},
   neutron/.style={circle, fill=nucn, inner sep=0pt, minimum size=#1},
 }
 
-% ---- Data row helper ----
-% \datarow{y}{label}{value} draws label at x=-14 and value at x=-7.5 (in card-local coords)
+% ---- Data row helper (in card-local coords) ----
 \newcommand{\datarow}[3]{%
-  \node[datalbl] at (-14, #1) {#2};%
-  \node[dataval] at (-7.5, #1) {#3};%
+  \node[anchor=base west, font=\fontsize{6}{7}\selectfont\sffamily, text=fgmute, inner sep=0pt] at (-14, #1) {#2};%
+  \node[anchor=base west, font=\fontsize{7}{8.5}\selectfont, text=fgstrong, inner sep=0pt] at (-9, #1) {#3};%
 }
 
-% ---- Icon macros ----
-% Each icon occupies a ~18mm × 14mm box centered at given coord
+% ---- Icon macros (= simpler, more refined for light bg) ----
 \newcommand{\iconInflation}[1]{%
   \begin{scope}[shift={(#1)}]
-    \shade[inner color=white, outer color=c0!50!bgcard, opacity=0.95] (0,0) circle (4mm);
+    \shade[inner color=c0!90!white, outer color=c0!20!white, opacity=0.85] (0,0) circle (3.5mm);
     \foreach \a in {0,45,...,315} {
-      \draw[c0!85!white, line width=0.6pt, line cap=round] (\a:2mm) -- (\a:4.5mm);
+      \draw[c0, line width=0.4pt, line cap=round] (\a:2mm) -- (\a:4.2mm);
     }
   \end{scope}
 }
 \newcommand{\iconQGP}[1]{%
   \begin{scope}[shift={(#1)}]
-    \draw[c1!60!bgcard, dashed, line width=0.3pt] (-2mm,-1mm) .. controls (0,0) .. (2mm,-1mm);
-    \draw[c1!60!bgcard, dashed, line width=0.3pt] (-2mm,1mm) .. controls (0,0) .. (2mm,1mm);
-    \draw[c1!60!bgcard, dashed, line width=0.3pt] (0,-2mm) .. controls (0,0) .. (0,2mm);
+    \draw[c1!50!white, dashed, line width=0.25pt] (-2mm,-1mm) .. controls (0,0) .. (2mm,-1mm);
+    \draw[c1!50!white, dashed, line width=0.25pt] (-2mm,1mm) .. controls (0,0) .. (2mm,1mm);
+    \draw[c1!50!white, dashed, line width=0.25pt] (0,-2mm) .. controls (0,0) .. (0,2mm);
     \node[circle, fill=nucp, inner sep=0pt, minimum size=2.4mm,
           font=\fontsize{4}{4}\selectfont\sffamily\bfseries, text=white] at (-2mm,-1mm) {u};
     \node[circle, fill=nucp, inner sep=0pt, minimum size=2.4mm,
           font=\fontsize{4}{4}\selectfont\sffamily\bfseries, text=white] at (2mm,-1mm) {u};
     \node[circle, fill=nucn, inner sep=0pt, minimum size=2.4mm,
           font=\fontsize{4}{4}\selectfont\sffamily\bfseries, text=white] at (0,2mm) {d};
-    \draw[c1!60!bgcard, dashed, line width=0.3pt] (0,0) circle (3.2mm);
+    \draw[c1!40!white, dashed, line width=0.25pt] (0,0) circle (3.2mm);
   \end{scope}
 }
-\newcommand{\nucleus}[3]{% #1=pos, #2=label, #3=tikz body
+\newcommand{\nucleus}[3]{%
   \begin{scope}[shift={(#1)}]
     #3
-    \node[font=\fontsize{4}{5}\selectfont\sffamily\bfseries, text=fg, anchor=north] at (0,-1.6mm) {#2};
+    \node[font=\fontsize{4.5}{5}\selectfont, text=fg, anchor=north] at (0,-1.8mm) {#2};
   \end{scope}}
 \newcommand{\iconBBN}[1]{%
   \begin{scope}[shift={(#1)}]
-    % 2H (D): 1p + 1n
-    \nucleus{-3.5mm,2mm}{\textsuperscript{2}H (D)}{%
+    \nucleus{-3.5mm,2mm}{$^{2}$H (D)}{%
       \node[proton=1.2mm] at (-0.7mm,0) {};
       \node[neutron=1.2mm] at (0.7mm,0) {};}
-    % 3He: 2p + 1n
-    \nucleus{3.5mm,2mm}{\textsuperscript{3}He}{%
+    \nucleus{3.5mm,2mm}{$^{3}$He}{%
       \node[proton=1.2mm] at (-0.8mm,-0.5mm) {};
       \node[proton=1.2mm] at (0.8mm,-0.5mm) {};
       \node[neutron=1.2mm] at (0,0.9mm) {};}
-    % 4He: 2p + 2n
-    \nucleus{-3.5mm,-2.5mm}{\textsuperscript{4}He}{%
+    \nucleus{-3.5mm,-2.5mm}{$^{4}$He}{%
       \node[proton=1.2mm] at (-0.8mm,-0.7mm) {};
       \node[proton=1.2mm] at (0.8mm,-0.7mm) {};
       \node[neutron=1.2mm] at (-0.8mm,0.7mm) {};
       \node[neutron=1.2mm] at (0.8mm,0.7mm) {};}
-    % 7Li: 3p + 4n
-    \nucleus{3.5mm,-2.5mm}{\textsuperscript{7}Li}{%
+    \nucleus{3.5mm,-2.5mm}{$^{7}$Li}{%
       \node[proton=1mm] at (-1.1mm,-0.7mm) {};
       \node[proton=1mm] at (0,-1.2mm) {};
       \node[proton=1mm] at (1.1mm,-0.7mm) {};
@@ -147,17 +151,15 @@
   \begin{scope}[shift={(#1)}]
     \draw[fg, line width=0.5pt] (0,-3mm) -- (0,3mm);
     \draw[fg, line width=0.5pt] (-4mm,3mm) -- (4mm,3mm);
-    % left pan (waves = radiation)
     \begin{scope}[shift={(-3.5mm,1mm)}]
-      \draw[fg, line width=0.2pt] (0,1.4mm) -- (-1mm,0);
-      \draw[fg, line width=0.2pt] (0,1.4mm) -- (1mm,0);
+      \draw[fgmute, line width=0.2pt] (0,1.4mm) -- (-1mm,0);
+      \draw[fgmute, line width=0.2pt] (0,1.4mm) -- (1mm,0);
       \draw[fg, line width=0.4pt, rounded corners=0.3mm] (-1.4mm,-0.4mm) rectangle (1.4mm,0.4mm);
-      \draw[c2, line width=0.4pt] (-1mm,-1.4mm) .. controls (-0.5mm,-1mm) and (0,-1.8mm) .. (0.5mm,-1.4mm) .. controls (0.8mm,-1mm) and (1mm,-1.8mm) .. (1.2mm,-1.4mm);
+      \draw[c2, line width=0.45pt] (-1mm,-1.4mm) .. controls (-0.5mm,-1mm) and (0,-1.8mm) .. (0.5mm,-1.4mm) .. controls (0.8mm,-1mm) and (1mm,-1.8mm) .. (1.2mm,-1.4mm);
     \end{scope}
-    % right pan (dots = matter)
     \begin{scope}[shift={(3.5mm,1mm)}]
-      \draw[fg, line width=0.2pt] (0,1.4mm) -- (-1mm,0);
-      \draw[fg, line width=0.2pt] (0,1.4mm) -- (1mm,0);
+      \draw[fgmute, line width=0.2pt] (0,1.4mm) -- (-1mm,0);
+      \draw[fgmute, line width=0.2pt] (0,1.4mm) -- (1mm,0);
       \draw[fg, line width=0.4pt, rounded corners=0.3mm] (-1.4mm,-0.4mm) rectangle (1.4mm,0.4mm);
       \fill[plotmat] (-0.7mm,-1.2mm) circle (0.3mm);
       \fill[plotmat] (0,-1.2mm) circle (0.3mm);
@@ -170,329 +172,329 @@
   \begin{scope}[shift={(#1)}]
     \node[circle, fill=nucp, inner sep=0pt, minimum size=2.6mm,
           font=\fontsize{4}{4}\selectfont\sffamily\bfseries, text=white] at (-1.4mm,0) {p};
-    \node[circle, fill=c6!70!white, inner sep=0pt, minimum size=1.6mm] at (1.4mm,0) {};
-    \node[font=\fontsize{3.5}{3.5}\selectfont\sffamily, text=fgmute] at (1.4mm,1.2mm) {e\textsuperscript{$-$}};
-    % waves around
+    \node[circle, fill=c6!75!white, inner sep=0pt, minimum size=1.6mm] at (1.4mm,0) {};
+    \node[font=\fontsize{3.5}{3.5}\selectfont, text=fgmute] at (1.4mm,1.4mm) {e\textsuperscript{$-$}};
     \foreach \ang in {30,150,210,330}{
-      \draw[c4, line width=0.4pt] (\ang:3.5mm) .. controls +(\ang+45:0.5mm) and +(\ang-45:0.5mm) .. (\ang:4.5mm);
+      \draw[plotmat, line width=0.4pt] (\ang:3.5mm) .. controls +(\ang+45:0.5mm) and +(\ang-45:0.5mm) .. (\ang:4.5mm);
     }
-    \draw[c4!60!bgcard, line width=0.2pt, dashed] (0,0) circle (3mm);
+    \draw[plotmat!50!white, line width=0.2pt, dashed] (0,0) circle (3mm);
   \end{scope}
 }
 \newcommand{\iconStars}[1]{%
   \begin{scope}[shift={(#1)}]
-    % background stars
     \foreach \p in {(-4mm,3mm),(4mm,3.5mm),(-4mm,-2.5mm),(3.5mm,-3mm),(0,4mm)}{
-      \fill[fgmute] \p circle (0.15mm);
+      \fill[fgmute] \p circle (0.18mm);
     }
-    % central star with rays
-    \shade[inner color=white, outer color=c5!80!yellow, opacity=0.95] (0,0) circle (1mm);
+    \shade[inner color=white, outer color=c5!80!white, opacity=0.95] (0,0) circle (1mm);
     \foreach \a in {0,45,...,315}{
-      \draw[c5!90!white, line width=0.4pt, line cap=round] (\a:1.5mm) -- (\a:2.8mm);
+      \draw[c5, line width=0.4pt, line cap=round] (\a:1.5mm) -- (\a:2.8mm);
     }
-    \draw[c4!60!bgcard, dashed, line width=0.2pt] (0,0) circle (4mm);
+    \draw[plotmat!50!white, dashed, line width=0.2pt] (0,0) circle (4mm);
   \end{scope}
 }
 \newcommand{\iconDE}[1]{%
   \begin{scope}[shift={(#1)}]
     \fill[c6!80!white] (0,0) circle (1mm);
     \foreach \a in {90,210,330}{
-      \draw[->, c6!90!white, line width=0.7pt, line cap=round, >={Stealth[length=1mm,width=1mm]}]
+      \draw[->, c6, line width=0.7pt, line cap=round, >={Stealth[length=1mm,width=1mm]}]
         (\a:1.5mm) -- (\a:4mm);
     }
     \foreach \a in {30,150,270}{
-      \draw[c6!60!bgcard, line width=0.3pt, line cap=round] (\a:1.7mm) -- (\a:3mm);
+      \draw[c6!50!white, line width=0.3pt, line cap=round] (\a:1.7mm) -- (\a:3mm);
     }
   \end{scope}
 }
 \newcommand{\iconGalaxy}[1]{%
   \begin{scope}[shift={(#1)}]
-    % stars
     \foreach \p in {(-4mm,3mm),(4mm,3.5mm),(-4.5mm,-2.5mm),(4mm,-3mm),(-2mm,4mm),(2.5mm,-4mm),(5mm,1mm)}{
-      \fill[fg] \p circle (0.15mm);
+      \fill[fgmute] \p circle (0.18mm);
     }
     \begin{scope}[rotate=20]
-      \draw[c5!70!white, line width=0.3pt, opacity=0.5] (0,0) ellipse (3.5mm and 1.4mm);
-      \draw[c5!85!white, line width=0.4pt, opacity=0.85] (0,0) ellipse (2.8mm and 1.1mm);
-      \fill[c5!90!white, opacity=0.35] (0,0) ellipse (2mm and 0.7mm);
-      \fill[c2!50!white] (0,0) circle (0.7mm);
+      \draw[c5, line width=0.3pt, opacity=0.5] (0,0) ellipse (3.5mm and 1.4mm);
+      \draw[c5, line width=0.5pt, opacity=0.8] (0,0) ellipse (2.8mm and 1.1mm);
+      \fill[c5!40!white, opacity=0.4] (0,0) ellipse (2mm and 0.7mm);
+      \fill[c2] (0,0) circle (0.6mm);
     \end{scope}
   \end{scope}
 }
-
-% ---- Stage card macro ----
-% #1 = x-center (mm), #2 = stage color, #3 = number, #4 = title,
-% #5 = icon command (e.g. \iconInflation), #6 = data rows (TikZ matrix-style),
-% #7 = description
-\newcommand{\cardW}{33}  % mm
-\newcommand{\cardH}{70}  % mm
-\newcommand{\cardYmid}{145} % mm (= y-center of all cards)
 
 \begin{document}
 \noindent\begin{tikzpicture}[x=1mm, y=1mm]
   \useasboundingbox (0,0) rectangle (297, 210);
 
   % ====================== HEADER ======================
-  % Title (= gradient simulated by colored characters)
-  \node[anchor=base west, font=\fontsize{26}{30}\selectfont\sffamily\bfseries] at (8, 200) {%
-    {\color{c0}宇}{\color{c2}宙}{\color{c4}の}{\color{c6}歴}{\color{c7}史}%
+  \node[anchor=base west, font=\fontsize{28}{32}\selectfont\bfseries, text=fgstrong]
+    at (10, 200) {宇宙の歴史};
+  \node[anchor=base west, font=\fontsize{9.5}{11}\selectfont, text=fg]
+    at (10, 194) {赤方偏移 $z$ ・宇宙年齢 $t$ ・温度 $T_{\gamma}$ で読む 138 億年};
+
+  % Right-side: axis legend (= no boxed bg, just inline text)
+  \node[anchor=base east, font=\fontsize{7.5}{9}\selectfont, text=fgmute]
+    at (287, 199) {%
+      \tikz[baseline=-0.5ex]{\fill[c0] (0,0) circle (0.9mm);}\,高温(初期)
+      \tikz[baseline=-0.5ex]{\draw[fgmute, line width=0.25pt, ->, >={Stealth[length=1.4mm]}] (0,0) -- (10mm,0);} 時間
+      \tikz[baseline=-0.5ex]{\fill[c7] (0,0) circle (0.9mm);}\,低温(現在)%
   };
-  \node[anchor=base west, font=\fontsize{9}{11}\selectfont\sffamily, text=fg]
-    at (8, 194) {赤方偏移 $z$ ・宇宙年齢 $t$ ・温度 $T_{\gamma}$ で読む 138 億年};
+  \node[anchor=base east, font=\fontsize{7}{8}\selectfont\itshape, text=fgmute]
+    at (287, 194) {標準 $\Lambda$CDM (Planck 2018) に基づく代表値};
 
-  % Right-side: axis legend + model note
-  \node[anchor=base east, font=\fontsize{7.5}{9}\selectfont\sffamily, text=fgmute,
-        draw=bgcardb, line width=0.2pt, fill=bgcard, rounded corners=2mm,
-        inner xsep=2.5mm, inner ysep=1.5mm] at (289, 199) {%
-    \tikz[baseline=-0.5ex]{\fill[c0] (0,0) circle (1mm);} 高温 (初期)
-    \tikz[baseline=-0.5ex]{\draw[fgmute, line width=0.3pt, ->, >={Stealth[length=1.5mm]}] (0,0) -- (8mm,0);} 時間
-    \tikz[baseline=-0.5ex]{\fill[c7] (0,0) circle (1mm);} 低温 (現在)%
-  };
-  \node[anchor=base east, font=\fontsize{7}{8}\selectfont\sffamily, text=fgmute]
-    at (289, 194) {標準 $\Lambda$CDM (Planck 2018) に基づく代表値};
+  % Header rule (hairline)
+  \draw[bgcardb, line width=0.25pt] (10, 190) -- (287, 190);
 
-  % Header separator
-  \draw[bgcardb, line width=0.2pt] (6, 190.5) -- (291, 190.5);
-
-  % ====================== HERO BAND ======================
-  \begin{scope}
-    \clip[rounded corners=1.5mm] (6, 184) rectangle (291, 190);
-    \shade[left color=c0, right color=c7] (6, 184) rectangle (291, 190);
-    \shade[top color=bgpage, top color=black, bottom color=bgpage, opacity=0.15]
-      (6, 184) rectangle (291, 190);
-  \end{scope}
-  % Stage tick markers on hero band
-  \foreach \i/\x in {1/22.5, 2/58.5, 3/94.5, 4/130.5, 5/166.5, 6/202.5, 7/238.5, 8/274.5} {
-    \node[circle, fill=white, draw=fgfaint, line width=0.2pt,
-          font=\fontsize{5.5}{6}\selectfont\sffamily\bfseries, text=bgpage,
-          inner sep=0pt, minimum size=3mm] at (\x, 187) {\i};
+  % ====================== HERO BAND (= thin temperature gradient) ======================
+  \shade[left color=c0, right color=c7] (10, 184) rectangle (287, 187);
+  \foreach \i/\x in {1/27, 2/61.5, 3/96, 4/130.5, 5/165, 6/199.5, 7/234, 8/268.5} {
+    \node[circle, fill=bgpage, draw=fgmute, line width=0.2pt,
+          font=\fontsize{5.5}{6}\selectfont\sffamily\bfseries, text=fgstrong,
+          inner sep=0pt, minimum size=2.8mm] at (\x, 185.5) {\i};
   }
 
-  % ====================== TIMELINE: 8 STAGE CARDS ======================
-  % Each card occupies (x-16.5, 110) to (x+16.5, 180) = 33mm × 70mm
+  % ====================== TIMELINE: 8 STAGE CARDS (48mm tall) ======================
+  % Card y center = 156, top = 180, bottom = 132. Card width = 33mm.
+  % Card x centers = 27, 61.5, 96, 130.5, 165, 199.5, 234, 268.5 (= 34.5mm apart, 1.5mm gap)
+  \newcommand{\cardYmid}{156}
 
-  % ---------- Card 1: Inflation ----------
-  \begin{scope}[shift={(22.5, 145)}]
-    \node[card, minimum width=33mm, minimum height=70mm] (s1) at (0,0) {};
-    \fill[c0] (-16.5,34.7) rectangle (16.5,35);  % top accent
-    \node[stagenum=c0] at (-13, 31) {1};
-    \node[anchor=west, font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=fgstrong,
-          text width=22mm] at (-10, 31) {インフレーション};
-    \iconInflation{0,20}
-    \draw[bgcardb, line width=0.2pt] (-14.5, 11.5) -- (14.5, 11.5);
-    \datarow{9}{$z$}{非常に大 \tiny(モデル依存)}
-    \datarow{6.5}{$t$}{$10^{-36}$--$10^{-32}$ 秒}
-    \datarow{4}{過去}{$\approx 138$ 億年前}
-    \datarow{1.5}{$T_{\gamma}$}{超高温}
-    \draw[bgcardb, line width=0.2pt] (-14.5, -22) -- (14.5, -22);
-    \node[desctext, text width=29mm, anchor=north] at (0, -23.5)
+  % Internal coord (card-local origin = card center):
+  %   y= 24 (top)   -- header
+  %   y= 20         -- title baseline
+  %   y= 14         -- icon center
+  %   y=  4         -- separator
+  %   y=  1, -1.5, -4, -6.5  -- 4 data rows
+  %   y= -8.5       -- separator
+  %   y= -10 down   -- description
+  %   y=-24 (bottom)
+
+  % ---------- Card 1 ----------
+  \begin{scope}[shift={(27, \cardYmid)}]
+    \node[card, minimum width=33mm, minimum height=48mm] at (0,0) {};
+    \fill[c0] (-16.5,23.6) rectangle (16.5,24);  % top accent bar
+    \node[stagenum=c0, anchor=west] at (-15.5, 20) {1};
+    \node[anchor=west, font=\fontsize{8}{10}\selectfont\sffamily\bfseries, text=fgstrong,
+          text width=22mm] at (-11.5, 20) {インフレーション};
+    \iconInflation{0,11}
+    \draw[bgcardb, line width=0.2pt] (-14.5, 3) -- (14.5, 3);
+    \datarow{0}{$z$}{非常に大 \tiny(モデル依存)}
+    \datarow{-2.5}{$t$}{$10^{-36}$--$10^{-32}$ s}
+    \datarow{-5}{過去}{$\approx 138$ 億年前}
+    \datarow{-7.5}{$T_{\gamma}$}{超高温}
+    \draw[bgcardb, line width=0.2pt] (-14.5, -10) -- (14.5, -10);
+    \node[anchor=north west, font=\fontsize{6.5}{8.5}\selectfont, text=fg,
+          align=left, text width=29mm] at (-14.5, -11.5)
       {急膨張で量子ゆらぎが macro 化、 構造形成の種に。};
   \end{scope}
 
-  % ---------- Card 2: QGP ----------
-  \begin{scope}[shift={(58.5, 145)}]
-    \node[card, minimum width=33mm, minimum height=70mm] at (0,0) {};
-    \fill[c1] (-16.5,34.7) rectangle (16.5,35);
-    \node[stagenum=c1] at (-13, 31) {2};
-    \node[anchor=west, font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=fgstrong,
-          text width=22mm] at (-10, 31) {QGP $\to$ ハドロン化};
-    \iconQGP{0,20}
-    \draw[bgcardb, line width=0.2pt] (-14.5, 11.5) -- (14.5, 11.5);
-    \datarow{9}{$z$}{$\gtrsim 10^{12}$}
-    \datarow{6.5}{$t$}{$10^{-6}$--$10^{-5}$ 秒}
-    \datarow{4}{過去}{$\approx 138$ 億年前}
-    \datarow{1.5}{$T_{\gamma}$}{$\gtrsim 10^{12}$ K \tiny(90 MeV)}
-    \draw[bgcardb, line width=0.2pt] (-14.5, -22) -- (14.5, -22);
-    \node[desctext, text width=29mm, anchor=north] at (0, -23.5)
+  % ---------- Card 2 ----------
+  \begin{scope}[shift={(61.5, \cardYmid)}]
+    \node[card, minimum width=33mm, minimum height=48mm] at (0,0) {};
+    \fill[c1] (-16.5,23.6) rectangle (16.5,24);
+    \node[stagenum=c1, anchor=west] at (-15.5, 20) {2};
+    \node[anchor=west, font=\fontsize{8}{10}\selectfont\sffamily\bfseries, text=fgstrong,
+          text width=22mm] at (-11.5, 20) {QGP $\to$ ハドロン化};
+    \iconQGP{0,11}
+    \draw[bgcardb, line width=0.2pt] (-14.5, 3) -- (14.5, 3);
+    \datarow{0}{$z$}{$\gtrsim 10^{12}$}
+    \datarow{-2.5}{$t$}{$10^{-6}$--$10^{-5}$ s}
+    \datarow{-5}{過去}{$\approx 138$ 億年前}
+    \datarow{-7.5}{$T_{\gamma}$}{$\gtrsim 10^{12}$ K \tiny(90 MeV)}
+    \draw[bgcardb, line width=0.2pt] (-14.5, -10) -- (14.5, -10);
+    \node[anchor=north west, font=\fontsize{6.5}{8.5}\selectfont, text=fg,
+          align=left, text width=29mm] at (-14.5, -11.5)
       {QGP が冷えてハドロン化、 陽子・中性子に閉じ込め。};
   \end{scope}
 
-  % ---------- Card 3: BBN ----------
-  \begin{scope}[shift={(94.5, 145)}]
-    \node[card, minimum width=33mm, minimum height=70mm] at (0,0) {};
-    \fill[c2] (-16.5,34.7) rectangle (16.5,35);
-    \node[stagenum=c2] at (-13, 31) {3};
-    \node[anchor=west, font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=fgstrong,
-          text width=22mm] at (-10, 31) {ビッグバン元素合成 (BBN)};
-    \iconBBN{0,20}
-    \draw[bgcardb, line width=0.2pt] (-14.5, 11.5) -- (14.5, 11.5);
-    \datarow{9}{$z$}{$4{\times}10^{8}$--$4{\times}10^{9}$}
-    \datarow{6.5}{$t$}{1 秒 〜 約 20 分}
-    \datarow{4}{過去}{$\approx 138$ 億年前}
-    \datarow{1.5}{$T_{\gamma}$}{$0.03$--$1$ MeV}
-    \draw[bgcardb, line width=0.2pt] (-14.5, -22) -- (14.5, -22);
-    \node[desctext, text width=29mm, anchor=north] at (0, -23.5)
-      {\textsuperscript{2}H・\textsuperscript{3}He・\textsuperscript{4}He・\textsuperscript{7}Li が合成 ($^{1}$H は既存)。};
+  % ---------- Card 3 ----------
+  \begin{scope}[shift={(96, \cardYmid)}]
+    \node[card, minimum width=33mm, minimum height=48mm] at (0,0) {};
+    \fill[c2] (-16.5,23.6) rectangle (16.5,24);
+    \node[stagenum=c2, anchor=west] at (-15.5, 20) {3};
+    \node[anchor=west, font=\fontsize{8}{10}\selectfont\sffamily\bfseries, text=fgstrong,
+          text width=22mm] at (-11.5, 20) {ビッグバン元素合成 (BBN)};
+    \iconBBN{0,11}
+    \draw[bgcardb, line width=0.2pt] (-14.5, 3) -- (14.5, 3);
+    \datarow{0}{$z$}{$4{\times}10^{8}$--$4{\times}10^{9}$}
+    \datarow{-2.5}{$t$}{1 秒 〜 約 20 分}
+    \datarow{-5}{過去}{$\approx 138$ 億年前}
+    \datarow{-7.5}{$T_{\gamma}$}{$0.03$--$1$ MeV}
+    \draw[bgcardb, line width=0.2pt] (-14.5, -10) -- (14.5, -10);
+    \node[anchor=north west, font=\fontsize{6.5}{8.5}\selectfont, text=fg,
+          align=left, text width=29mm] at (-14.5, -11.5)
+      {$^{2}$H・$^{3}$He・$^{4}$He・$^{7}$Li が合成 ($^{1}$H は既存)。};
   \end{scope}
 
-  % ---------- Card 4: M-R equality ----------
-  \begin{scope}[shift={(130.5, 145)}]
-    \node[card, minimum width=33mm, minimum height=70mm] at (0,0) {};
-    \fill[c3] (-16.5,34.7) rectangle (16.5,35);
-    \node[stagenum=c3] at (-13, 31) {4};
-    \node[anchor=west, font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=fgstrong,
-          text width=22mm] at (-10, 31) {物質-放射等価};
-    \iconBalance{0,20}
-    \draw[bgcardb, line width=0.2pt] (-14.5, 11.5) -- (14.5, 11.5);
-    \datarow{9}{$z$}{$\approx 3\,400$}
-    \datarow{6.5}{$t$}{$\approx 5$ 万年}
-    \datarow{4}{過去}{$\approx 138$ 億年前}
-    \datarow{1.5}{$T_{\gamma}$}{$\approx 9\,000$ K \tiny(0.8 eV)}
-    \draw[bgcardb, line width=0.2pt] (-14.5, -22) -- (14.5, -22);
-    \node[desctext, text width=29mm, anchor=north] at (0, -23.5)
+  % ---------- Card 4 ----------
+  \begin{scope}[shift={(130.5, \cardYmid)}]
+    \node[card, minimum width=33mm, minimum height=48mm] at (0,0) {};
+    \fill[c3] (-16.5,23.6) rectangle (16.5,24);
+    \node[stagenum=c3, anchor=west] at (-15.5, 20) {4};
+    \node[anchor=west, font=\fontsize{8}{10}\selectfont\sffamily\bfseries, text=fgstrong,
+          text width=22mm] at (-11.5, 20) {物質-放射等価};
+    \iconBalance{0,11}
+    \draw[bgcardb, line width=0.2pt] (-14.5, 3) -- (14.5, 3);
+    \datarow{0}{$z$}{$\approx 3\,400$}
+    \datarow{-2.5}{$t$}{$\approx 5$ 万年}
+    \datarow{-5}{過去}{$\approx 138$ 億年前}
+    \datarow{-7.5}{$T_{\gamma}$}{$\approx 9\,000$ K \tiny(0.8 eV)}
+    \draw[bgcardb, line width=0.2pt] (-14.5, -10) -- (14.5, -10);
+    \node[anchor=north west, font=\fontsize{6.5}{8.5}\selectfont, text=fg,
+          align=left, text width=29mm] at (-14.5, -11.5)
       {放射と物質のエネルギー密度が等しく、 以後 物質優勢へ。};
   \end{scope}
 
-  % ---------- Card 5: Recombination ----------
-  \begin{scope}[shift={(166.5, 145)}]
-    \node[card, minimum width=33mm, minimum height=70mm] at (0,0) {};
-    \fill[c4] (-16.5,34.7) rectangle (16.5,35);
-    \node[stagenum=c4] at (-13, 31) {5};
-    \node[anchor=west, font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=fgstrong,
-          text width=22mm] at (-10, 31) {再結合 / CMB 放射};
-    \iconRecomb{0,20}
-    \draw[bgcardb, line width=0.2pt] (-14.5, 11.5) -- (14.5, 11.5);
-    \datarow{9}{$z$}{$\approx 1\,100$}
-    \datarow{6.5}{$t$}{$\approx 38$ 万年}
-    \datarow{4}{過去}{$\approx 138$ 億年前}
-    \datarow{1.5}{$T_{\gamma}$}{$\approx 3\,000$ K \tiny(0.26 eV)}
-    \draw[bgcardb, line width=0.2pt] (-14.5, -22) -- (14.5, -22);
-    \node[desctext, text width=29mm, anchor=north] at (0, -23.5)
+  % ---------- Card 5 ----------
+  \begin{scope}[shift={(165, \cardYmid)}]
+    \node[card, minimum width=33mm, minimum height=48mm] at (0,0) {};
+    \fill[c4] (-16.5,23.6) rectangle (16.5,24);
+    \node[stagenum=c4, anchor=west] at (-15.5, 20) {5};
+    \node[anchor=west, font=\fontsize{8}{10}\selectfont\sffamily\bfseries, text=fgstrong,
+          text width=22mm] at (-11.5, 20) {再結合 / CMB 放射};
+    \iconRecomb{0,11}
+    \draw[bgcardb, line width=0.2pt] (-14.5, 3) -- (14.5, 3);
+    \datarow{0}{$z$}{$\approx 1\,100$}
+    \datarow{-2.5}{$t$}{$\approx 38$ 万年}
+    \datarow{-5}{過去}{$\approx 138$ 億年前}
+    \datarow{-7.5}{$T_{\gamma}$}{$\approx 3\,000$ K \tiny(0.26 eV)}
+    \draw[bgcardb, line width=0.2pt] (-14.5, -10) -- (14.5, -10);
+    \node[anchor=north west, font=\fontsize{6.5}{8.5}\selectfont, text=fg,
+          align=left, text width=29mm] at (-14.5, -11.5)
       {電子+陽子 $\to$ 中性原子、 CMB が自由に伝播するように。};
   \end{scope}
 
-  % ---------- Card 6: First stars / Reionization ----------
-  \begin{scope}[shift={(202.5, 145)}]
-    \node[card, minimum width=33mm, minimum height=70mm] at (0,0) {};
-    \fill[c5] (-16.5,34.7) rectangle (16.5,35);
-    \node[stagenum=c5] at (-13, 31) {6};
-    \node[anchor=west, font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=fgstrong,
-          text width=22mm] at (-10, 31) {最初の星・銀河 / 再電離};
-    \iconStars{0,20}
-    \draw[bgcardb, line width=0.2pt] (-14.5, 11.5) -- (14.5, 11.5);
-    \datarow{9}{$z$}{$\approx 20$--$6$}
-    \datarow{6.5}{$t$}{約 2--10 億年}
-    \datarow{4}{過去}{128--136 億年前}
-    \datarow{1.5}{$T_{\gamma}$}{$\approx 20$--$60$ K}
-    \draw[bgcardb, line width=0.2pt] (-14.5, -22) -- (14.5, -22);
-    \node[desctext, text width=29mm, anchor=north] at (0, -23.5)
-      {最初の星の{\color{fgstrong}\textbf{紫外光が中性ガスを再電離}}。};
+  % ---------- Card 6 ----------
+  \begin{scope}[shift={(199.5, \cardYmid)}]
+    \node[card, minimum width=33mm, minimum height=48mm] at (0,0) {};
+    \fill[c5] (-16.5,23.6) rectangle (16.5,24);
+    \node[stagenum=c5, anchor=west] at (-15.5, 20) {6};
+    \node[anchor=west, font=\fontsize{8}{10}\selectfont\sffamily\bfseries, text=fgstrong,
+          text width=22mm] at (-11.5, 20) {最初の星・銀河 / 再電離};
+    \iconStars{0,11}
+    \draw[bgcardb, line width=0.2pt] (-14.5, 3) -- (14.5, 3);
+    \datarow{0}{$z$}{$\approx 20$--$6$}
+    \datarow{-2.5}{$t$}{約 2--10 億年}
+    \datarow{-5}{過去}{128--136 億年前}
+    \datarow{-7.5}{$T_{\gamma}$}{$\approx 20$--$60$ K}
+    \draw[bgcardb, line width=0.2pt] (-14.5, -10) -- (14.5, -10);
+    \node[anchor=north west, font=\fontsize{6.5}{8.5}\selectfont, text=fg,
+          align=left, text width=29mm] at (-14.5, -11.5)
+      {最初の星の{\bfseries 紫外光が中性ガスを再電離}。};
   \end{scope}
 
-  % ---------- Card 7: DE (twocol layout) ----------
-  \begin{scope}[shift={(238.5, 145)}]
-    \node[card, minimum width=33mm, minimum height=70mm] at (0,0) {};
-    \fill[c6] (-16.5,34.7) rectangle (16.5,35);
-    \node[stagenum=c6] at (-13, 31) {7};
-    \node[anchor=west, font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=fgstrong,
-          text width=22mm] at (-10, 31) {加速膨張 / 暗黒エネルギー優勢};
-    \iconDE{0,20}
-    \draw[bgcardb, line width=0.2pt] (-14.5, 11.5) -- (14.5, 11.5);
+  % ---------- Card 7 (twocol) ----------
+  \begin{scope}[shift={(234, \cardYmid)}]
+    \node[card, minimum width=33mm, minimum height=48mm] at (0,0) {};
+    \fill[c6] (-16.5,23.6) rectangle (16.5,24);
+    \node[stagenum=c6, anchor=west] at (-15.5, 20) {7};
+    \node[anchor=west, font=\fontsize{8}{10}\selectfont\sffamily\bfseries, text=fgstrong,
+          text width=22mm] at (-11.5, 20) {加速膨張 / DE 優勢};
+    \iconDE{0,11}
+    \draw[bgcardb, line width=0.2pt] (-14.5, 3) -- (14.5, 3);
     % Two columns
-    \node[anchor=base west, font=\fontsize{6.5}{8}\selectfont\sffamily\bfseries, text=c6, inner sep=0pt] at (-14, 9.5) {加速開始};
-    \node[anchor=base west, font=\fontsize{6.5}{8}\selectfont\sffamily, text=fg, inner sep=0pt] at (-14, 7) {$z\approx 0.7$};
-    \node[anchor=base west, font=\fontsize{6.5}{8}\selectfont\sffamily, text=fg, inner sep=0pt] at (-14, 4.7) {$t\approx 76$ 億};
-    \node[anchor=base west, font=\fontsize{5.5}{7}\selectfont\sffamily, text=fgmute, inner sep=0pt] at (-14, 2.7) {= 62 億年前};
-    \node[anchor=base west, font=\fontsize{6.5}{8}\selectfont\sffamily, text=fg, inner sep=0pt] at (-14, 0.5) {$T_{\gamma}\approx 4.6$ K};
+    \node[anchor=base west, font=\fontsize{6.5}{8}\selectfont\sffamily\bfseries, text=c6] at (-14, 1) {加速開始};
+    \node[anchor=base west, font=\fontsize{7}{8.5}\selectfont, text=fgstrong] at (-14, -1.5) {$z \approx 0.7$};
+    \node[anchor=base west, font=\fontsize{7}{8.5}\selectfont, text=fgstrong] at (-14, -4) {$t \approx 76$ 億};
+    \node[anchor=base west, font=\fontsize{5.8}{7}\selectfont, text=fgmute] at (-14, -6) {= 62 億年前};
+    \node[anchor=base west, font=\fontsize{7}{8.5}\selectfont, text=fgstrong] at (-14, -8.5) {$T_{\gamma} \approx 4.6$ K};
     %
-    \node[anchor=base west, font=\fontsize{6.5}{8}\selectfont\sffamily\bfseries, text=c6, inner sep=0pt] at (0.5, 9.5) {DE 優勢};
-    \node[anchor=base west, font=\fontsize{6.5}{8}\selectfont\sffamily, text=fg, inner sep=0pt] at (0.5, 7) {$z\approx 0.33$};
-    \node[anchor=base west, font=\fontsize{6.5}{8}\selectfont\sffamily, text=fg, inner sep=0pt] at (0.5, 4.7) {$t\approx 102$ 億};
-    \node[anchor=base west, font=\fontsize{5.5}{7}\selectfont\sffamily, text=fgmute, inner sep=0pt] at (0.5, 2.7) {= 36 億年前};
-    \node[anchor=base west, font=\fontsize{6.5}{8}\selectfont\sffamily, text=fg, inner sep=0pt] at (0.5, 0.5) {$T_{\gamma}\approx 3.5$ K};
-    \draw[bgcardb, line width=0.2pt] (-14.5, -22) -- (14.5, -22);
-    \node[desctext, text width=29mm, anchor=north] at (0, -23.5)
-      {減速 $\to$ 加速膨張へ転じ、 やがて DE が物質より優勢に。};
+    \node[anchor=base west, font=\fontsize{6.5}{8}\selectfont\sffamily\bfseries, text=c6] at (1, 1) {DE 優勢};
+    \node[anchor=base west, font=\fontsize{7}{8.5}\selectfont, text=fgstrong] at (1, -1.5) {$z \approx 0.33$};
+    \node[anchor=base west, font=\fontsize{7}{8.5}\selectfont, text=fgstrong] at (1, -4) {$t \approx 102$ 億};
+    \node[anchor=base west, font=\fontsize{5.8}{7}\selectfont, text=fgmute] at (1, -6) {= 36 億年前};
+    \node[anchor=base west, font=\fontsize{7}{8.5}\selectfont, text=fgstrong] at (1, -8.5) {$T_{\gamma} \approx 3.5$ K};
+    \draw[bgcardb, line width=0.2pt] (-14.5, -10.5) -- (14.5, -10.5);
+    \node[anchor=north west, font=\fontsize{6.5}{8.5}\selectfont, text=fg,
+          align=left, text width=29mm] at (-14.5, -12)
+      {減速 $\to$ 加速膨張、 やがて DE が優勢に。};
   \end{scope}
 
-  % ---------- Card 8: Today ----------
-  \begin{scope}[shift={(274.5, 145)}]
-    \node[card, minimum width=33mm, minimum height=70mm] at (0,0) {};
-    \fill[c7] (-16.5,34.7) rectangle (16.5,35);
-    \node[stagenum=c7] at (-13, 31) {8};
-    \node[anchor=west, font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=fgstrong,
-          text width=22mm] at (-10, 31) {現在};
-    \iconGalaxy{0,20}
-    \draw[bgcardb, line width=0.2pt] (-14.5, 11.5) -- (14.5, 11.5);
-    \datarow{9}{$z$}{$0$}
-    \datarow{6.5}{$t$}{$\approx 138$ 億年}
-    \datarow{4}{過去}{0 年前 (今)}
-    \datarow{1.5}{$T_{\gamma}$}{$2.725$ K \tiny(CMB)}
-    \draw[bgcardb, line width=0.2pt] (-14.5, -22) -- (14.5, -22);
-    \node[desctext, text width=29mm, anchor=north] at (0, -23.5)
+  % ---------- Card 8 ----------
+  \begin{scope}[shift={(268.5, \cardYmid)}]
+    \node[card, minimum width=33mm, minimum height=48mm] at (0,0) {};
+    \fill[c7] (-16.5,23.6) rectangle (16.5,24);
+    \node[stagenum=c7, anchor=west] at (-15.5, 20) {8};
+    \node[anchor=west, font=\fontsize{8}{10}\selectfont\sffamily\bfseries, text=fgstrong,
+          text width=22mm] at (-11.5, 20) {現在};
+    \iconGalaxy{0,11}
+    \draw[bgcardb, line width=0.2pt] (-14.5, 3) -- (14.5, 3);
+    \datarow{0}{$z$}{$0$}
+    \datarow{-2.5}{$t$}{$\approx 138$ 億年}
+    \datarow{-5}{過去}{0 年前 (今)}
+    \datarow{-7.5}{$T_{\gamma}$}{$2.725$ K \tiny(CMB)}
+    \draw[bgcardb, line width=0.2pt] (-14.5, -10) -- (14.5, -10);
+    \node[anchor=north west, font=\fontsize{6.5}{8.5}\selectfont, text=fg,
+          align=left, text width=29mm] at (-14.5, -11.5)
       {銀河・星・惑星のある DE 優勢の宇宙。};
   \end{scope}
 
   % ====================== BOTTOM ROW: info stack + plot ======================
+  % Available y: 14 to 128 = 114mm tall, with 4mm internal gaps
+  % Left (info): x=10 to 86 (76mm wide)
+  % Right (plot): x=92 to 287 (195mm wide)
 
   % ----- Info card 1: redshift formula -----
-  \begin{scope}[shift={(6, 106)}]
-    \node[card, anchor=north west, minimum width=78mm, minimum height=29mm] (i1) at (0,0) {};
-    \node[anchor=north west, font=\fontsize{8.5}{10}\selectfont\sffamily\bfseries, text=fgstrong]
-      at (2.5, -2) {赤方偏移};
-    \draw[bgcardb, line width=0.2pt] (2.5, -5.5) -- (75.5, -5.5);
-    \node[anchor=north, font=\fontsize{9}{11}\selectfont, text=fgstrong]
-      at (39, -7) {$\displaystyle z = \frac{\lambda_{\text{obs}} - \lambda_{\text{emit}}}{\lambda_{\text{emit}}}, \quad 1 + z = \frac{a_0}{a}$};
-    \node[caption, text width=72mm, anchor=south west] at (3, -27.5)
-      {$z$ は過去ほど、 遠い宇宙ほど大きい。 $a$ はスケール因子 (現在 $a_0 = 1$)。};
+  \begin{scope}[shift={(10, 128)}]
+    \node[card, anchor=north west, minimum width=76mm, minimum height=36mm] at (0,0) {};
+    \node[anchor=base west, font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=fgstrong]
+      at (3, -5) {赤方偏移};
+    \draw[bgcardb, line width=0.2pt] (3, -7) -- (73, -7);
+    \node[anchor=north, font=\fontsize{10}{12}\selectfont, text=fgstrong]
+      at (38, -8) {$\displaystyle z = \frac{\lambda_{\text{obs}} - \lambda_{\text{emit}}}{\lambda_{\text{emit}}}, \quad 1 + z = \frac{a_{0}}{a}$};
+    \node[anchor=south west, font=\fontsize{7}{9}\selectfont\itshape, text=fgmute, text width=70mm]
+      at (3, -34) {$z$ は過去ほど、 遠い宇宙ほど大きい。 $a$ はスケール因子 (現在 $a_{0} = 1$)。};
   \end{scope}
 
   % ----- Info card 2: BBN physics -----
-  \begin{scope}[shift={(6, 75.5)}]
-    \node[card, anchor=north west, minimum width=78mm, minimum height=29mm] (i2) at (0,0) {};
-    \node[anchor=base west, font=\fontsize{8.5}{10}\selectfont\sffamily\bfseries, text=fgstrong]
-      at (3, -4.5) {BBN の核物理メモ};
-    \draw[bgcardb, line width=0.2pt] (3, -6.5) -- (75, -6.5);
-    % 3 rows
-    \node[anchor=base west, font=\fontsize{7.5}{9}\selectfont\sffamily, text=fgmute, inner sep=0pt] at (3.5, -10) {陽子 $m_p$};
-    \node[anchor=base east, font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=fgstrong, inner sep=0pt] at (74.5, -10) {$938.3$ MeV/$c^2$};
-    \node[anchor=base west, font=\fontsize{7.5}{9}\selectfont\sffamily, text=fgmute, inner sep=0pt] at (3.5, -14) {中性子 $m_n$};
-    \node[anchor=base east, font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=fgstrong, inner sep=0pt] at (74.5, -14) {$939.6$ MeV/$c^2$};
-    \node[anchor=base west, font=\fontsize{7.5}{9}\selectfont\sffamily, text=fgmute, inner sep=0pt] at (3.5, -18) {質量差 $\Delta m$};
-    \node[anchor=base east, font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=fgstrong, inner sep=0pt] at (74.5, -18) {$1.293$ MeV};
-    \node[caption, text width=71mm, anchor=south west] at (3.5, -27.5)
-      {$\Delta m > T$ で $n/p$ 比が freeze-out、 $^{4}$He 質量比 $\approx 25\%$。};
+  \begin{scope}[shift={(10, 90)}]
+    \node[card, anchor=north west, minimum width=76mm, minimum height=36mm] at (0,0) {};
+    \node[anchor=base west, font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=fgstrong]
+      at (3, -5) {BBN の核物理メモ};
+    \draw[bgcardb, line width=0.2pt] (3, -7) -- (73, -7);
+    \node[anchor=base west, font=\fontsize{7.5}{9}\selectfont, text=fgmute] at (4, -11) {陽子 $m_{p}$};
+    \node[anchor=base east, font=\fontsize{7.5}{9}\selectfont, text=fgstrong] at (72, -11) {$938.272$ MeV/$c^{2}$};
+    \node[anchor=base west, font=\fontsize{7.5}{9}\selectfont, text=fgmute] at (4, -15.5) {中性子 $m_{n}$};
+    \node[anchor=base east, font=\fontsize{7.5}{9}\selectfont, text=fgstrong] at (72, -15.5) {$939.565$ MeV/$c^{2}$};
+    \node[anchor=base west, font=\fontsize{7.5}{9}\selectfont, text=fgmute] at (4, -20) {質量差 $\Delta m$};
+    \node[anchor=base east, font=\fontsize{7.5}{9}\selectfont, text=fgstrong] at (72, -20) {$1.293$ MeV};
+    \node[anchor=south west, font=\fontsize{7}{9}\selectfont\itshape, text=fgmute, text width=70mm]
+      at (3, -34) {$\Delta m > T$ で $n/p$ 比が freeze-out、 $^{4}$He 質量比 $\approx 25\%$。};
   \end{scope}
 
   % ----- Info card 3: temperature conversions -----
-  \begin{scope}[shift={(6, 45)}]
-    \node[card, anchor=north west, minimum width=78mm, minimum height=29mm] (i3) at (0,0) {};
-    \node[anchor=base west, font=\fontsize{8.5}{10}\selectfont\sffamily\bfseries, text=fgstrong]
-      at (3, -4.5) {温度 $\leftrightarrow$ エネルギー};
-    \draw[bgcardb, line width=0.2pt] (3, -6.5) -- (75, -6.5);
-    % 4 rows
-    \node[anchor=base west, font=\fontsize{7.5}{9}\selectfont\sffamily, text=fgmute, inner sep=0pt] at (3.5, -10) {$1$ MeV};
-    \node[anchor=base east, font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=fgstrong, inner sep=0pt] at (74.5, -10) {$1.16 \times 10^{10}$ K};
-    \node[anchor=base west, font=\fontsize{7.5}{9}\selectfont\sffamily, text=fgmute, inner sep=0pt] at (3.5, -14) {$0.1$ MeV};
-    \node[anchor=base east, font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=fgstrong, inner sep=0pt] at (74.5, -14) {$1.16 \times 10^{9}$ K};
-    \node[anchor=base west, font=\fontsize{7.5}{9}\selectfont\sffamily, text=fgmute, inner sep=0pt] at (3.5, -18) {$1$ eV};
-    \node[anchor=base east, font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=fgstrong, inner sep=0pt] at (74.5, -18) {$1.16 \times 10^{4}$ K};
-    % highlighted row
-    \fill[c4, fill opacity=0.18] (3, -23) rectangle (75, -19.5);
-    \node[anchor=base west, font=\fontsize{7.5}{9}\selectfont\sffamily, text=fgstrong, inner sep=0pt] at (3.5, -22) {現在 $T_{\gamma}$};
-    \node[anchor=base east, font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=fgstrong, inner sep=0pt] at (74.5, -22) {$2.725$ K (CMB)};
+  \begin{scope}[shift={(10, 52)}]
+    \node[card, anchor=north west, minimum width=76mm, minimum height=36mm] at (0,0) {};
+    \node[anchor=base west, font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=fgstrong]
+      at (3, -5) {温度 $\leftrightarrow$ エネルギー};
+    \draw[bgcardb, line width=0.2pt] (3, -7) -- (73, -7);
+    \node[anchor=base west, font=\fontsize{7.5}{9}\selectfont, text=fgmute] at (4, -11) {$1$ MeV};
+    \node[anchor=base east, font=\fontsize{7.5}{9}\selectfont, text=fgstrong] at (72, -11) {$1.16 \times 10^{10}$ K};
+    \node[anchor=base west, font=\fontsize{7.5}{9}\selectfont, text=fgmute] at (4, -15.5) {$0.1$ MeV};
+    \node[anchor=base east, font=\fontsize{7.5}{9}\selectfont, text=fgstrong] at (72, -15.5) {$1.16 \times 10^{9}$ K};
+    \node[anchor=base west, font=\fontsize{7.5}{9}\selectfont, text=fgmute] at (4, -20) {$1$ eV};
+    \node[anchor=base east, font=\fontsize{7.5}{9}\selectfont, text=fgstrong] at (72, -20) {$1.16 \times 10^{4}$ K};
+    % highlight row
+    \fill[c4!12!bgcard] (3, -27) rectangle (73, -22);
+    \node[anchor=base west, font=\fontsize{7.5}{9}\selectfont\bfseries, text=fgstrong] at (4, -25) {現在 $T_{\gamma}$};
+    \node[anchor=base east, font=\fontsize{7.5}{9}\selectfont\bfseries, text=fgstrong] at (72, -25) {$2.725$ K (CMB)};
   \end{scope}
 
   % ====================== DENSITY PLOT ======================
-  % Plot card: x = 88 to 291 (width 203mm), y = 14 to 106 (height 92mm)
-  \node[card, anchor=south west, minimum width=203mm, minimum height=92mm] at (88, 14) {};
-  \node[anchor=north west, font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=fgstrong]
-    at (90.5, 104) {宇宙の主要成分のエネルギー密度};
-  \node[anchor=north west, font=\fontsize{6.5}{8}\selectfont\sffamily, text=fgmute, text width=200mm]
-    at (90.5, 99) {対数-対数 plot。 era 境界の $z$ は $\Lambda$CDM ($\Omega_m = 0.3$, $\Omega_{\Lambda} = 0.7$) より。};
+  % Plot card: x = 92 to 287 (width 195mm), y = 14 to 128 (height 114mm)
+  \node[card, anchor=south west, minimum width=195mm, minimum height=114mm] at (92, 14) {};
+  \node[anchor=base west, font=\fontsize{9.5}{12}\selectfont\sffamily\bfseries, text=fgstrong]
+    at (94.5, 123) {宇宙の主要成分のエネルギー密度};
+  \node[anchor=base west, font=\fontsize{7}{9}\selectfont\itshape, text=fgmute, text width=190mm]
+    at (94.5, 119) {対数-対数 plot。 era 境界の $z$ は $\Lambda$CDM ($\Omega_{m} = 0.3$, $\Omega_{\Lambda} = 0.7$) より};
 
-  \begin{scope}[shift={(95, 18)}]
+  \begin{scope}[shift={(98, 18)}]
     \begin{axis}[
-      width=200mm, height=78mm,
+      width=192mm, height=98mm,
       xmode=log, ymode=log,
       xmin=1e-7, xmax=2,
       ymin=1e-5, ymax=1e20,
-      axis line style={fgfaint, line width=0.3pt},
-      tick style={fgfaint, line width=0.3pt},
-      tick label style={font=\fontsize{6}{7}\selectfont\sffamily, text=fgmute},
-      xlabel style={font=\fontsize{7}{8}\selectfont\sffamily, text=fg},
-      ylabel style={font=\fontsize{7}{8}\selectfont\sffamily, text=fg, yshift=-2mm},
-      xlabel={スケール因子 $a$ (現在 $a_0 = 1$)},
+      axis line style={fgmute, line width=0.3pt},
+      tick style={fgmute, line width=0.3pt},
+      tick label style={font=\fontsize{6.5}{8}\selectfont, text=fgmute},
+      xlabel style={font=\fontsize{7.5}{9}\selectfont, text=fg},
+      ylabel style={font=\fontsize{7.5}{9}\selectfont, text=fg, yshift=-2mm},
+      xlabel={スケール因子 $a$ (現在 $a_{0} = 1$)},
       ylabel={エネルギー密度 (相対値)},
       xtick={1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1, 1},
       ytick={1e-5, 1, 1e5, 1e10, 1e15, 1e20},
@@ -500,86 +502,83 @@
       grid style={grid, line width=0.2pt, dashed},
       clip mode=individual,
       enlargelimits=false,
-      axis on top=false,
       every axis plot/.append style={line cap=round},
     ]
 
-      % Era background bands (= rectangles in data coordinates)
-      \fill[plotrad, opacity=0.10] (axis cs:1e-7,1e-5) rectangle (axis cs:2.9e-4,1e20);
-      \fill[plotmat, opacity=0.09] (axis cs:2.9e-4,1e-5) rectangle (axis cs:0.75,1e20);
-      \fill[plotde,  opacity=0.13] (axis cs:0.75,1e-5)   rectangle (axis cs:2,1e20);
+      % Era background bands
+      \fill[plotrad, opacity=0.08] (axis cs:1e-7,1e-5) rectangle (axis cs:2.9e-4,1e20);
+      \fill[plotmat, opacity=0.07] (axis cs:2.9e-4,1e-5) rectangle (axis cs:0.75,1e20);
+      \fill[plotde,  opacity=0.10] (axis cs:0.75,1e-5)   rectangle (axis cs:2,1e20);
 
-      % Area fills under each line
-      \addplot[fill=plotrad, fill opacity=0.20, draw=none, domain=1e-7:2, samples=80]
+      % Area fills under lines
+      \addplot[fill=plotrad, fill opacity=0.16, draw=none, domain=1e-7:2, samples=80]
         {1.22e-4 * x^(-4)} \closedcycle;
-      \addplot[fill=plotmat, fill opacity=0.18, draw=none, domain=1e-7:2, samples=80]
+      \addplot[fill=plotmat, fill opacity=0.14, draw=none, domain=1e-7:2, samples=80]
         {0.43 * x^(-3)} \closedcycle;
-      \addplot[fill=plotde, fill opacity=0.20, draw=none, domain=1e-7:2, samples=2]
+      \addplot[fill=plotde, fill opacity=0.16, draw=none, domain=1e-7:2, samples=2]
         {1} \closedcycle;
 
       % Main lines
-      \addplot[plotrad, line width=1pt, domain=1e-7:2, samples=80]
+      \addplot[plotrad, line width=1.1pt, domain=1e-7:2, samples=80]
         {1.22e-4 * x^(-4)};
-      \addplot[plotmat, line width=1pt, domain=1e-7:2, samples=80]
+      \addplot[plotmat, line width=1.1pt, domain=1e-7:2, samples=80]
         {0.43 * x^(-3)};
-      \addplot[plotde, line width=1pt, domain=1e-7:2, samples=2]
+      \addplot[plotde, line width=1.1pt, domain=1e-7:2, samples=2]
         {1};
 
       % Crossover markers
-      \node[circle, fill=bgcard, draw=fgstrong, line width=0.5pt, inner sep=0pt, minimum size=1.6mm]
+      \node[circle, fill=bgcard, draw=fgstrong, line width=0.5pt, inner sep=0pt, minimum size=1.7mm]
         at (axis cs:2.9e-4, 1.7e10) {};
-      \node[circle, fill=fgstrong, inner sep=0pt, minimum size=0.7mm]
+      \node[circle, fill=fgstrong, inner sep=0pt, minimum size=0.8mm]
         at (axis cs:2.9e-4, 1.7e10) {};
 
-      % Acceleration onset on matter line (a=0.59)
-      \node[circle, fill=bgcard, draw=plotde, line width=0.5pt, inner sep=0pt, minimum size=1.4mm]
+      \node[circle, fill=bgcard, draw=plotde, line width=0.5pt, inner sep=0pt, minimum size=1.5mm]
         at (axis cs:0.59, 2.05) {};
-      % DE dominance
-      \node[circle, fill=bgcard, draw=plotde, line width=0.5pt, inner sep=0pt, minimum size=1.6mm]
+      \node[circle, fill=bgcard, draw=plotde, line width=0.5pt, inner sep=0pt, minimum size=1.7mm]
         at (axis cs:0.75, 1) {};
 
       % "Now" marker at a=1
-      \draw[fgfaint, dashed, line width=0.3pt] (axis cs:1, 1e-5) -- (axis cs:1, 1e16);
-      \node[font=\fontsize{6.5}{7}\selectfont\sffamily, text=fgmute, anchor=south] at (axis cs:1, 1e16) {現在};
+      \draw[fgfaint, dashed, line width=0.3pt] (axis cs:1, 1e-5) -- (axis cs:1, 1e15);
+      \node[font=\fontsize{6.5}{7}\selectfont, text=fgmute, anchor=south] at (axis cs:1, 1e15) {現在};
 
       % Era labels above plot
-      \node[font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=plotrad] at (axis cs:1e-5, 1e20) {放射優勢};
-      \node[font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=plotmat] at (axis cs:1e-2, 1e20) {物質優勢};
-      \node[font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=plotde,  anchor=east] at (axis cs:1.8, 1e20) {DE 優勢};
+      \node[font=\fontsize{8}{9}\selectfont\sffamily\bfseries, text=plotrad] at (axis cs:1e-5, 1e20) {放射優勢};
+      \node[font=\fontsize{8}{9}\selectfont\sffamily\bfseries, text=plotmat] at (axis cs:1e-2, 1e20) {物質優勢};
+      \node[font=\fontsize{8}{9}\selectfont\sffamily\bfseries, text=plotde,  anchor=east] at (axis cs:1.8, 1e20) {DE 優勢};
 
-      % Direct in-plot line labels (with halo via paint order)
-      \node[font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=plotrad,
-            fill=bgcard, fill opacity=0.85, text opacity=1, inner sep=0.6mm, rounded corners=0.5mm]
-        at (axis cs:1.5e-4, 5e14) {放射  $\rho_{\text{rad}} \propto a^{-4}$};
-      \node[font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=plotmat,
-            fill=bgcard, fill opacity=0.85, text opacity=1, inner sep=0.6mm, rounded corners=0.5mm]
-        at (axis cs:5e-3, 5e6) {物質  $\rho_{m} \propto a^{-3}$};
-      \node[font=\fontsize{7.5}{9}\selectfont\sffamily\bfseries, text=plotde,
-            fill=bgcard, fill opacity=0.85, text opacity=1, inner sep=0.6mm, rounded corners=0.5mm]
-        at (axis cs:1e-3, 1) {暗黒エネルギー  $\rho_{\Lambda} = \text{const}$};
+      % Direct in-plot line labels (= solid bg, slight border for crispness)
+      \node[font=\fontsize{8}{10}\selectfont\sffamily\bfseries, text=plotrad,
+            fill=bgcard, fill opacity=0.92, text opacity=1, inner sep=0.7mm, rounded corners=0.4mm,
+            draw=plotrad!30!bgcard, line width=0.2pt]
+        at (axis cs:1.5e-4, 5e14) {放射 $\rho_{\text{rad}} \propto a^{-4}$};
+      \node[font=\fontsize{8}{10}\selectfont\sffamily\bfseries, text=plotmat,
+            fill=bgcard, fill opacity=0.92, text opacity=1, inner sep=0.7mm, rounded corners=0.4mm,
+            draw=plotmat!30!bgcard, line width=0.2pt]
+        at (axis cs:5e-3, 5e6) {物質 $\rho_{m} \propto a^{-3}$};
+      \node[font=\fontsize{8}{10}\selectfont\sffamily\bfseries, text=plotde,
+            fill=bgcard, fill opacity=0.92, text opacity=1, inner sep=0.7mm, rounded corners=0.4mm,
+            draw=plotde!30!bgcard, line width=0.2pt]
+        at (axis cs:1e-3, 1) {暗黒エネルギー $\rho_{\Lambda} = $ const};
 
       % Annotations with leader lines
-      % M-R equality
       \draw[fgmute, dashed, line width=0.25pt] (axis cs:2.9e-4, 1.7e10) -- (axis cs:8e-3, 5e16);
-      \node[font=\fontsize{7}{8.5}\selectfont\sffamily\bfseries, text=fgstrong, anchor=west] at (axis cs:8e-3, 5e16) {物質-放射等価};
-      \node[font=\fontsize{6.5}{8}\selectfont\sffamily, text=fgmute, anchor=west] at (axis cs:8e-3, 5e14) {$z \approx 3\,400$};
+      \node[font=\fontsize{8}{10}\selectfont\sffamily\bfseries, text=fgstrong, anchor=west] at (axis cs:8e-3, 5e16) {物質-放射等価};
+      \node[font=\fontsize{7}{9}\selectfont, text=fgmute, anchor=west] at (axis cs:8e-3, 5e14) {$z \approx 3\,400$};
 
-      % Acceleration onset (= bottom-left of plot region)
       \draw[plotde, dashed, line width=0.25pt] (axis cs:0.59, 2.05) -- (axis cs:0.1, 1e-3);
-      \node[font=\fontsize{7}{8.5}\selectfont\sffamily\bfseries, text=plotde, anchor=east] at (axis cs:0.09, 1e-3) {加速膨張開始};
-      \node[font=\fontsize{6.5}{8}\selectfont\sffamily, text=plotde, anchor=east] at (axis cs:0.09, 1e-4) {$z \approx 0.7$, $a \approx 0.59$};
+      \node[font=\fontsize{8}{10}\selectfont\sffamily\bfseries, text=plotde, anchor=east] at (axis cs:0.09, 1e-3) {加速膨張開始};
+      \node[font=\fontsize{7}{9}\selectfont, text=plotde, anchor=east] at (axis cs:0.09, 1e-4) {$z \approx 0.7$, $a \approx 0.59$};
 
-      % DE dominance (= bottom-right)
       \draw[plotde, dashed, line width=0.25pt] (axis cs:0.75, 1) -- (axis cs:1.7, 5e-4);
-      \node[font=\fontsize{7}{8.5}\selectfont\sffamily\bfseries, text=plotde, anchor=east] at (axis cs:1.9, 5e-4) {DE 優勢};
-      \node[font=\fontsize{6.5}{8}\selectfont\sffamily, text=plotde, anchor=east] at (axis cs:1.9, 5e-5) {$z \approx 0.33$, $a \approx 0.75$};
+      \node[font=\fontsize{8}{10}\selectfont\sffamily\bfseries, text=plotde, anchor=east] at (axis cs:1.9, 5e-4) {DE 優勢};
+      \node[font=\fontsize{7}{9}\selectfont, text=plotde, anchor=east] at (axis cs:1.9, 5e-5) {$z \approx 0.33$, $a \approx 0.75$};
 
     \end{axis}
   \end{scope}
 
   % ====================== FOOTER ======================
-  \draw[bgcardb, line width=0.2pt] (6, 10.5) -- (291, 10.5);
-  \node[font=\fontsize{6}{7}\selectfont\sffamily, text=fgmute, anchor=center] at (148.5, 7.5)
+  \draw[bgcardb, line width=0.2pt] (10, 10) -- (287, 10);
+  \node[font=\fontsize{6.5}{8}\selectfont\itshape, text=fgmute, anchor=center] at (148.5, 7)
     {数値は標準 $\Lambda$CDM (Planck 2018) 代表値・近似。 $T_{\gamma} = 2.725 \times (1+z)$ K。 元 infographic からの修正点と典拠は \texttt{NOTES.md} 参照};
 
 \end{tikzpicture}
