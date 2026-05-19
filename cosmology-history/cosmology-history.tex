@@ -99,7 +99,7 @@
 %   }
 \newcommand{\databox}[1]{%
   \node[anchor=north west, font=\fontsize{7.4}{9.2}\selectfont, text=fgstrong, inner sep=0pt]
-    at (-13, 1.5) {%
+    at (-13, 5) {%
     $\renewcommand{\arraystretch}{1.0}\begin{array}{r@{\;}c@{\;}l}#1\end{array}$%
   };%
 }
@@ -472,31 +472,19 @@
           text width=22mm] at (-10.5, 22.5) {加速膨張 / DE 優勢};
     \iconDE{0,13}
     \draw[bgcardb, line width=0.25pt] (-13, 6) -- (13, 6);
-    % Two columns: section headers in the same vertical zone as other cards'
-    % "skip" area; data arrays start at y=1.5 (same as \databox y=1.5) so
-    % corresponding rows line up across all 9 cards.
-    \node[anchor=base west, font=\fontsize{6.6}{8}\selectfont\sffamily\bfseries, text=c7] at (-13, 3.8) {加速開始};
-    \node[anchor=base west, font=\fontsize{6.6}{8}\selectfont\sffamily\bfseries, text=c7] at (-0.6, 3.8) {DE 優勢};
-    \node[anchor=north west, font=\fontsize{6.8}{8.5}\selectfont, text=fgstrong, inner sep=0pt] at (-13, 1.5) {%
-      $\renewcommand{\arraystretch}{1.0}\begin{array}{r@{\;}c@{\;}l}
-        z          & = & 0.7 \\
-        t          & = & 76\,\text{億年} \\
-        D_C        & = & 8.5\,\text{Gly} \\
-        T_{\gamma} & = & 4.6\,\text{K}
-      \end{array}$%
-    };
-    \node[anchor=north west, font=\fontsize{6.8}{8.5}\selectfont, text=fgstrong, inner sep=0pt] at (-0.6, 1.5) {%
-      $\renewcommand{\arraystretch}{1.0}\begin{array}{r@{\;}c@{\;}l}
-        z          & = & 0.33 \\
-        t          & = & 102\,\text{億年} \\
-        D_C        & = & 4.1\,\text{Gly} \\
-        T_{\gamma} & = & 3.5\,\text{K}
-      \end{array}$%
-    };
+    % Single-column databox like other cards. Values use → notation
+    % showing transition: 加速開始 → DE 優勢.
+    \databox{%
+      z              & =         & 0.7 \to 0.33 \\
+      t              & =         & 76 \to 102\,\text{億年} \\
+      \text{過去}    & =         & 62 \to 36\,\text{億年前} \\
+      \text{距離}    & =         & 85 \to 41\,\text{億光年} \\
+      T_{\gamma}     & =         & 4.6 \to 3.5\,\text{K}
+    }
     \draw[bgcardb, line width=0.25pt] (-13, -11.5) -- (13, -11.5);
     \node[anchor=north west, font=\fontsize{6.8}{8.7}\selectfont, text=fg,
           align=left, text width=26mm] at (-13, -13.5)
-      {減速 $\to$ 加速膨張、 やがて DE 優勢。};
+      {減速 $\to$ 加速膨張、 やがて DE 優勢へ (各行 = 加速開始 $\to$ DE 優勢)。};
   \end{scope}
 
   % ---------- Card 9: Today ----------
