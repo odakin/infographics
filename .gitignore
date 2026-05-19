@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# Exported artifacts (= regenerable from source)
+*.pdf
+*.png
+*.jpg
+*.jpeg
+!**/icons/*.png
+!**/icons/*.svg
+
+# Node (if ever used)
+node_modules/
+package-lock.json
