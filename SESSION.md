@@ -18,6 +18,14 @@
 第 2 段 (= 2026-05-19 16:00) Editorial light theme への refactor
 - black → cream paper bg、 Libertinus Serif/Math/Sans、 card 70→48mm、 muted palette、 decoration 削減
 
+第 4 段 (= 2026-05-19 18:00) EWPT 追加 (9 段化) + BBN icon overflow 修正 + 関係記号 alignment
+- **9 段 timeline**: 既存 8 段に **電弱対称性の破れ (EWPT)** を 2 番目に挿入
+  - 値: $z \sim 4{\times}10^{14}$, $t \sim 10^{-11}$ s, $T \sim 10^{15}$ K (= 100 GeV), $D_C \approx 462$ 億光年
+  - icon: **Higgs potential Mexican hat** + 2 つの真空状態点 (= 自発的対称性破れの典型図)
+  - card width 33 → 30mm に縮小、 palette c0-c8 (= 9 色 warm-to-cool)
+- **BBN icon overflow 修正** (= bug): 旧版は ⁴He 中心 + 周囲に ²H/³He/⁷Li 配置 → ⁷Li label が separator (y=6) を越えて下にはみ出していた。 新版は **4 核種を horizontal row** で並列、 各 label を真下に配置 (= 干渉ゼロ)
+- **関係記号 alignment**: `\datarow` を 4-arg 化 (label / relation / value)、 relation 記号を `anchor=base east` で同 x 位置に整列、 value を `anchor=base west` で直後に。 ≈ / ≳ / ~ / = の縦軸が全 card で揃う
+
 第 3 段 (= 2026-05-19 17:00) 字サイズ底上げ + 距離 row + icon 強化
 - **`Numbers = OldStyle` → `Lining`** (= 古い式数字をやめて modern lining numerals、 「数字がダサい」 解消)
 - **font サイズ底上げ**: body 系を 7→8pt、 plot label 7.5→9pt 等、 A4 で読みやすい大きさに
