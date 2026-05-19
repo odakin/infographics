@@ -8,12 +8,22 @@
 *~
 
 # Exported artifacts (= regenerable from source)
-*.pdf
 *.png
 *.jpg
 *.jpeg
 !**/icons/*.png
 !**/icons/*.svg
+# Keep generated PDFs (= primary deliverable for print)
+# *.pdf intentionally not ignored
+
+# LaTeX aux files
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.toc
 
 # Node (if ever used)
 node_modules/

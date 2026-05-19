@@ -11,39 +11,44 @@ infographics/
 ├── README.md                            # 訪問者向け index (各 entry へ link)
 ├── .gitignore
 └── <topic>/                             # 1 entry = 1 directory
-    ├── index.html                       # 自己完結 HTML
+    ├── <topic>.tex                      # LuaLaTeX 印刷版 (= primary)
+    ├── <topic>.pdf                      # commit する deliverable
+    ├── Makefile                         # make / make view / make png / make clean
+    ├── index.html                       # HTML web 版 (= 任意、 web 配布用)
     ├── style.css
-    ├── icons/                           # SVG icon sprite (任意)
     └── NOTES.md                         # 典拠・修正点・出典のメモ
 ```
 
-各 entry は **そのフォルダだけ複製しても動く** ことを invariant にする (= 共有 CSS / 共有 JS は持ち込まない、 重複は許容)。
+各 entry は **そのフォルダだけ複製しても動く** ことを invariant にする (= 共有 sty/CSS 持ち込まない、 重複許容)。
 shared design system 化は entry が 3 件超えてから判断 (= 早すぎる抽象化を避ける)。
 
 ## 実行方法
 
+**LuaLaTeX 版 (= 印刷 primary)**:
+
+```bash
+cd <topic>/
+make           # lualatex で PDF compile
+make view      # macOS Preview で開く
+make png       # 300 DPI PNG 出力 (web sharing 用)
+make clean     # aux ファイル削除
+make distclean # PDF も含めて削除
+```
+
+**HTML 版 (= web 配布、 任意)**:
+
 ```bash
 cd ~/Claude/infographics
-preview_start <topic>/index.html  # preview MCP 経由
+preview_start <topic>  # preview MCP 経由
 # または
 python3 -m http.server -d <topic> 8000
 ```
 
-ブラウザで開けば動く (= build step 不要)。 KaTeX 等の重い依存は CDN で。
+## なぜ LaTeX を primary にしたか
 
-## エクスポート
+HTML は数式 (KaTeX) の clip 問題・font の OS 依存・ベースライン整列の弱さで A4 印刷 fidelity が出ない。 LuaLaTeX + TikZ + pgfplots は (a) 数式 native (= 絶対 clip しない)、 (b) 日本語 font 完全制御 (= Hiragino subset embed)、 (c) 1mm 単位の配置、 (d) PDF 出力で印刷 fidelity 保証。
 
-PDF / PNG 化は Chromium ヘッドレスで:
-
-```bash
-# PDF (印刷用、 A3 横で 1 枚にフィット想定)
-chromium --headless --disable-gpu --print-to-pdf=<topic>.pdf \
-  --no-pdf-header-footer "file://$(pwd)/<topic>/index.html"
-
-# PNG (web 配布用、 高解像度)
-chromium --headless --disable-gpu --screenshot=<topic>.png \
-  --window-size=1920,1080 "file://$(pwd)/<topic>/index.html"
-```
+設計判断詳細は `DESIGN.md` 参照。 HTML 版は **web 配布用の代替手段** として残す (= 専用 device で render 不要、 link 共有可)。
 
 ## 新規 entry 追加手順
 
