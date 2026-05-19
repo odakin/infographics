@@ -99,7 +99,7 @@
 %   }
 \newcommand{\databox}[1]{%
   \node[anchor=north west, font=\fontsize{7.4}{9.2}\selectfont, text=fgstrong, inner sep=0pt]
-    at (-13, 5) {%
+    at (-13, 1.5) {%
     $\renewcommand{\arraystretch}{1.0}\begin{array}{r@{\;}c@{\;}l}#1\end{array}$%
   };%
 }
@@ -472,9 +472,11 @@
           text width=22mm] at (-10.5, 22.5) {加速膨張 / DE 優勢};
     \iconDE{0,13}
     \draw[bgcardb, line width=0.25pt] (-13, 6) -- (13, 6);
-    % Two columns: array environment per column for true math alignment
-    \node[anchor=base west, font=\fontsize{6.6}{8}\selectfont\sffamily\bfseries, text=c7] at (-13, 3.5) {加速開始};
-    \node[anchor=base west, font=\fontsize{6.6}{8}\selectfont\sffamily\bfseries, text=c7] at (0.7, 3.5) {DE 優勢};
+    % Two columns: section headers in the same vertical zone as other cards'
+    % "skip" area; data arrays start at y=1.5 (same as \databox y=1.5) so
+    % corresponding rows line up across all 9 cards.
+    \node[anchor=base west, font=\fontsize{6.6}{8}\selectfont\sffamily\bfseries, text=c7] at (-13, 3.8) {加速開始};
+    \node[anchor=base west, font=\fontsize{6.6}{8}\selectfont\sffamily\bfseries, text=c7] at (-0.6, 3.8) {DE 優勢};
     \node[anchor=north west, font=\fontsize{6.8}{8.5}\selectfont, text=fgstrong, inner sep=0pt] at (-13, 1.5) {%
       $\renewcommand{\arraystretch}{1.0}\begin{array}{r@{\;}c@{\;}l}
         z          & = & 0.7 \\
@@ -483,7 +485,7 @@
         T_{\gamma} & = & 4.6\,\text{K}
       \end{array}$%
     };
-    \node[anchor=north west, font=\fontsize{6.8}{8.5}\selectfont, text=fgstrong, inner sep=0pt] at (0.7, 1.5) {%
+    \node[anchor=north west, font=\fontsize{6.8}{8.5}\selectfont, text=fgstrong, inner sep=0pt] at (-0.6, 1.5) {%
       $\renewcommand{\arraystretch}{1.0}\begin{array}{r@{\;}c@{\;}l}
         z          & = & 0.33 \\
         t          & = & 102\,\text{億年} \\
@@ -571,14 +573,14 @@
   \node[anchor=base west, font=\fontsize{10}{12}\selectfont\sffamily\bfseries, text=fgstrong]
     at (94, 114) {宇宙の主要成分のエネルギー密度};
   \node[anchor=base west, font=\fontsize{7.5}{9.5}\selectfont\itshape, text=fgmute, text width=195mm]
-    at (94, 109.5) {対数-対数 plot。 era 境界の $z$ は $\Lambda$CDM ($\Omega_{m} = 0.3$, $\Omega_{\Lambda} = 0.7$) より};
+    at (94, 109) {対数-対数 plot。 era 境界の $z$ は $\Lambda$CDM ($\Omega_{m} = 0.3$, $\Omega_{\Lambda} = 0.7$) より};
 
   % Plot scope: shifted inward + explicit xshift/yshift on axis labels so they
   % render WELL INSIDE the card frame (pgfplots default places labels just
   % outside the width/height bounding box).
   \begin{scope}[shift={(106, 26)}]
     \begin{axis}[
-      width=176mm, height=78mm,
+      width=176mm, height=82mm,
       xmode=log, ymode=log,
       xmin=1e-7, xmax=2,
       ymin=1e-5, ymax=1e16,
@@ -611,11 +613,26 @@
         {1} \closedcycle;
 
       \addplot[plotrad, line width=1.3pt, domain=1e-7:2, samples=80]
-        {1.22e-4 * x^(-4)};
+        {1.22e-4 * x^(-4)}
+        node[pos=0.55, sloped, anchor=south, inner sep=0.7mm,
+             fill=bgcard, fill opacity=0.95, text opacity=1, rounded corners=0.5mm,
+             draw=plotrad!30!bgcard, line width=0.25pt,
+             font=\fontsize{8.5}{10.5}\selectfont\sffamily\bfseries, text=plotrad]
+             {放射 $\rho_{\text{rad}} \propto a^{-4}$};
       \addplot[plotmat, line width=1.3pt, domain=1e-7:2, samples=80]
-        {0.43 * x^(-3)};
+        {0.43 * x^(-3)}
+        node[pos=0.68, sloped, anchor=south, inner sep=0.7mm,
+             fill=bgcard, fill opacity=0.95, text opacity=1, rounded corners=0.5mm,
+             draw=plotmat!30!bgcard, line width=0.25pt,
+             font=\fontsize{8.5}{10.5}\selectfont\sffamily\bfseries, text=plotmat]
+             {物質 $\rho_{m} \propto a^{-3}$};
       \addplot[plotde, line width=1.3pt, domain=1e-7:2, samples=2]
-        {1};
+        {1}
+        node[pos=0.45, sloped, anchor=south, inner sep=0.7mm,
+             fill=bgcard, fill opacity=0.95, text opacity=1, rounded corners=0.5mm,
+             draw=plotde!30!bgcard, line width=0.25pt,
+             font=\fontsize{8.5}{10.5}\selectfont\sffamily\bfseries, text=plotde]
+             {暗黒エネルギー $\rho_{\Lambda} = $ const};
 
       % Crossover markers
       \node[circle, fill=bgcard, draw=fgstrong, line width=0.6pt, inner sep=0pt, minimum size=1.9mm]
@@ -636,19 +653,7 @@
       \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotmat] at (axis cs:1e-2, 3e15) {物質優勢};
       \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde,  anchor=east] at (axis cs:1.8, 3e15) {DE 優勢};
 
-      % In-plot line labels
-      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotrad,
-            fill=bgcard, fill opacity=0.92, text opacity=1, inner sep=0.9mm, rounded corners=0.5mm,
-            draw=plotrad!30!bgcard, line width=0.25pt]
-        at (axis cs:5e-5, 1e12) {放射 $\rho_{\text{rad}} \propto a^{-4}$};
-      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotmat,
-            fill=bgcard, fill opacity=0.92, text opacity=1, inner sep=0.9mm, rounded corners=0.5mm,
-            draw=plotmat!30!bgcard, line width=0.25pt]
-        at (axis cs:5e-3, 1e6) {物質 $\rho_{m} \propto a^{-3}$};
-      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde,
-            fill=bgcard, fill opacity=0.92, text opacity=1, inner sep=0.9mm, rounded corners=0.5mm,
-            draw=plotde!30!bgcard, line width=0.25pt]
-        at (axis cs:1e-3, 1) {暗黒エネルギー $\rho_{\Lambda} = $ const};
+      % (Line labels are now attached inline as sloped nodes on each \addplot above.)
 
       % Annotations: SOLID lines with Stealth arrowheads pointing from label TO marker
       % M-R equality
