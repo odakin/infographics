@@ -18,6 +18,13 @@
 第 2 段 (= 2026-05-19 16:00) Editorial light theme への refactor
 - black → cream paper bg、 Libertinus Serif/Math/Sans、 card 70→48mm、 muted palette、 decoration 削減
 
+第 6 段 (= 2026-05-19 20:00) data ブロックを真の align 環境に統合
+- 旧 \datarow (3 個別 TikZ node を行ごとに配置) → 新 \databox で **1 個の `$\begin{array}{r@{\;}c@{\;}l}...\end{array}$`** に統合、 各 card は 1 ノード呼び出し
+- 結果: 「ラベル右揃え / 関係記号中央 / 値左揃え」 の真の math 表組 (= LaTeX align/aligned 環境と同等)、 行間 baseline は math engine 管理で精密整列
+- \text{過去} / \text{距離} の Japanese label は維持 (= 正しい用法、 math 内に Japanese を embed する LaTeX 標準)
+- card 8 (DE twocol) も同じ array 環境を 2 つ並べる形に rewrite、 上に色付き section header (加速開始 / DE 優勢)
+- info card 2 (BBN 質量) の label も `$\text{陽子}\ m_p$` 等で \text{} 内に統一
+
 第 5 段 (= 2026-05-19 19:00) 全 data 行を math-wrapping、 日本語を \text{} 内に
 - `\datarow` macro が args を $...$ で囲むよう変更、 全 9 card + 3 info card + footer を math syntax に書き換え
 - 日本語 (過去 / 距離 / 億年前 / 億光年 / 万年 / 分 / 年前 / 光年 等) を `\text{...}` で math 内に取り込み、 baseline を math 軸で統一
