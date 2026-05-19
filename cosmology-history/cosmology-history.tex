@@ -121,20 +121,19 @@
 }
 \newcommand{\iconEWPT}[1]{%
   \begin{scope}[shift={(#1)}]
-    % Mexican hat Higgs potential cross-section
-    \draw[c1, line width=1pt]
-      (-4mm, 2.5mm)
-        .. controls (-3.2mm, 2mm) and (-2.5mm, -1.5mm) .. (-2mm, -1.8mm)
-        .. controls (-1.4mm, -1.6mm) and (-0.6mm, 0.8mm) .. (0, 1mm)
-        .. controls (0.6mm, 0.8mm) and (1.4mm, -1.6mm) .. (2mm, -1.8mm)
-        .. controls (2.5mm, -1.5mm) and (3.2mm, 2mm) .. (4mm, 2.5mm);
-    % Two vacuum minima
-    \fill[c1] (-2mm, -1.8mm) circle (0.55mm);
-    \fill[c1] (2mm, -1.8mm) circle (0.55mm);
     % Subtle axis hint
-    \draw[fgmute, line width=0.2pt, opacity=0.45] (-4.6mm, -2.5mm) -- (4.6mm, -2.5mm);
-    \node[font=\fontsize{4.2}{4.8}\selectfont\itshape, text=fgmute] at (5mm, -2.5mm) {$\varphi$};
-    \node[font=\fontsize{4.2}{4.8}\selectfont\itshape, text=fgmute] at (-4.5mm, 3mm) {$V(\varphi)$};
+    \draw[fgmute, line width=0.2pt, opacity=0.45] (-4.8mm, -2mm) -- (4.8mm, -2mm);
+    \node[font=\fontsize{4.2}{4.8}\selectfont\itshape, text=fgmute] at (5mm, -2mm) {$\varphi$};
+    \node[font=\fontsize{4.2}{4.8}\selectfont\itshape, text=fgmute] at (-4mm, 3.5mm) {$V(\varphi)$};
+    % Smooth Higgs Mexican hat potential V(φ) = c(φ²−v²)² with low central peak
+    % vs steep outer rim. vev=1.4, c=0.32; minima at (±1.4, 0), peak (0, 0.625),
+    % outer rim at (±2.6, ~3) so rim is ~5× higher than central bump — the
+    % iconic "sombrero" silhouette in cross-section.
+    \draw[c1, line width=1.1pt, smooth, samples=120, domain=-2.7:2.7] plot
+      ({1.6*\x}, {0.32*(\x*\x - 1.96)*(\x*\x - 1.96) - 1});
+    % Two vacuum minima at φ = ±vev
+    \fill[c1] (-2.24mm, -1mm) circle (0.55mm);
+    \fill[c1] (2.24mm, -1mm) circle (0.55mm);
   \end{scope}
 }
 \newcommand{\iconQGP}[1]{%
@@ -569,9 +568,9 @@
   % Plot scope: shifted inward + explicit xshift/yshift on axis labels so they
   % render WELL INSIDE the card frame (pgfplots default places labels just
   % outside the width/height bounding box).
-  \begin{scope}[shift={(106, 28)}]
+  \begin{scope}[shift={(106, 22)}]
     \begin{axis}[
-      width=176mm, height=80mm,
+      width=176mm, height=90mm,
       title={\fontsize{10}{12}\selectfont\sffamily\bfseries\color{fgstrong}宇宙の主要成分のエネルギー密度\\[-0.5mm]\fontsize{7.5}{9.5}\selectfont\normalfont\itshape\color{fgmute}対数-対数 plot。 era 境界の $z$ は $\Lambda$CDM ($\Omega_{m}=0.3$, $\Omega_{\Lambda}=0.7$) より},
       title style={anchor=south west, at={(rel axis cs:0, 1)}, align=left, yshift=0.5mm, inner sep=0pt},
       xmode=log, ymode=log,
