@@ -18,6 +18,13 @@
 第 2 段 (= 2026-05-19 16:00) Editorial light theme への refactor
 - black → cream paper bg、 Libertinus Serif/Math/Sans、 card 70→48mm、 muted palette、 decoration 削減
 
+第 5 段 (= 2026-05-19 19:00) 全 data 行を math-wrapping、 日本語を \text{} 内に
+- `\datarow` macro が args を $...$ で囲むよう変更、 全 9 card + 3 info card + footer を math syntax に書き換え
+- 日本語 (過去 / 距離 / 億年前 / 億光年 / 万年 / 分 / 年前 / 光年 等) を `\text{...}` で math 内に取り込み、 baseline を math 軸で統一
+- 単位 (K / s / MeV / GeV / eV) も `\text{...}` で upright Roman に (= math italic K 問題回避)
+- en-dash も `\text{--}` で確実に en-dash になる (= math mode 内の "--" は double-minus にならない)
+- 結果: 関係記号 (≈ / ≳ / ~ / =) の縦軸 alignment が math baseline で精密整列、 行間の drift 解消
+
 第 4 段 (= 2026-05-19 18:00) EWPT 追加 (9 段化) + BBN icon overflow 修正 + 関係記号 alignment
 - **9 段 timeline**: 既存 8 段に **電弱対称性の破れ (EWPT)** を 2 番目に挿入
   - 値: $z \sim 4{\times}10^{14}$, $t \sim 10^{-11}$ s, $T \sim 10^{15}$ K (= 100 GeV), $D_C \approx 462$ 億光年

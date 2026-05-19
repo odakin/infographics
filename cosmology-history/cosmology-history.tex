@@ -81,13 +81,16 @@
   neutron/.style={circle, fill=nucn, inner sep=0pt, minimum size=#1},
 }
 
-% ---- Data row with 3-column alignment ----
-% #1 = y, #2 = label, #3 = relation symbol (e.g. \approx, \gtrsim, =, or empty),
-% #4 = value (right of relation)
+% ---- Data row with 3-column math-mode alignment ----
+% Each argument is math-mode content (no surrounding $...$). Japanese
+% goes inside \text{...}. The macro wraps each in $...$ so baselines
+% and spacing follow math conventions consistently across rows.
+% #1 = y, #2 = label (math), #3 = relation (\approx, \gtrsim, =, or empty),
+% #4 = value (math, with \text{} for Japanese parts).
 \newcommand{\datarow}[4]{%
-  \node[anchor=base west, font=\fontsize{7}{8.5}\selectfont\sffamily, text=fgmute, inner sep=0pt] at (-13.5, #1) {#2};%
-  \node[anchor=base east, font=\fontsize{7.6}{9.5}\selectfont, text=fgstrong, inner sep=0pt] at (-7.5, #1) {#3};%
-  \node[anchor=base west, font=\fontsize{7.6}{9.5}\selectfont, text=fgstrong, inner sep=0pt] at (-7, #1) {#4};%
+  \node[anchor=base west, font=\fontsize{7}{8.5}\selectfont\sffamily, text=fgmute, inner sep=0pt] at (-13.5, #1) {$#2$};%
+  \node[anchor=base east, font=\fontsize{7.6}{9.5}\selectfont, text=fgstrong, inner sep=0pt] at (-7.5, #1) {$#3$};%
+  \node[anchor=base west, font=\fontsize{7.6}{9.5}\selectfont, text=fgstrong, inner sep=0pt] at (-7, #1) {$#4$};%
 }
 
 % ============================================================
@@ -308,11 +311,11 @@
           text width=22mm] at (-10.5, 22.5) {インフレーション};
     \iconInflation{0,13}
     \draw[bgcardb, line width=0.25pt] (-13, 6) -- (13, 6);
-    \datarow{3}{$z$}{}{非常に大}
-    \datarow{0}{$t$}{$\sim$}{$10^{-36}$--$10^{-32}$ s}
-    \datarow{-3}{過去}{$\approx$}{$138$ 億年前}
-    \datarow{-6}{距離}{$\approx$}{$462$ 億光年}
-    \datarow{-9}{$T_{\gamma}$}{}{超高温}
+    \datarow{3}{z}{}{\text{非常に大}}
+    \datarow{0}{t}{\sim}{10^{-36}\text{--}10^{-32}\,\text{s}}
+    \datarow{-3}{\text{過去}}{\approx}{138\,\text{億年前}}
+    \datarow{-6}{\text{距離}}{\approx}{462\,\text{億光年}}
+    \datarow{-9}{T_{\gamma}}{}{\text{超高温}}
     \draw[bgcardb, line width=0.25pt] (-13, -11.5) -- (13, -11.5);
     \node[anchor=north west, font=\fontsize{6.8}{8.7}\selectfont, text=fg,
           align=left, text width=26mm] at (-13, -13.5)
@@ -328,11 +331,11 @@
           text width=22mm] at (-10.5, 22.5) {電弱対称性の破れ (EWPT)};
     \iconEWPT{0,13}
     \draw[bgcardb, line width=0.25pt] (-13, 6) -- (13, 6);
-    \datarow{3}{$z$}{$\sim$}{$4{\times}10^{14}$}
-    \datarow{0}{$t$}{$\sim$}{$10^{-11}$ s}
-    \datarow{-3}{過去}{$\approx$}{$138$ 億年前}
-    \datarow{-6}{距離}{$\approx$}{$462$ 億光年}
-    \datarow{-9}{$T_{\gamma}$}{$\sim$}{$10^{15}$ K \tiny(100 GeV)}
+    \datarow{3}{z}{\sim}{4{\times}10^{14}}
+    \datarow{0}{t}{\sim}{10^{-11}\,\text{s}}
+    \datarow{-3}{\text{過去}}{\approx}{138\,\text{億年前}}
+    \datarow{-6}{\text{距離}}{\approx}{462\,\text{億光年}}
+    \datarow{-9}{T_{\gamma}}{\sim}{10^{15}\,\text{K}\;\text{\tiny(100 GeV)}}
     \draw[bgcardb, line width=0.25pt] (-13, -11.5) -- (13, -11.5);
     \node[anchor=north west, font=\fontsize{6.8}{8.7}\selectfont, text=fg,
           align=left, text width=26mm] at (-13, -13.5)
@@ -348,11 +351,11 @@
           text width=22mm] at (-10.5, 22.5) {QGP $\to$ ハドロン化};
     \iconQGP{0,13}
     \draw[bgcardb, line width=0.25pt] (-13, 6) -- (13, 6);
-    \datarow{3}{$z$}{$\gtrsim$}{$10^{12}$}
-    \datarow{0}{$t$}{$\sim$}{$10^{-6}$--$10^{-5}$ s}
-    \datarow{-3}{過去}{$\approx$}{$138$ 億年前}
-    \datarow{-6}{距離}{$\approx$}{$461$ 億光年}
-    \datarow{-9}{$T_{\gamma}$}{$\gtrsim$}{$10^{12}$ K \tiny(90 MeV)}
+    \datarow{3}{z}{\gtrsim}{10^{12}}
+    \datarow{0}{t}{\sim}{10^{-6}\text{--}10^{-5}\,\text{s}}
+    \datarow{-3}{\text{過去}}{\approx}{138\,\text{億年前}}
+    \datarow{-6}{\text{距離}}{\approx}{461\,\text{億光年}}
+    \datarow{-9}{T_{\gamma}}{\gtrsim}{10^{12}\,\text{K}\;\text{\tiny(90 MeV)}}
     \draw[bgcardb, line width=0.25pt] (-13, -11.5) -- (13, -11.5);
     \node[anchor=north west, font=\fontsize{6.8}{8.7}\selectfont, text=fg,
           align=left, text width=26mm] at (-13, -13.5)
@@ -368,11 +371,11 @@
           text width=22mm] at (-10.5, 22.5) {ビッグバン元素合成};
     \iconBBN{0,13}
     \draw[bgcardb, line width=0.25pt] (-13, 6) -- (13, 6);
-    \datarow{3}{$z$}{$\sim$}{$10^{8}$--$10^{9}$}
-    \datarow{0}{$t$}{$\sim$}{$1$ s --20 分}
-    \datarow{-3}{過去}{$\approx$}{$138$ 億年前}
-    \datarow{-6}{距離}{$\approx$}{$461$ 億光年}
-    \datarow{-9}{$T_{\gamma}$}{$\sim$}{$0.03$--$1$ MeV}
+    \datarow{3}{z}{\sim}{10^{8}\text{--}10^{9}}
+    \datarow{0}{t}{\sim}{1\,\text{s}\text{--}20\,\text{分}}
+    \datarow{-3}{\text{過去}}{\approx}{138\,\text{億年前}}
+    \datarow{-6}{\text{距離}}{\approx}{461\,\text{億光年}}
+    \datarow{-9}{T_{\gamma}}{\sim}{0.03\text{--}1\,\text{MeV}}
     \draw[bgcardb, line width=0.25pt] (-13, -11.5) -- (13, -11.5);
     \node[anchor=north west, font=\fontsize{6.8}{8.7}\selectfont, text=fg,
           align=left, text width=26mm] at (-13, -13.5)
@@ -388,11 +391,11 @@
           text width=22mm] at (-10.5, 22.5) {物質-放射等価};
     \iconBalance{0,13}
     \draw[bgcardb, line width=0.25pt] (-13, 6) -- (13, 6);
-    \datarow{3}{$z$}{$\approx$}{$3\,400$}
-    \datarow{0}{$t$}{$\approx$}{$5$ 万年}
-    \datarow{-3}{過去}{$\approx$}{$138$ 億年前}
-    \datarow{-6}{距離}{$\approx$}{$459$ 億光年}
-    \datarow{-9}{$T_{\gamma}$}{$\approx$}{$9\,000$ K}
+    \datarow{3}{z}{\approx}{3\,400}
+    \datarow{0}{t}{\approx}{5\,\text{万年}}
+    \datarow{-3}{\text{過去}}{\approx}{138\,\text{億年前}}
+    \datarow{-6}{\text{距離}}{\approx}{459\,\text{億光年}}
+    \datarow{-9}{T_{\gamma}}{\approx}{9\,000\,\text{K}}
     \draw[bgcardb, line width=0.25pt] (-13, -11.5) -- (13, -11.5);
     \node[anchor=north west, font=\fontsize{6.8}{8.7}\selectfont, text=fg,
           align=left, text width=26mm] at (-13, -13.5)
@@ -408,11 +411,11 @@
           text width=22mm] at (-10.5, 22.5) {再結合 / CMB 放射};
     \iconRecomb{0,13}
     \draw[bgcardb, line width=0.25pt] (-13, 6) -- (13, 6);
-    \datarow{3}{$z$}{$\approx$}{$1\,100$}
-    \datarow{0}{$t$}{$\approx$}{$38$ 万年}
-    \datarow{-3}{過去}{$\approx$}{$138$ 億年前}
-    \datarow{-6}{距離}{$\approx$}{$455$ 億光年}
-    \datarow{-9}{$T_{\gamma}$}{$\approx$}{$3\,000$ K}
+    \datarow{3}{z}{\approx}{1\,100}
+    \datarow{0}{t}{\approx}{38\,\text{万年}}
+    \datarow{-3}{\text{過去}}{\approx}{138\,\text{億年前}}
+    \datarow{-6}{\text{距離}}{\approx}{455\,\text{億光年}}
+    \datarow{-9}{T_{\gamma}}{\approx}{3\,000\,\text{K}}
     \draw[bgcardb, line width=0.25pt] (-13, -11.5) -- (13, -11.5);
     \node[anchor=north west, font=\fontsize{6.8}{8.7}\selectfont, text=fg,
           align=left, text width=26mm] at (-13, -13.5)
@@ -428,11 +431,11 @@
           text width=22mm] at (-10.5, 22.5) {最初の星・銀河 / 再電離};
     \iconStars{0,13}
     \draw[bgcardb, line width=0.25pt] (-13, 6) -- (13, 6);
-    \datarow{3}{$z$}{$\approx$}{$20$--$6$}
-    \datarow{0}{$t$}{$\sim$}{$2$--$10$ 億年}
-    \datarow{-3}{過去}{$\approx$}{$128$--$136$ 億年前}
-    \datarow{-6}{距離}{$\approx$}{$280$--$340$ 億光年}
-    \datarow{-9}{$T_{\gamma}$}{$\approx$}{$20$--$60$ K}
+    \datarow{3}{z}{\approx}{20\text{--}6}
+    \datarow{0}{t}{\sim}{2\text{--}10\,\text{億年}}
+    \datarow{-3}{\text{過去}}{\approx}{128\text{--}136\,\text{億年前}}
+    \datarow{-6}{\text{距離}}{\approx}{280\text{--}340\,\text{億光年}}
+    \datarow{-9}{T_{\gamma}}{\approx}{20\text{--}60\,\text{K}}
     \draw[bgcardb, line width=0.25pt] (-13, -11.5) -- (13, -11.5);
     \node[anchor=north west, font=\fontsize{6.8}{8.7}\selectfont, text=fg,
           align=left, text width=26mm] at (-13, -13.5)
@@ -448,18 +451,18 @@
           text width=22mm] at (-10.5, 22.5) {加速膨張 / DE 優勢};
     \iconDE{0,13}
     \draw[bgcardb, line width=0.25pt] (-13, 6) -- (13, 6);
-    % Two columns
+    % Two columns (math mode throughout, Japanese via \text{})
     \node[anchor=base west, font=\fontsize{6.6}{8}\selectfont\sffamily\bfseries, text=c7] at (-13, 3) {加速開始};
     \node[anchor=base west, font=\fontsize{6.8}{8.2}\selectfont, text=fgstrong] at (-13, 0) {$z = 0.7$};
-    \node[anchor=base west, font=\fontsize{6.8}{8.2}\selectfont, text=fgstrong] at (-13, -2.5) {$t = 76$ 億年};
-    \node[anchor=base west, font=\fontsize{6.8}{8.2}\selectfont, text=fgstrong] at (-13, -5) {$D_C\!=\!85$ 億ly};
-    \node[anchor=base west, font=\fontsize{6.8}{8.2}\selectfont, text=fgstrong] at (-13, -7.5) {$T_{\gamma} = 4.6$ K};
+    \node[anchor=base west, font=\fontsize{6.8}{8.2}\selectfont, text=fgstrong] at (-13, -2.5) {$t = 76\,\text{億年}$};
+    \node[anchor=base west, font=\fontsize{6.8}{8.2}\selectfont, text=fgstrong] at (-13, -5) {$D_C = 8.5\,\text{Gly}$};
+    \node[anchor=base west, font=\fontsize{6.8}{8.2}\selectfont, text=fgstrong] at (-13, -7.5) {$T_{\gamma} = 4.6\,\text{K}$};
     %
     \node[anchor=base west, font=\fontsize{6.6}{8}\selectfont\sffamily\bfseries, text=c7] at (0.7, 3) {DE 優勢};
     \node[anchor=base west, font=\fontsize{6.8}{8.2}\selectfont, text=fgstrong] at (0.7, 0) {$z = 0.33$};
-    \node[anchor=base west, font=\fontsize{6.8}{8.2}\selectfont, text=fgstrong] at (0.7, -2.5) {$t = 102$ 億年};
-    \node[anchor=base west, font=\fontsize{6.8}{8.2}\selectfont, text=fgstrong] at (0.7, -5) {$D_C\!=\!41$ 億ly};
-    \node[anchor=base west, font=\fontsize{6.8}{8.2}\selectfont, text=fgstrong] at (0.7, -7.5) {$T_{\gamma} = 3.5$ K};
+    \node[anchor=base west, font=\fontsize{6.8}{8.2}\selectfont, text=fgstrong] at (0.7, -2.5) {$t = 102\,\text{億年}$};
+    \node[anchor=base west, font=\fontsize{6.8}{8.2}\selectfont, text=fgstrong] at (0.7, -5) {$D_C = 4.1\,\text{Gly}$};
+    \node[anchor=base west, font=\fontsize{6.8}{8.2}\selectfont, text=fgstrong] at (0.7, -7.5) {$T_{\gamma} = 3.5\,\text{K}$};
     \draw[bgcardb, line width=0.25pt] (-13, -11.5) -- (13, -11.5);
     \node[anchor=north west, font=\fontsize{6.8}{8.7}\selectfont, text=fg,
           align=left, text width=26mm] at (-13, -13.5)
@@ -475,11 +478,11 @@
           text width=22mm] at (-10.5, 22.5) {現在};
     \iconGalaxy{0,13}
     \draw[bgcardb, line width=0.25pt] (-13, 6) -- (13, 6);
-    \datarow{3}{$z$}{$=$}{$0$}
-    \datarow{0}{$t$}{$\approx$}{$138$ 億年}
-    \datarow{-3}{過去}{$=$}{$0$ 年前}
-    \datarow{-6}{距離}{$=$}{$0$ 光年}
-    \datarow{-9}{$T_{\gamma}$}{$=$}{$2.725$ K \tiny(CMB)}
+    \datarow{3}{z}{=}{0}
+    \datarow{0}{t}{\approx}{138\,\text{億年}}
+    \datarow{-3}{\text{過去}}{=}{0\,\text{年前}}
+    \datarow{-6}{\text{距離}}{=}{0\,\text{光年}}
+    \datarow{-9}{T_{\gamma}}{=}{2.725\,\text{K}\;\text{\tiny(CMB)}}
     \draw[bgcardb, line width=0.25pt] (-13, -11.5) -- (13, -11.5);
     \node[anchor=north west, font=\fontsize{6.8}{8.7}\selectfont, text=fg,
           align=left, text width=26mm] at (-13, -13.5)
@@ -506,12 +509,12 @@
     \node[anchor=base west, font=\fontsize{10}{12}\selectfont\sffamily\bfseries, text=fgstrong]
       at (3, -5.5) {BBN の核物理メモ};
     \draw[bgcardb, line width=0.25pt] (3, -7.5) -- (73, -7.5);
-    \node[anchor=base west, font=\fontsize{8.2}{10}\selectfont, text=fgmute] at (4, -12) {陽子 $m_{p}$};
-    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont, text=fgstrong] at (72, -12) {$938.272$ MeV/$c^{2}$};
-    \node[anchor=base west, font=\fontsize{8.2}{10}\selectfont, text=fgmute] at (4, -17) {中性子 $m_{n}$};
-    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont, text=fgstrong] at (72, -17) {$939.565$ MeV/$c^{2}$};
-    \node[anchor=base west, font=\fontsize{8.2}{10}\selectfont, text=fgmute] at (4, -22) {質量差 $\Delta m$};
-    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont, text=fgstrong] at (72, -22) {$1.293$ MeV};
+    \node[anchor=base west, font=\fontsize{8.2}{10}\selectfont, text=fgmute] at (4, -12) {$\text{陽子}\ m_{p}$};
+    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont, text=fgstrong] at (72, -12) {$938.272\,\text{MeV}/c^{2}$};
+    \node[anchor=base west, font=\fontsize{8.2}{10}\selectfont, text=fgmute] at (4, -17) {$\text{中性子}\ m_{n}$};
+    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont, text=fgstrong] at (72, -17) {$939.565\,\text{MeV}/c^{2}$};
+    \node[anchor=base west, font=\fontsize{8.2}{10}\selectfont, text=fgmute] at (4, -22) {$\text{質量差}\ \Delta m$};
+    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont, text=fgstrong] at (72, -22) {$1.293\,\text{MeV}$};
     \node[anchor=south west, font=\fontsize{7.5}{9.5}\selectfont\itshape, text=fgmute, text width=70mm]
       at (3, -31) {$\Delta m > T$ で $n/p$ 比が freeze-out、 $^{4}$He 質量比 $\approx 25\%$。};
   \end{scope}
@@ -522,15 +525,15 @@
     \node[anchor=base west, font=\fontsize{10}{12}\selectfont\sffamily\bfseries, text=fgstrong]
       at (3, -5.5) {温度 $\leftrightarrow$ エネルギー};
     \draw[bgcardb, line width=0.25pt] (3, -7.5) -- (73, -7.5);
-    \node[anchor=base west, font=\fontsize{8.2}{10}\selectfont, text=fgmute] at (4, -12) {$1$ MeV};
-    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont, text=fgstrong] at (72, -12) {$1.16 \times 10^{10}$ K};
-    \node[anchor=base west, font=\fontsize{8.2}{10}\selectfont, text=fgmute] at (4, -17) {$0.1$ MeV};
-    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont, text=fgstrong] at (72, -17) {$1.16 \times 10^{9}$ K};
-    \node[anchor=base west, font=\fontsize{8.2}{10}\selectfont, text=fgmute] at (4, -22) {$1$ eV};
-    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont, text=fgstrong] at (72, -22) {$1.16 \times 10^{4}$ K};
+    \node[anchor=base west, font=\fontsize{8.2}{10}\selectfont, text=fgmute] at (4, -12) {$1\,\text{MeV}$};
+    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont, text=fgstrong] at (72, -12) {$1.16 \times 10^{10}\,\text{K}$};
+    \node[anchor=base west, font=\fontsize{8.2}{10}\selectfont, text=fgmute] at (4, -17) {$0.1\,\text{MeV}$};
+    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont, text=fgstrong] at (72, -17) {$1.16 \times 10^{9}\,\text{K}$};
+    \node[anchor=base west, font=\fontsize{8.2}{10}\selectfont, text=fgmute] at (4, -22) {$1\,\text{eV}$};
+    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont, text=fgstrong] at (72, -22) {$1.16 \times 10^{4}\,\text{K}$};
     \fill[c5!12!bgcard] (3, -30) rectangle (73, -24);
-    \node[anchor=base west, font=\fontsize{8.2}{10}\selectfont\bfseries, text=fgstrong] at (4, -28) {現在 $T_{\gamma}$};
-    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont\bfseries, text=fgstrong] at (72, -28) {$2.725$ K (CMB)};
+    \node[anchor=base west, font=\fontsize{8.2}{10}\selectfont\bfseries, text=fgstrong] at (4, -28) {$\text{現在}\ T_{\gamma}$};
+    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont\bfseries, text=fgstrong] at (72, -28) {$2.725\,\text{K}\;(\text{CMB})$};
   \end{scope}
 
   % ====================== DENSITY PLOT ======================
@@ -628,7 +631,7 @@
   % ====================== FOOTER ======================
   \draw[bgcardb, line width=0.25pt] (8, 10) -- (289, 10);
   \node[font=\fontsize{7.2}{9}\selectfont\itshape, text=fgmute, anchor=center] at (148.5, 7)
-    {数値は標準 $\Lambda$CDM (Planck 2018) 代表値。 $T_{\gamma} = 2.725(1+z)$ K。 $D_C$ は共動距離 (平坦 $\Lambda$CDM での座標距離)。 元 infographic からの修正点と典拠は \texttt{NOTES.md} 参照};
+    {数値は標準 $\Lambda$CDM (Planck 2018) 代表値。 $T_{\gamma} = 2.725(1+z)\,\text{K}$。 $D_C$ は共動距離 (平坦 $\Lambda$CDM での座標距離)。 元 infographic からの修正点と典拠は \texttt{NOTES.md} 参照};
 
 \end{tikzpicture}
 \end{document}
