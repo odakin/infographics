@@ -66,7 +66,8 @@
 
 ## 要対応 (open)
 
-- (なし)
+- [ ] **cosmology-history ポスターの visual hierarchy 強化** — 宇宙の科学 第5回 (2026-05-21) の受講生コメント (出典 = git-crypt 暗号化された `lectures/2026/spring/uchu-no-kagaku/comments.yaml#uchu-2026-c356`、氏名は暗号化側のみに保持し当 public リポには置かない) で「綺麗にまとまって視覚的にも良い。強いて言えば文字のフォント・大きさの差が乏しく、ぱっと見どこを見ればいいか分かりづらい」と指摘。type scale を付けて視線の入口 (タイトル → hero band → カード grid) を明確化する。詳細プラン: `plans/2026-05-28-cosmology-history-hierarchy.md`
+  - 補足: plan §1.2 は当初このコメントを「友人」と帰属していたが、実際は上記の受講生コメント (comments.yaml と一字一句一致) のため受講生コメントとして訂正済
 
 ## 次の方向性
 

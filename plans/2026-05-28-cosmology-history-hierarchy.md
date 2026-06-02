@@ -15,13 +15,13 @@
 
 実装は **LuaLaTeX + TikZ + pgfplots** (HTML 版 `index.html` も併存するが、 印刷 fidelity 優先で LaTeX 版が primary)。 ポスター A4 横 (= 297mm × 210mm) で組まれており、 9 ステージカード (= inflation, EWPT, QGP, BBN, M-R equality, recombination, first stars, DE acceleration, today) を hero band の下に並べる構成。 ステージ番号と対応する色 (`c0`〜`c8`) は 9 段 gradient で揃えており、 hero band は別建ての endpoint 2 色による帯。
 
-### 1.2 friend から受けた comment
+### 1.2 受講生から受けた comment
 
-外部レビュアー (= odakin の友人、 物理を専門としない一般読者層に近い視点を持つ) に v1 PDF を見せた結果、 以下を受領:
+宇宙の科学の受講生 (= 物理を専門としない、 一般読者層に近い視点。 同科目は文系受講生も多い) から、 授業で v1 PDF を提示した際に以下を受領 (= 出典は git-crypt 暗号化された lectures の comments.yaml。 氏名は暗号化側のみに保持し、 当 public リポには置かない):
 
 > 宇宙史の資料として綺麗にまとまっていてわかりやすかったです。 時系列を色のグラデーションで表していて視覚的にもいいなと思いました。 強いて言うならですが、 ポスターとしては文字のフォントや大きさの差があまりないので、 ぱっと見どこを見ればいいのかわかりづらいかなと思いました。
 
-**この comment の重み**: friend は 9 ステージカードの中身を読めば理解できると言いつつ、「ぱっと見」 (= ポスター発見時の最初の 1-2 秒) で視線が滑る、 と指摘している。 これは**ポスターという媒体の本質的要求** (= 通行人が 1-2 秒で「これは何か」 を判定できないと素通りされる) に対する failure を示唆しており、 「綺麗 / わかりやすい」 という肯定的評価とは独立に対処価値が高い。
+**この comment の重み**: 受講生 は 9 ステージカードの中身を読めば理解できると言いつつ、「ぱっと見」 (= ポスター発見時の最初の 1-2 秒) で視線が滑る、 と指摘している。 これは**ポスターという媒体の本質的要求** (= 通行人が 1-2 秒で「これは何か」 を判定できないと素通りされる) に対する failure を示唆しており、 「綺麗 / わかりやすい」 という肯定的評価とは独立に対処価値が高い。
 
 ### 1.3 同 5/28 session での色 refactor との関係
 
@@ -30,11 +30,11 @@
 - **変更前**: `left color=c0 (赤 #C73E3A) → right color=coolend (深い青 #1E3A8A)` = 「高温 → 低温」 (= CMB 慣習 + 「炎 = 熱」 一般直感)
 - **変更後**: `left color=hotend (明るい水色 #B0DFF5) → right color=coldend (暗赤 #5C1818)` = 「明 → 暗」 (= 早期の放射 luminous → 現在の DE-dim という別軸メタファー)
 
-これは friend comment への対応ではなく**別件の design exploration** で、 user (= odakin) が「上の左が赤で右が青のやつ、 左が青の明るい色、 右が赤の暗い色としてはどうか?」 と提案 → 試作 → 「いいね、 もうちょっと鮮やかに / もうちょっと暗く」 の iteration で landed。
+これは 受講生 comment への対応ではなく**別件の design exploration** で、 user (= odakin) が「上の左が赤で右が青のやつ、 左が青の明るい色、 右が赤の暗い色としてはどうか?」 と提案 → 試作 → 「いいね、 もうちょっと鮮やかに / もうちょっと暗く」 の iteration で landed。
 
 **この変更が hierarchy 問題に与える副次影響** (= 本 plan の §3-D で扱う):
 - 凡例の文言「高温 (初期) — 低温 (現在)」 は温度軸を述べているが、 hero band は今や明度軸 (= 物理的には放射エネルギー密度の時間発展) を表しており、 帯と凡例の**意味軸がずれている**
-- friend comment 当時のポスターは「高温→低温」 の赤→青で、 帯の意味は凡例と整合していた。 5/28 改修で意味軸ズレが生じた
+- 受講生 comment 当時のポスターは「高温→低温」 の赤→青で、 帯の意味は凡例と整合していた。 5/28 改修で意味軸ズレが生じた
 
 ## 2. ポスターという媒体の設計前提 (= hierarchy 判断の baseline)
 
@@ -76,7 +76,7 @@
 
 ### 問題 2: サブタイトル以降が全部 6.8〜10.5 pt の狭い帯に居る
 - 10.5 / 8.5 / 8 / 7.5 / 6.8 の 5 種類が約 1.5 pt 刻みで詰まっており、 type scale ratio で言うと 1.04〜1.23 (= 全部 minor second 未満)
-- friend comment 「フォントや大きさの差があまりない」 はこの帯を見て言っている可能性が極めて高い
+- 受講生 comment 「フォントや大きさの差があまりない」 はこの帯を見て言っている可能性が極めて高い
 - 近距離で読んでも「カードタイトル (= 8.5) と description (= 6.8) のどちらが上位か」 が一見で分からない (= 太字 / sans-serif で区別はしているが、 サイズだけ見ると ratio 1.25 で同等扱いに見える)
 
 ### 問題 3: hero band に文字情報が無い
@@ -126,7 +126,7 @@
 - B-2 は **information weighting** (= 視覚的強調 = 認知優先度) で、 設計理論的にはより高度だが「主要 3 つの選定」 という subjective 判断が入る
 
 **想定効果**:
-- B-1: 「ぱっと見」 でカード grid のタイトルが scan しやすくなる (= friend comment への直接対応)
+- B-1: 「ぱっと見」 でカード grid のタイトルが scan しやすくなる (= 受講生 comment への直接対応)
 - B-2: 「最初に読むべき 3 カード」 が誘導される、 物理史の「起伏」 が伝わる
 
 **tradeoff**:
@@ -149,7 +149,7 @@
 
 **tradeoff**:
 - カード高さ (= 56 mm) を増やすか、 他の領域を圧縮するか、 のレイアウト調整必要
-- 効果は B より subtle、 friend comment への直接対応としては弱い
+- 効果は B より subtle、 受講生 comment への直接対応としては弱い
 
 ### 案 D: 凡例文言の整合 (= 5/28 色 refactor の follow-up)
 
@@ -168,7 +168,7 @@
 - D-3: 帯と凡例の意味軸ズレを許容、 「明 → 暗」 はあくまで装飾、 物理は温度軸で読んでもらう
 
 **tradeoff**:
-- friend comment は色軸の文言を問題視していない、 が 5/28 改修の意味軸ズレは別問題として残る
+- 受講生 comment は色軸の文言を問題視していない、 が 5/28 改修の意味軸ズレは別問題として残る
 - author の意図 (= 5/28 改修の動機) を明確化すべき、 「装飾として明度を取った」 のか「物理的意味として明度を取った」 のかで判断が変わる
 
 ## 5. 案の組み合わせ matrix
@@ -178,17 +178,17 @@
 | **B-1 のみ** | ★★★ | 低 (= 1 行変更) | text width 超過のみ |
 | **A + B-1** | ★★★★ | 中 (= hero band 高さ調整) | 帯の意味軸 (明度) と anchor 文字の衝突 |
 | **A + B-2** | ★★★★ | 中〜高 (= 主要 3 つの選定根拠要) | 視覚的に「平等な 9 段」 と矛盾 |
-| **A + B-1 + C** | ★★★★★ | 高 | layered 改修で意図が分散、 friend 再評価で「やりすぎ」 と返る可能性 |
+| **A + B-1 + C** | ★★★★★ | 高 | layered 改修で意図が分散、 受講生 再評価で「やりすぎ」 と返る可能性 |
 | **A + B-1 + D-1** | ★★★★ | 中 | 5/28 改修と一緒に意味軸を refactor、 一貫性は最大 |
 
-**推奨第一実装**: **B-1 単独 (= 全カードタイトル 10.5 pt 化)** から始める。 friend comment への最小対応 + 実装コスト低 + risk 限定。 これで再評価して足りなければ A を追加。
+**推奨第一実装**: **B-1 単独 (= 全カードタイトル 10.5 pt 化)** から始める。 受講生 comment への最小対応 + 実装コスト低 + risk 限定。 これで再評価して足りなければ A を追加。
 
 ## 6. 実装手順 (= cold-eyes session 向け)
 
 1. **現在の PDF を 1 部 print** (A4 / A3 両方) して紙で hierarchy を確認 (= 画面と紙で印象違うため、 cold-eyes session 開始時の grounding)
 2. **B-1 を最小実装** (= `\fontsize{8.5}{10.5}` → `\fontsize{10.5}{13}` を 9 カード全部に置換、 `text width=22mm` を超えないか要確認)
-3. **再 build + 紙 print + friend 再ヒアリング** (= 「最初にどこを見たか?」 「次にどこを見たか?」 「読みやすくなったか?」)
-4. friend 再ヒアリング結果で:
+3. **再 build + 紙 print + 受講生 再ヒアリング** (= 「最初にどこを見たか?」 「次にどこを見たか?」 「読みやすくなったか?」)
+4. 受講生 再ヒアリング結果で:
    - **十分**: ここで stop、 plan close
    - **まだ平板**: 案 A 追加 (= hero band 文字、 帯高さ 3.5 → 6-8 mm)、 step 2-3 再実行
    - **「メリハリが強すぎて全体の調和が崩れた」**: 案 C で代替 (= 案 B を戻して visual gap で hierarchy 作る)
@@ -198,24 +198,24 @@
 
 - **Q1**: 案 A 採用時、 帯の高さ (= 現状 3.5 mm) を何 mm まで増やすか? 帯が太くなりすぎると「カード grid との視覚バランス」 が崩れる、 上限の経験則は? (= 紙面の 5% = 約 10.5 mm が経験的 max か?)
 - **Q2**: 案 B-2 を取る場合の「主要 3 カード」 選定: BBN (4) / recombination (6) / 加速膨張 (8) で異論ないか? author に物理的重要性 ranking を明示確認する
-- **Q3**: 案 A の anchor 文字と案 B-1 のカードタイトル強化を**両方やると過剰**か? 案 B-1 単独で friend 再評価が positive なら案 A は不要、 という ordering 判断が正しいか
+- **Q3**: 案 A の anchor 文字と案 B-1 のカードタイトル強化を**両方やると過剰**か? 案 B-1 単独で 受講生 再評価が positive なら案 A は不要、 という ordering 判断が正しいか
 - **Q4**: ポスター想定の**印刷サイズ** (= A4 / A3 / A2 のどれか) を author に確認、 サイズによって絶対 pt の判断基準が変わる
 - **Q5**: 5/28 色 refactor の意味は「装飾」 か「物理メタファー」 か、 author 明示確認 → D-1/D-2/D-3 選択 → 凡例文言確定
 - **Q6**: ポスターの target audience (= 「物理を専門としない一般読者」 か「物理系の学生」 か「教育普及用」 か) を author 確認、 hierarchy 設計のターゲットが変わる
 
 ## 8. trigger / 着手判断
 
-- **trigger 条件無し**: friend comment は「強いて言うなら」 で受け取り、 急務ではない。 別 session で着手するまで現状維持で可
+- **trigger 条件無し**: 受講生 comment は「強いて言うなら」 で受け取り、 急務ではない。 別 session で着手するまで現状維持で可
 - **再 surface タイミング**:
   - (a) ポスターを別の人に見せて同種コメントを再度受けた
   - (b) print して紙で見て自分でも hierarchy が気になった
   - (c) `infographics/` monorepo の他 entry を作る際に shared design system 化を検討、 そのタイミングで第 1 entry も一緒に改修
   - (d) ポスターをどこかに掲示 / 配布する具体予定が立った (= 学園祭、 オープンキャンパス、 学会 poster session 等、 「対外性が立つ瞬間」)
-- **担当**: cold-eyes session (= author bias を避け、 friend comment を起点に独立判断、 §11 confession を参照)
+- **担当**: cold-eyes session (= author bias を避け、 受講生 comment を起点に独立判断、 §11 confession を参照)
 
 ## 9. 副次論点 (= 本 plan の scope 外だが関連で挙げておく)
 
-- **9 段 gradient (c0..c8) と hero band gradient (hotend → coldend) の関係**: 現状 2 系統が別建てで動いており、 hero band が「明度」 軸、 9 段が「温度っぽい段階色」 軸として独立。 design として「2 軸ある」 のは情報量だが、 friend comment と直接関係ないので本 plan では触れない
+- **9 段 gradient (c0..c8) と hero band gradient (hotend → coldend) の関係**: 現状 2 系統が別建てで動いており、 hero band が「明度」 軸、 9 段が「温度っぽい段階色」 軸として独立。 design として「2 軸ある」 のは情報量だが、 受講生 comment と直接関係ないので本 plan では触れない
 - **plot 領域 (= 下段 energy density plot)** の typography: 軸ラベル / 凡例 / 注記の font size は本 plan で扱っていない、 別途要確認
 - **アイコンの視認性**: 各カードのアイコンは 5-13 mm 程度の小さい SVG/TikZ で、 印刷サイズによっては潰れる可能性。 別 plan で扱う
 
@@ -229,7 +229,7 @@
 ## 11. author confession (= 2026-05-28)
 
 - **bias 1**: 本 plan の起草は author session = 5/28 ターンで、 色 refactor (= hot/cold blue→red の swap + bright/dark intensification) と同 session 内。 author は色変更直後で「hero band 全体への思い入れ」 が高まっている状態で書いており、 **hero band に文字を盛りすぎる方向 (= 案 A 推奨) に bias がかかっている可能性**
-- **bias 2**: friend comment への対応として最も「実装が楽な」 案 (= B-1) を §5 で推奨第一実装にしているが、 これは author の「session 内で結論を出したい」 圧力からの bias とも読める。 cold-eyes session は **「逆方向 = hero band は文字を盛らず純粋な視覚 anchor のままにし、 hierarchy は card 側だけで作る」** という選択肢、 もしくは「friend comment は font size 問題ではなく font weight / contrast / color value 問題と diagnose 直す」 という別 diagnosis も独立評価してほしい
-- **bias 3**: 「friend が「ぱっと見どこを見ればいいかわからない」 と言ったのは hero band の問題か card の問題か、 もしくは全く別 (= 色軸、 アイコン、 plot 領域) の問題か」 は author 単独では判別できていない。 cold-eyes が friend 再ヒアリング (= 「最初にどこを見たか?」 「次にどこを見たか?」) を可能なら author に提案 (= step 3 で formalize)
+- **bias 2**: 受講生 comment への対応として最も「実装が楽な」 案 (= B-1) を §5 で推奨第一実装にしているが、 これは author の「session 内で結論を出したい」 圧力からの bias とも読める。 cold-eyes session は **「逆方向 = hero band は文字を盛らず純粋な視覚 anchor のままにし、 hierarchy は card 側だけで作る」** という選択肢、 もしくは「受講生 comment は font size 問題ではなく font weight / contrast / color value 問題と diagnose 直す」 という別 diagnosis も独立評価してほしい
+- **bias 3**: 「受講生 が「ぱっと見どこを見ればいいかわからない」 と言ったのは hero band の問題か card の問題か、 もしくは全く別 (= 色軸、 アイコン、 plot 領域) の問題か」 は author 単独では判別できていない。 cold-eyes が 受講生 再ヒアリング (= 「最初にどこを見たか?」 「次にどこを見たか?」) を可能なら author に提案 (= step 3 で formalize)
 - **bias 4**: 本 plan は **§2 で type scale 理論を持ち出した**が、 これは author が design 理論を「知っている」 ことで「正しい improvement」 と権威付けしている可能性がある。 ポスター design の専門家が見れば「type scale だけで poster hierarchy は解けない、 layout・color・contrast の総合判断」 と言う可能性があり、 cold-eyes は理論への過信を warning とすべき
 - **bias 5**: 9 ステージカードの「平等な並び」 を「物語の起伏が立たない」 と問題視 (= §3 問題 4) しているが、 これは author の物理史観 (= BBN / recombination / 加速膨張開始が「主要」 とする視点) を反映している。 一般読者にとっての「物語の山場」 は別の場所 (= 例: 「ビッグバン」 そのもの、 「最初の星」 の誕生、 「宇宙の現在」) かもしれない。 「主要 3 つ」 の選定は author 側で正当化が要る、 cold-eyes が決めるべきではない
