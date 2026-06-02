@@ -140,6 +140,8 @@ build: `cd cosmology-history && make` (= LuaLaTeX 一発で PDF 生成)、 `make
 ## 配置・色塗りの考え方 (= 2026-06-02 レビュー反映で密度プロットを再設計した際の design 原則)
 
 > odakin のレビューを反映して密度プロットを大きく作り直した際の設計思想。 次に同種の log-log プロットを作るときの指針として記録。
+>
+> **一般的な pgfplots gotcha の正本は [`claude-config/conventions/tikz-pgfplots.md`](../../claude-config/conventions/tikz-pgfplots.md)** (= 「中央寄せ=平行移動 (アスペクト比無関係)」「`\closedcycle` は床まで塗らない」「`current axis.south west` は scope shift に追従しない」「aspect 変更時の回転再計算」 + render→実測 reflex)。 本 NOTES は **本 entry 固有の design 判断** (= 何をどう配置・配色したか) を記録。
 
 ### 密度プロットの 2 軸
 - **横軸 = スケール因子 a (= 時間)**: `1e-9` (BBN 期) 〜 `1e1` (= 現在 a=1 の少し先の未来) の対数。 左ほど過去・高密度。
