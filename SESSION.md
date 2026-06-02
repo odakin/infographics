@@ -66,7 +66,7 @@
 
 ## 要対応 (open)
 
-- (なし)
+- [ ] **cosmology-history ポスターの visual hierarchy 強化** — レビューで「文字の書体や大きさの差が乏しく、 ぱっと見でどこを見ればよいかが分かりにくい」 という指摘を受けた (原文と出典は非公開の側の記録にある)。 type scale を付けて視線の入口 (タイトル → hero band → カード grid) を明確化する。詳細プラン: `plans/2026-05-28-cosmology-history-hierarchy.md`
 
 ## 次の方向性
 
