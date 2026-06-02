@@ -578,8 +578,8 @@
       title={\fontsize{10}{12}\selectfont\sffamily\bfseries\color{fgstrong}宇宙の主要成分のエネルギー密度\\[-0.5mm]\fontsize{7.5}{9.5}\selectfont\normalfont\itshape\color{fgmute}対数-対数 plot。 era 境界の $z$ は $\Lambda$CDM ($\Omega_{m}=0.3$, $\Omega_{\Lambda}=0.7$) より},
       title style={anchor=south west, at={(rel axis cs:0, 1)}, align=left, yshift=0.5mm, inner sep=0pt},
       xmode=log, ymode=log,
-      xmin=1e-9, xmax=2,
-      ymin=1e-5, ymax=1e20,
+      xmin=1e-9, xmax=10,
+      ymin=1e-5, ymax=1e35,
       axis line style={fgmute, line width=0.35pt},
       tick style={fgmute, line width=0.3pt},
       tick label style={font=\fontsize{7.5}{9}\selectfont, text=fgmute},
@@ -587,8 +587,8 @@
       ylabel style={font=\fontsize{8.5}{10}\selectfont, text=fg, xshift=3mm},
       xlabel={スケール因子 $a$ \quad(現在 $a_{0} = 1$)},
       ylabel={エネルギー密度 (相対値)},
-      xtick={1e-9, 1e-8, 1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1, 1},
-      ytick={1e-5, 1, 1e5, 1e10, 1e15, 1e20},
+      xtick={1e-9, 1e-8, 1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1, 1, 1e1},
+      ytick={1e-5, 1, 1e5, 1e10, 1e15, 1e20, 1e25, 1e30, 1e35},
       grid=major,
       grid style={grid, line width=0.2pt, dashed},
       clip mode=individual,
@@ -598,40 +598,40 @@
 
       % Era background bands (= vertical column tint per dominant era; gives the
       %  region ABOVE the curves its colour, where the to-floor fills don't reach)
-      \fill[plotrad, opacity=0.09] (axis cs:1e-9,1e-5) rectangle (axis cs:2.9e-4,1e20);
-      \fill[plotmat, opacity=0.08] (axis cs:2.9e-4,1e-5) rectangle (axis cs:0.75,1e20);
-      \fill[plotde,  opacity=0.11] (axis cs:0.75,1e-5)   rectangle (axis cs:2,1e20);
+      \fill[plotrad, opacity=0.09] (axis cs:1e-9,1e-5) rectangle (axis cs:2.9e-4,1e35);
+      \fill[plotmat, opacity=0.08] (axis cs:2.9e-4,1e-5) rectangle (axis cs:0.75,1e35);
+      \fill[plotde,  opacity=0.11] (axis cs:0.75,1e-5)   rectangle (axis cs:10,1e35);
 
       % Each curve's fill goes ALL THE WAY DOWN to the axis floor (ymin), so the
       % translucent colours overlap and the lower you go the more layers stack.
       % NOTE: \closedcycle only joins the curve's endpoints (it does NOT drop to
       % the floor), so we close the path explicitly via the two bottom corners.
-      \addplot[fill=plotrad, fill opacity=0.16, draw=none, domain=1e-9:2, samples=80]
-        {1.22e-4 * x^(-4)} -- (axis cs:2,1e-5) -- (axis cs:1e-9,1e-5) -- cycle;
-      \addplot[fill=plotmat, fill opacity=0.14, draw=none, domain=1e-9:2, samples=80]
-        {0.43 * x^(-3)} -- (axis cs:2,1e-5) -- (axis cs:1e-9,1e-5) -- cycle;
+      \addplot[fill=plotrad, fill opacity=0.16, draw=none, domain=1e-9:10, samples=80]
+        {1.22e-4 * x^(-4)} -- (axis cs:10,1e-5) -- (axis cs:1e-9,1e-5) -- cycle;
+      \addplot[fill=plotmat, fill opacity=0.14, draw=none, domain=1e-9:10, samples=80]
+        {0.43 * x^(-3)} -- (axis cs:10,1e-5) -- (axis cs:1e-9,1e-5) -- cycle;
       % DE = const ρ_Λ=1: its "under the line" area is the rectangle below y=1.
-      \fill[plotde, fill opacity=0.16] (axis cs:1e-9,1e-5) rectangle (axis cs:2,1);
+      \fill[plotde, fill opacity=0.16] (axis cs:1e-9,1e-5) rectangle (axis cs:10,1);
 
-      \addplot[plotrad, line width=1.3pt, domain=1e-9:2, samples=80]
+      \addplot[plotrad, line width=1.3pt, domain=1e-9:10, samples=80]
         {1.22e-4 * x^(-4)};
-      \addplot[plotmat, line width=1.3pt, domain=1e-9:2, samples=80]
+      \addplot[plotmat, line width=1.3pt, domain=1e-9:10, samples=80]
         {0.43 * x^(-3)};
-      \addplot[plotde, line width=1.3pt, domain=1e-9:2, samples=2]
+      \addplot[plotde, line width=1.3pt, domain=1e-9:10, samples=2]
         {1};
       % Line labels: explicit placement so 放射 sits in the radiation-dominant
       % band on the left. Rotation matches each line's visual slope on the
       % log-log axes (≈ -34° for ρ_rad, -27° for ρ_m, 0° for ρ_Λ).
-      \node[anchor=center, rotate=-36, inner sep=0.7mm,
+      \node[anchor=center, rotate=-26, inner sep=0.7mm,
             fill=bgcard, fill opacity=0.95, text opacity=1, rounded corners=0.5mm,
             draw=plotrad!30!bgcard, line width=0.25pt,
             font=\fontsize{8.5}{10.5}\selectfont\sffamily\bfseries, text=plotrad]
-        at (axis cs:4e-5, 6e13) {放射 $\rho_{\text{rad}} \propto a^{-4}$};
-      \node[anchor=center, rotate=-29, inner sep=0.7mm,
+        at (axis cs:5.4e-7, 2e21) {放射 $\rho_{\text{rad}} \propto a^{-4}$};
+      \node[anchor=center, rotate=-20, inner sep=0.7mm,
             fill=bgcard, fill opacity=0.95, text opacity=1, rounded corners=0.5mm,
             draw=plotmat!30!bgcard, line width=0.25pt,
             font=\fontsize{8.5}{10.5}\selectfont\sffamily\bfseries, text=plotmat]
-        at (axis cs:6e-3, 2e6) {物質 $\rho_{m} \propto a^{-3}$};
+        at (axis cs:1.5e-2, 1.3e5) {物質 $\rho_{m} \propto a^{-3}$};
       \node[anchor=center, inner sep=0.7mm,
             fill=bgcard, fill opacity=0.95, text opacity=1, rounded corners=0.5mm,
             draw=plotde!30!bgcard, line width=0.25pt,
@@ -653,9 +653,9 @@
       \node[font=\fontsize{7.5}{9}\selectfont, text=fgmute, anchor=south] at (axis cs:1, 5e12) {現在};
 
       % Era labels (= just below ymax, close to plot top edge)
-      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotrad] at (axis cs:5e-6, 5e19) {放射優勢};
-      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotmat] at (axis cs:1e-2, 5e19) {物質優勢};
-      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde,  anchor=east] at (axis cs:1.8, 5e19) {DE 優勢};
+      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotrad] at (axis cs:5.4e-7, 5e34) {放射優勢};
+      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotmat] at (axis cs:1.5e-2, 5e34) {物質優勢};
+      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde] at (axis cs:2.74, 5e34) {DE 優勢};
 
       % Stage badges mapping cards to the a-axis. Stages 4-9 sit at their
       % actual a (BBN ~ 3e-9). Stages 1-3 (a ≪ 10⁻⁹, off chart) are drawn
@@ -677,33 +677,33 @@
       \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=fgstrong, anchor=west] at (axis cs:8e-3, 5e13) {物質-放射等価};
       \node[font=\fontsize{8}{10}\selectfont, text=fgmute, anchor=west] at (axis cs:8e-3, 5e12) {$z \approx 3\,400$};
 
-      % Acceleration onset (shifted left)
+      % Acceleration onset: label lifted into the empty area above the DE line,
+      % to the right of the markers (un-crowds the now-compressed bottom).
       \draw[plotde, -{Stealth[length=1.3mm,width=1mm]}, line width=0.5pt]
-        (axis cs:0.25, 1.3e-2) -- (axis cs:0.59, 2.05);
-      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde, anchor=west] at (axis cs:0.04, 6e-3) {加速膨張開始};
-      \node[font=\fontsize{8}{10}\selectfont, text=plotde, anchor=west] at (axis cs:0.04, 9e-4) {$z \approx 0.7$, $a \approx 0.59$};
+        (axis cs:1.1, 5e4) -- (axis cs:0.59, 2.05);
+      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde, anchor=west] at (axis cs:1.3, 3e5) {加速膨張開始};
+      \node[font=\fontsize{8}{10}\selectfont, text=plotde, anchor=west] at (axis cs:1.3, 1e4) {$z \approx 0.7$, $a \approx 0.59$};
 
-      % DE dominance (shifted left)
+      % DE dominance: stacked below the onset label (1.5 decade gaps), same area.
       \draw[plotde, -{Stealth[length=1.3mm,width=1mm]}, line width=0.5pt]
-        (axis cs:1.2, 1e-3) -- (axis cs:0.75, 1);
-      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde, anchor=west] at (axis cs:1.2, 1e-3) {DE 優勢};
-      \node[font=\fontsize{8}{10}\selectfont, text=plotde, anchor=west] at (axis cs:1.2, 1e-4) {$z \approx 0.33$, $a \approx 0.75$};
+        (axis cs:1.1, 1e2) -- (axis cs:0.75, 1);
+      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde, anchor=west] at (axis cs:1.3, 3e2) {DE 優勢};
+      \node[font=\fontsize{8}{10}\selectfont, text=plotde, anchor=west] at (axis cs:1.3, 10) {$z \approx 0.33$, $a \approx 0.75$};
 
       % (Title + subtitle are set via the `title=` axis option above.)
 
     \end{axis}
 
-    % --- Stages 1-3 (a ≪ 10⁻⁹): off-scale, drawn OUTSIDE the axis to the left ---
+    % --- Stages 1-3 (a ≪ 10⁻⁹): off-scale, drawn OUTSIDE the axis to the left,
+    %     on the SAME row (y=4e-5 ≈ +1.13mm) as badges 4-9, no connector arrow. ---
     \node[anchor=south, font=\fontsize{5.8}{7}\selectfont\itshape, text=fgmute]
-      at ([xshift=-7mm, yshift=9.5mm]current axis.south west) {さらに過去};
-    \node[circle, fill=c0, text=white, font=\fontsize{5.6}{6.6}\selectfont\sffamily\bfseries, inner sep=0pt, minimum size=2.9mm]
-      at ([xshift=-11mm, yshift=5mm]current axis.south west) {1};
-    \node[circle, fill=c1, text=white, font=\fontsize{5.6}{6.6}\selectfont\sffamily\bfseries, inner sep=0pt, minimum size=2.9mm]
-      at ([xshift=-7mm,  yshift=5mm]current axis.south west) {2};
-    \node[circle, fill=c2, text=white, font=\fontsize{5.6}{6.6}\selectfont\sffamily\bfseries, inner sep=0pt, minimum size=2.9mm]
-      at ([xshift=-3mm,  yshift=5mm]current axis.south west) {3};
-    \draw[fgmute, -{Stealth[length=1.2mm,width=1mm]}, line width=0.4pt]
-      ([xshift=-0.5mm, yshift=4mm]current axis.south west) -- ([xshift=5mm, yshift=1.5mm]current axis.south west);
+      at ([xshift=-11mm, yshift=4.5mm]current axis.south west) {さらに過去};
+    \node[circle, fill=c0, text=white, font=\fontsize{5.6}{6.6}\selectfont\sffamily\bfseries, inner sep=0pt, minimum size=2.8mm]
+      at ([xshift=-14mm, yshift=1.13mm]current axis.south west) {1};
+    \node[circle, fill=c1, text=white, font=\fontsize{5.6}{6.6}\selectfont\sffamily\bfseries, inner sep=0pt, minimum size=2.8mm]
+      at ([xshift=-11mm, yshift=1.13mm]current axis.south west) {2};
+    \node[circle, fill=c2, text=white, font=\fontsize{5.6}{6.6}\selectfont\sffamily\bfseries, inner sep=0pt, minimum size=2.8mm]
+      at ([xshift=-8mm,  yshift=1.13mm]current axis.south west) {3};
   \end{scope}
 
   % ====================== FOOTER ======================
