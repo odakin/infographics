@@ -72,6 +72,10 @@ HTML 起点なら → SVG / PNG / PDF いずれにも export 可能 (= chromium 
 - **縦軸を伸ばして急変を見せる**と後半が下部に圧縮される → 空いた上部余白に注釈を逃がす。
 - **ymax/xmax を変えたら線ラベルの回転角を再計算**: `atan(n × (H/W) × Dx/Dy)`。
 
+### 外部レビュー feedback の扱い (= public repo ゆえの PII 制約)
+
+本 repo は **public**。 図の改善は外部レビュー (= 受講生・同僚等) の feedback 駆動で進むことが多いが、 **reviewer の氏名等 PII を repo (= 本文 / SESSION / commit message) に書かない**。 anonymize (= 「受講生コメント」「レビュー指摘」) + 出典が PII を含むなら **暗号化リポへの pointer** で参照する (例: 受講生コメントは git-crypt 暗号化された `lectures/.../comments.yaml#<id>` を参照し、 氏名は暗号化側のみに保持)。 一般原則は leak 防止規約 (= `claude-config` の公開リポ安全規則)。
+
 ## 元 infographic からの修正方針
 
 修正点と典拠は `cosmology-history/NOTES.md` に集約。 設計判断 (= 何を修正対象とし何を残すか) はここに書く。
