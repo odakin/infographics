@@ -572,9 +572,9 @@
   % Plot scope: shifted inward + explicit xshift/yshift on axis labels so they
   % render WELL INSIDE the card frame (pgfplots default places labels just
   % outside the width/height bounding box).
-  \begin{scope}[shift={(106, 33)}]
+  \begin{scope}[shift={(96, 21)}]
     \begin{axis}[
-      width=176mm, height=90mm,
+      width=187mm, height=92mm,
       title={\fontsize{10}{12}\selectfont\sffamily\bfseries\color{fgstrong}宇宙の主要成分のエネルギー密度\\[-0.5mm]\fontsize{7.5}{9.5}\selectfont\normalfont\itshape\color{fgmute}対数-対数 plot。 era 境界の $z$ は $\Lambda$CDM ($\Omega_{m}=0.3$, $\Omega_{\Lambda}=0.7$) より},
       title style={anchor=south west, at={(rel axis cs:0, 1)}, align=left, yshift=0.5mm, inner sep=0pt},
       xmode=log, ymode=log,
@@ -622,12 +622,12 @@
       % Line labels: explicit placement so 放射 sits in the radiation-dominant
       % band on the left. Rotation matches each line's visual slope on the
       % log-log axes (≈ -34° for ρ_rad, -27° for ρ_m, 0° for ρ_Λ).
-      \node[anchor=center, rotate=-26, inner sep=0.7mm,
+      \node[anchor=center, rotate=-25, inner sep=0.7mm,
             fill=bgcard, fill opacity=0.95, text opacity=1, rounded corners=0.5mm,
             draw=plotrad!30!bgcard, line width=0.25pt,
             font=\fontsize{8.5}{10.5}\selectfont\sffamily\bfseries, text=plotrad]
         at (axis cs:5.4e-7, 2e21) {放射 $\rho_{\text{rad}} \propto a^{-4}$};
-      \node[anchor=center, rotate=-20, inner sep=0.7mm,
+      \node[anchor=center, rotate=-19, inner sep=0.7mm,
             fill=bgcard, fill opacity=0.95, text opacity=1, rounded corners=0.5mm,
             draw=plotmat!30!bgcard, line width=0.25pt,
             font=\fontsize{8.5}{10.5}\selectfont\sffamily\bfseries, text=plotmat]
@@ -675,7 +675,7 @@
       \draw[fgmute, -{Stealth[length=1.3mm,width=1mm]}, line width=0.45pt]
         (axis cs:8e-3, 5e13) -- (axis cs:2.9e-4, 1.7e10);
       \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=fgstrong, anchor=west] at (axis cs:8e-3, 5e13) {物質-放射等価};
-      \node[font=\fontsize{8}{10}\selectfont, text=fgmute, anchor=west] at (axis cs:8e-3, 5e12) {$z \approx 3\,400$};
+      \node[font=\fontsize{8}{10}\selectfont, text=fgmute, anchor=west] at (axis cs:8e-3, 1e12) {$z \approx 3\,400$};
 
       % Acceleration onset: label lifted into the empty area above the DE line,
       % to the right of the markers (un-crowds the now-compressed bottom).
