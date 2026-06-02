@@ -102,8 +102,8 @@
 %     ...
 %   }
 \newcommand{\databox}[1]{%
-  \node[anchor=north west, font=\fontsize{7.4}{9.2}\selectfont, text=fgstrong, inner sep=0pt]
-    at (-13, 5) {%
+  \node[anchor=north west, font=\fontsize{6.9}{8.7}\selectfont, text=fgstrong, inner sep=0pt]
+    at (-13.5, 5) {%
     $\renewcommand{\arraystretch}{1.0}\begin{array}{r@{\;}c@{\;}l}#1\end{array}$%
   };%
 }
@@ -325,11 +325,11 @@
     \iconInflation{0,13}
     \draw[bgcardb, line width=0.25pt] (-13, 6) -- (13, 6);
     \databox{%
-      z              &           & \text{非常に大} \\
-      t              & \sim      & 10^{-36}\text{--}10^{-32}\,\text{s} \\
+      \text{赤方偏移} &           & \text{非常に大} \\
+      \text{年齢} & \sim      & 10^{-36}\text{--}10^{-32}\,\text{s} \\
       \text{過去}    & \approx   & 138\,\text{億年前} \\
       \text{距離}    & \approx   & 462\,\text{億光年} \\
-      T_{\gamma}     &           & \text{超高温}
+      \text{温度} &           & \text{超高温}
     }
     \draw[bgcardb, line width=0.25pt] (-13, -11.5) -- (13, -11.5);
     \node[anchor=north west, font=\fontsize{6.8}{8.7}\selectfont, text=fg,
@@ -347,11 +347,11 @@
     \iconEWPT{0,13}
     \draw[bgcardb, line width=0.25pt] (-13, 6) -- (13, 6);
     \databox{%
-      z              & \sim      & 4{\times}10^{14} \\
-      t              & \sim      & 10^{-11}\,\text{s} \\
+      \text{赤方偏移} & \sim      & 4{\times}10^{14} \\
+      \text{年齢} & \sim      & 10^{-11}\,\text{s} \\
       \text{過去}    & \approx   & 138\,\text{億年前} \\
       \text{距離}    & \approx   & 462\,\text{億光年} \\
-      T_{\gamma}     & \sim      & 10^{15}\,\text{K}\;\text{\tiny(100 GeV)}
+      \text{温度} & \sim      & 10^{15}\,\text{K}\;\text{\tiny(100 GeV)}
     }
     \draw[bgcardb, line width=0.25pt] (-13, -11.5) -- (13, -11.5);
     \node[anchor=north west, font=\fontsize{6.8}{8.7}\selectfont, text=fg,
@@ -369,11 +369,11 @@
     \iconQGP{0,13}
     \draw[bgcardb, line width=0.25pt] (-13, 6) -- (13, 6);
     \databox{%
-      z              & \gtrsim   & 10^{12} \\
-      t              & \sim      & 10^{-6}\text{--}10^{-5}\,\text{s} \\
+      \text{赤方偏移} & \gtrsim   & 10^{12} \\
+      \text{年齢} & \sim      & 10^{-6}\text{--}10^{-5}\,\text{s} \\
       \text{過去}    & \approx   & 138\,\text{億年前} \\
       \text{距離}    & \approx   & 461\,\text{億光年} \\
-      T_{\gamma}     & \gtrsim   & 10^{12}\,\text{K}\;\text{\tiny(90 MeV)}
+      \text{温度} & \gtrsim   & 10^{12}\,\text{K}\;\text{\tiny(90 MeV)}
     }
     \draw[bgcardb, line width=0.25pt] (-13, -11.5) -- (13, -11.5);
     \node[anchor=north west, font=\fontsize{6.8}{8.7}\selectfont, text=fg,
@@ -391,11 +391,11 @@
     \iconBBN{0,13}
     \draw[bgcardb, line width=0.25pt] (-13, 6) -- (13, 6);
     \databox{%
-      z              & \sim      & 10^{8}\text{--}10^{9} \\
-      t              & \sim      & 1\,\text{s}\text{--}20\,\text{分} \\
+      \text{赤方偏移} & \sim      & 10^{8}\text{--}10^{9} \\
+      \text{年齢} & \sim      & 1\,\text{s}\text{--}20\,\text{分} \\
       \text{過去}    & \approx   & 138\,\text{億年前} \\
       \text{距離}    & \approx   & 461\,\text{億光年} \\
-      T_{\gamma}     & \sim      & 0.03\text{--}1\,\text{MeV}
+      \text{温度} & \sim      & 0.03\text{--}1\,\text{MeV}
     }
     \draw[bgcardb, line width=0.25pt] (-13, -11.5) -- (13, -11.5);
     \node[anchor=north west, font=\fontsize{6.8}{8.7}\selectfont, text=fg,
@@ -413,11 +413,11 @@
     \iconBalance{0,13}
     \draw[bgcardb, line width=0.25pt] (-13, 6) -- (13, 6);
     \databox{%
-      z              & \approx   & 3\,400 \\
-      t              & \approx   & 5\,\text{万年} \\
+      \text{赤方偏移} & \approx   & 3\,400 \\
+      \text{年齢} & \approx   & 5\,\text{万年} \\
       \text{過去}    & \approx   & 138\,\text{億年前} \\
       \text{距離}    & \approx   & 459\,\text{億光年} \\
-      T_{\gamma}     & \approx   & 9\,000\,\text{K}
+      \text{温度} & \approx   & 9\,000\,\text{K}
     }
     \draw[bgcardb, line width=0.25pt] (-13, -11.5) -- (13, -11.5);
     \node[anchor=north west, font=\fontsize{6.8}{8.7}\selectfont, text=fg,
@@ -435,11 +435,11 @@
     \iconRecomb{0,13}
     \draw[bgcardb, line width=0.25pt] (-13, 6) -- (13, 6);
     \databox{%
-      z              & \approx   & 1\,100 \\
-      t              & \approx   & 38\,\text{万年} \\
+      \text{赤方偏移} & \approx   & 1\,100 \\
+      \text{年齢} & \approx   & 38\,\text{万年} \\
       \text{過去}    & \approx   & 138\,\text{億年前} \\
       \text{距離}    & \approx   & 455\,\text{億光年} \\
-      T_{\gamma}     & \approx   & 3\,000\,\text{K}
+      \text{温度} & \approx   & 3\,000\,\text{K}
     }
     \draw[bgcardb, line width=0.25pt] (-13, -11.5) -- (13, -11.5);
     \node[anchor=north west, font=\fontsize{6.8}{8.7}\selectfont, text=fg,
@@ -457,11 +457,11 @@
     \iconStars{0,13}
     \draw[bgcardb, line width=0.25pt] (-13, 6) -- (13, 6);
     \databox{%
-      z              & \approx   & 20\text{--}6 \\
-      t              & \sim      & 2\text{--}10\,\text{億年} \\
+      \text{赤方偏移} & \approx   & 20\text{--}6 \\
+      \text{年齢} & \sim      & 2\text{--}10\,\text{億年} \\
       \text{過去}    & \approx   & 128\text{--}136\,\text{億年前} \\
       \text{距離}    & \approx   & 280\text{--}340\,\text{億光年} \\
-      T_{\gamma}     & \approx   & 20\text{--}60\,\text{K}
+      \text{温度} & \approx   & 20\text{--}60\,\text{K}
     }
     \draw[bgcardb, line width=0.25pt] (-13, -11.5) -- (13, -11.5);
     \node[anchor=north west, font=\fontsize{6.8}{8.7}\selectfont, text=fg,
@@ -481,11 +481,11 @@
     % Single-column databox like other cards. Values use → notation
     % showing transition: 加速開始 → DE 優勢.
     \databox{%
-      z              & =         & 0.7 \to 0.33 \\
-      t              & =         & 76 \to 102\,\text{億年} \\
+      \text{赤方偏移} & =         & 0.7 \to 0.33 \\
+      \text{年齢} & =         & 76 \to 102\,\text{億年} \\
       \text{過去}    & =         & 62 \to 36\,\text{億年前} \\
       \text{距離}    & =         & 85 \to 41\,\text{億光年} \\
-      T_{\gamma}     & =         & 4.6 \to 3.5\,\text{K}
+      \text{温度} & =         & 4.6 \to 3.5\,\text{K}
     }
     \draw[bgcardb, line width=0.25pt] (-13, -11.5) -- (13, -11.5);
     \node[anchor=north west, font=\fontsize{6.8}{8.7}\selectfont, text=fg,
@@ -503,11 +503,11 @@
     \iconGalaxy{0,13}
     \draw[bgcardb, line width=0.25pt] (-13, 6) -- (13, 6);
     \databox{%
-      z              & =         & 0 \\
-      t              & \approx   & 138\,\text{億年} \\
+      \text{赤方偏移} & =         & 0 \\
+      \text{年齢} & \approx   & 138\,\text{億年} \\
       \text{過去}    & =         & 0\,\text{年前} \\
       \text{距離}    & =         & 0\,\text{光年} \\
-      T_{\gamma}     & =         & 2.725\,\text{K}\;\text{\tiny(CMB)}
+      \text{温度} & =         & 2.725\,\text{K}\;\text{\tiny(CMB)}
     }
     \draw[bgcardb, line width=0.25pt] (-13, -11.5) -- (13, -11.5);
     \node[anchor=north west, font=\fontsize{6.8}{8.7}\selectfont, text=fg,
