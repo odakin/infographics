@@ -596,19 +596,21 @@
       every axis plot/.append style={line cap=round},
     ]
 
-      % Era background bands (= now within tighter ymax)
+      % Era background bands (= vertical column tint per dominant era; gives the
+      %  region ABOVE the curves its colour, where the to-floor fills don't reach)
       \fill[plotrad, opacity=0.09] (axis cs:1e-7,1e-5) rectangle (axis cs:2.9e-4,1e16);
       \fill[plotmat, opacity=0.08] (axis cs:2.9e-4,1e-5) rectangle (axis cs:0.75,1e16);
       \fill[plotde,  opacity=0.11] (axis cs:0.75,1e-5)   rectangle (axis cs:2,1e16);
 
+      % Each curve's fill goes ALL THE WAY DOWN to the axis floor (ymin), so the
+      % translucent colours overlap and the lower you go the more layers stack.
+      % NOTE: \closedcycle only joins the curve's endpoints (it does NOT drop to
+      % the floor), so we close the path explicitly via the two bottom corners.
       \addplot[fill=plotrad, fill opacity=0.16, draw=none, domain=1e-7:2, samples=80]
-        {1.22e-4 * x^(-4)} \closedcycle;
+        {1.22e-4 * x^(-4)} -- (axis cs:2,1e-5) -- (axis cs:1e-7,1e-5) -- cycle;
       \addplot[fill=plotmat, fill opacity=0.14, draw=none, domain=1e-7:2, samples=80]
-        {0.43 * x^(-3)} \closedcycle;
-      % DE fill: area UNDER the constant ρ_Λ=1 line, down to the axis floor.
-      % (\closedcycle on a horizontal line encloses zero area, so the previous
-      %  \addplot left DE unshaded; fill an explicit rectangle instead so DE is
-      %  shaded under its line just like radiation and matter.)
+        {0.43 * x^(-3)} -- (axis cs:2,1e-5) -- (axis cs:1e-7,1e-5) -- cycle;
+      % DE = const ρ_Λ=1: its "under the line" area is the rectangle below y=1.
       \fill[plotde, fill opacity=0.16] (axis cs:1e-7,1e-5) rectangle (axis cs:2,1);
 
       \addplot[plotrad, line width=1.3pt, domain=1e-7:2, samples=80]
