@@ -61,6 +61,17 @@ HTML 起点なら → SVG / PNG / PDF いずれにも export 可能 (= chromium 
 
 `@media (prefers-color-scheme: dark)` で背景反転。 温度勾配 palette は dark mode でも視認性を保つ (= saturation 高め、 lightness 5-10% 下げ)。
 
+### log-log 密度プロットの作法 (= cosmology-history で確立、 再利用可)
+
+ρ vs a のような log-log プロットを作るときの原則。 詳細・経緯は [`cosmology-history/NOTES.md` §配置・色塗りの考え方](cosmology-history/NOTES.md)。
+
+- **塗りは 2 系統の相補**: ①era 背景帯 (縦カラム = 線より上に時代色) + ②各曲線の下を**床まで重ね塗り** (= 下ほど多色が重なり総密度の厚みを表現)。 片方では片手落ち。
+- **床まで塗る**には `\closedcycle` ではなく `{f} -- (右下隅) -- (左下隅) -- cycle` で明示的に閉じる (= `\closedcycle` は端点を結ぶだけ・水平線では面積ゼロ)。
+- **ラベルは領域の中央に**: 各帯のラベルは帯の幾何中心 (log 中点)、 全域一定の baseline (DE) のラベルだけ図全体の中央。
+- **off-scale 要素は軸の外、 in-scale と同じ行に整列**、 連結矢印は付けない (= 行揃えで連続性は自明)。
+- **縦軸を伸ばして急変を見せる**と後半が下部に圧縮される → 空いた上部余白に注釈を逃がす。
+- **ymax/xmax を変えたら線ラベルの回転角を再計算**: `atan(n × (H/W) × Dx/Dy)`。
+
 ## 元 infographic からの修正方針
 
 修正点と典拠は `cosmology-history/NOTES.md` に集約。 設計判断 (= 何を修正対象とし何を残すか) はここに書く。
