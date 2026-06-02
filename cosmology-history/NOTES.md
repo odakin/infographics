@@ -168,6 +168,11 @@ build: `cd cosmology-history && make` (= LuaLaTeX 一発で PDF 生成)、 `make
 ### 横軸レンジ
 - `xmax=1e1` (= a>1 の未来側も少し含む): DE 優勢 注釈と DE 優勢 帯ラベルが入りきる余白を確保 (= レビュー「DE優勢が入りきってない」)。
 
+### プロットを card 内で中央寄せ (= 余白を左右均等・上下均等に)
+- **「左右均等 ∧ 上下均等」 はアスペクト比とは無関係** (= 単に内容を card 中央に置くだけ。 4 辺すべて同じ値にするのだけがアスペクト依存)。
+- 手順: レンダリング PNG から**内容の bounding box を実測** (= ink ピクセル〔彩度 or 暗さ閾値〕の min/max) → 内容 center と card center の差を計算 → **axis scope の `shift` をその差だけ動かす** (= サイズ不変なので回転に影響なし)。`odakin` の検算 script は PNG を読んで margins を直接出す。現状 scope `(106.9, 27.3)` で 左右 5.5mm / 上下 4.5mm。
+- **★gotcha**: 軸外に置いた ①②③ バッジを `current axis.south west` 基準にすると **scope shift を追従しない** (= 軸本体は動くのにバッジだけ取り残される)。→ **軸内のバッジ④を named node (`(b4)`) にして ①②③ をそれ基準** (`[xshift=-Nmm]b4`) に置くと一緒に動く。
+
 ### アスペクト比とラベル回転 (★ハマりどころ)
 - 線ラベル (放射/物質) は線と平行に回転させる。 回転角は **軸の decade 比と寸法**で決まる: `angle = atan(n × (H/W) × Dx/Dy)` (n=冪の絶対値、 H/W≈0.49 を実測 calibration)。
 - **ymax や xmax を変えると Dx/Dy が変わるので回転角を都度再計算する** (= 怠ると線とラベルがずれる)。 現状: 放射 `-26°`、 物質 `-20°` (Dx=10, Dy=40)。 過去の各 ymax での値は SESSION.md の changelog 参照。

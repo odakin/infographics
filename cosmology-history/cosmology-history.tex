@@ -572,7 +572,7 @@
   % Plot scope: shifted inward + explicit xshift/yshift on axis labels so they
   % render WELL INSIDE the card frame (pgfplots default places labels just
   % outside the width/height bounding box).
-  \begin{scope}[shift={(96, 21)}]
+  \begin{scope}[shift={(106.9, 27.3)}]
     \begin{axis}[
       width=187mm, height=92mm,
       title={\fontsize{10}{12}\selectfont\sffamily\bfseries\color{fgstrong}宇宙の主要成分のエネルギー密度\\[-0.5mm]\fontsize{7.5}{9.5}\selectfont\normalfont\itshape\color{fgmute}対数-対数 plot。 era 境界の $z$ は $\Lambda$CDM ($\Omega_{m}=0.3$, $\Omega_{\Lambda}=0.7$) より},
@@ -660,7 +660,7 @@
       % Stage badges mapping cards to the a-axis. Stages 4-9 sit at their
       % actual a (BBN ~ 3e-9). Stages 1-3 (a ≪ 10⁻⁹, off chart) are drawn
       % OUTSIDE the axis to the left (after \end{axis}).
-      \node[circle, fill=c3, text=white, font=\fontsize{6}{7}\selectfont\sffamily\bfseries, inner sep=0pt, minimum size=3mm] at (axis cs:3e-9, 4e-5) {4};
+      \node[circle, fill=c3, text=white, font=\fontsize{6}{7}\selectfont\sffamily\bfseries, inner sep=0pt, minimum size=3mm] (b4) at (axis cs:3e-9, 4e-5) {4};
       \node[circle, fill=c4, text=white, font=\fontsize{6}{7}\selectfont\sffamily\bfseries, inner sep=0pt, minimum size=3mm] at (axis cs:2.9e-4,  4e-5) {5};
       \node[circle, fill=c5, text=white, font=\fontsize{6}{7}\selectfont\sffamily\bfseries, inner sep=0pt, minimum size=3mm] at (axis cs:9.1e-4,  4e-5) {6};
       \node[circle, fill=c6, text=white, font=\fontsize{6}{7}\selectfont\sffamily\bfseries, inner sep=0pt, minimum size=3mm] at (axis cs:9e-2,    4e-5) {7};
@@ -697,13 +697,13 @@
     % --- Stages 1-3 (a ≪ 10⁻⁹): off-scale, drawn OUTSIDE the axis to the left,
     %     on the SAME row (y=4e-5 ≈ +1.13mm) as badges 4-9, no connector arrow. ---
     \node[anchor=south, font=\fontsize{5.8}{7}\selectfont\itshape, text=fgmute]
-      at ([xshift=-11mm, yshift=4.5mm]current axis.south west) {さらに過去};
+      at ([xshift=-15mm, yshift=3.5mm]b4) {さらに過去};
     \node[circle, fill=c0, text=white, font=\fontsize{5.6}{6.6}\selectfont\sffamily\bfseries, inner sep=0pt, minimum size=2.8mm]
-      at ([xshift=-14mm, yshift=1.13mm]current axis.south west) {1};
+      at ([xshift=-18mm]b4) {1};
     \node[circle, fill=c1, text=white, font=\fontsize{5.6}{6.6}\selectfont\sffamily\bfseries, inner sep=0pt, minimum size=2.8mm]
-      at ([xshift=-11mm, yshift=1.13mm]current axis.south west) {2};
+      at ([xshift=-15mm]b4) {2};
     \node[circle, fill=c2, text=white, font=\fontsize{5.6}{6.6}\selectfont\sffamily\bfseries, inner sep=0pt, minimum size=2.8mm]
-      at ([xshift=-8mm,  yshift=1.13mm]current axis.south west) {3};
+      at ([xshift=-12mm]b4) {3};
   \end{scope}
 
   % ====================== FOOTER ======================
