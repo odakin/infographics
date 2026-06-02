@@ -552,11 +552,11 @@
       at (3, -5.5) {温度 $\leftrightarrow$ エネルギー};
     \draw[bgcardb, line width=0.25pt] (3, -7.5) -- (73, -7.5);
     \node[anchor=base west, font=\fontsize{8.2}{10}\selectfont, text=fgmute] at (4, -12) {$1\,\text{MeV}$};
-    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont, text=fgstrong] at (72, -12) {$1.16 \times 10^{10}\,\text{K}$};
+    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont, text=fgstrong] at (72, -12) {$\sim 10^{10}\,\text{K}$};
     \node[anchor=base west, font=\fontsize{8.2}{10}\selectfont, text=fgmute] at (4, -17) {$0.1\,\text{MeV}$};
-    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont, text=fgstrong] at (72, -17) {$1.16 \times 10^{9}\,\text{K}$};
+    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont, text=fgstrong] at (72, -17) {$\sim 10^{9}\,\text{K}$};
     \node[anchor=base west, font=\fontsize{8.2}{10}\selectfont, text=fgmute] at (4, -22) {$1\,\text{eV}$};
-    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont, text=fgstrong] at (72, -22) {$1.16 \times 10^{4}\,\text{K}$};
+    \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont, text=fgstrong] at (72, -22) {$\sim 10^{4}\,\text{K}$};
     \fill[c5!12!bgcard] (3, -30) rectangle (73, -24);
     \node[anchor=base west, font=\fontsize{8.2}{10}\selectfont\bfseries, text=fgstrong] at (4, -28) {$\text{現在}\ T_{\gamma}$};
     \node[anchor=base east, font=\fontsize{8.2}{10}\selectfont\bfseries, text=fgstrong] at (72, -28) {$2.725\,\text{K}\;(\text{CMB})$};
@@ -572,7 +572,7 @@
   % Plot scope: shifted inward + explicit xshift/yshift on axis labels so they
   % render WELL INSIDE the card frame (pgfplots default places labels just
   % outside the width/height bounding box).
-  \begin{scope}[shift={(106, 22)}]
+  \begin{scope}[shift={(106, 33)}]
     \begin{axis}[
       width=176mm, height=90mm,
       title={\fontsize{10}{12}\selectfont\sffamily\bfseries\color{fgstrong}宇宙の主要成分のエネルギー密度\\[-0.5mm]\fontsize{7.5}{9.5}\selectfont\normalfont\itshape\color{fgmute}対数-対数 plot。 era 境界の $z$ は $\Lambda$CDM ($\Omega_{m}=0.3$, $\Omega_{\Lambda}=0.7$) より},
@@ -605,8 +605,11 @@
         {1.22e-4 * x^(-4)} \closedcycle;
       \addplot[fill=plotmat, fill opacity=0.14, draw=none, domain=1e-7:2, samples=80]
         {0.43 * x^(-3)} \closedcycle;
-      \addplot[fill=plotde, fill opacity=0.16, draw=none, domain=1e-7:2, samples=2]
-        {1} \closedcycle;
+      % DE fill: area UNDER the constant ρ_Λ=1 line, down to the axis floor.
+      % (\closedcycle on a horizontal line encloses zero area, so the previous
+      %  \addplot left DE unshaded; fill an explicit rectangle instead so DE is
+      %  shaded under its line just like radiation and matter.)
+      \fill[plotde, fill opacity=0.16] (axis cs:1e-7,1e-5) rectangle (axis cs:2,1);
 
       \addplot[plotrad, line width=1.3pt, domain=1e-7:2, samples=80]
         {1.22e-4 * x^(-4)};
@@ -621,7 +624,7 @@
             fill=bgcard, fill opacity=0.95, text opacity=1, rounded corners=0.5mm,
             draw=plotrad!30!bgcard, line width=0.25pt,
             font=\fontsize{8.5}{10.5}\selectfont\sffamily\bfseries, text=plotrad]
-        at (axis cs:8e-5, 5e12) {放射 $\rho_{\text{rad}} \propto a^{-4}$};
+        at (axis cs:4e-5, 6e13) {放射 $\rho_{\text{rad}} \propto a^{-4}$};
       \node[anchor=center, rotate=-27, inner sep=0.7mm,
             fill=bgcard, fill opacity=0.95, text opacity=1, rounded corners=0.5mm,
             draw=plotmat!30!bgcard, line width=0.25pt,
@@ -648,7 +651,7 @@
       \node[font=\fontsize{7.5}{9}\selectfont, text=fgmute, anchor=south] at (axis cs:1, 5e12) {現在};
 
       % Era labels (= just below ymax, close to plot top edge)
-      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotrad] at (axis cs:1e-5, 5e15) {放射優勢};
+      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotrad] at (axis cs:5e-6, 5e15) {放射優勢};
       \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotmat] at (axis cs:1e-2, 5e15) {物質優勢};
       \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde,  anchor=east] at (axis cs:1.8, 5e15) {DE 優勢};
 
@@ -678,7 +681,7 @@
 
       % Acceleration onset (shifted left)
       \draw[plotde, -{Stealth[length=1.3mm,width=1mm]}, line width=0.5pt]
-        (axis cs:0.04, 6e-3) -- (axis cs:0.59, 2.05);
+        (axis cs:0.25, 1.3e-2) -- (axis cs:0.59, 2.05);
       \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde, anchor=west] at (axis cs:0.04, 6e-3) {加速膨張開始};
       \node[font=\fontsize{8}{10}\selectfont, text=plotde, anchor=west] at (axis cs:0.04, 9e-4) {$z \approx 0.7$, $a \approx 0.59$};
 
@@ -697,6 +700,8 @@
   \draw[bgcardb, line width=0.25pt] (8, 10) -- (289, 10);
   \node[font=\fontsize{7.2}{9}\selectfont\itshape, text=fgmute, anchor=center] at (148.5, 7)
     {数値は標準 $\Lambda$CDM (Planck 2018) 代表値。 $T_{\gamma} = 2.725(1+z)\,\text{K}$。 $D_C$ は共動距離 (平坦 $\Lambda$CDM での座標距離)。 元 infographic からの修正点と典拠は \texttt{NOTES.md} 参照};
+  \node[font=\fontsize{6.6}{8}\selectfont, text=fgmute, anchor=center] at (148.5, 3.4)
+    {\textbf{略語}\quad EWPT = 電弱対称性の破れ \enspace・\enspace QGP = クォーク・グルーオン・プラズマ \enspace・\enspace BBN = ビッグバン元素合成 \enspace・\enspace CMB = 宇宙マイクロ波背景放射 \enspace・\enspace DE = 暗黒エネルギー ($\Lambda$)};
 
 \end{tikzpicture}
 \end{document}
