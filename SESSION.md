@@ -6,6 +6,15 @@
 - entry 1 件: `cosmology-history/`
 - security baseline 適用済 (Dependabot/CodeQL/PVR/branch protection)
 
+## 直近の変更 (2026-06-02)
+
+**レビューフィードバックに基づくレイアウト修正 4 点** (`cosmology-history.tex`):
+
+1. **EWPT アイコン (Card 2)**: Mexican-hat ポテンシャル曲線が x⁴ で縦に伸びてカードタイトルにかかっていた → `\iconEWPT` の `domain` を `-2.7:2.7` → `-2.3:2.3` に狭めて rim 高さを圧縮、タイトルとの干渉を解消 (横を狭めると縦も収まる)
+2. **密度プロット 加速膨張開始 注釈**: z 値テキスト `(0.04, 5e-5)` が badge ⑦ `(0.09, 4e-5)` と同じ高さで被っていた → 注釈 (ラベル/z値/矢印始点) を `y=6e-3 / 9e-4` に持ち上げ、badge 行から ~1.3 decade 離して解消
+3. **密度プロット 放射ラベル**: 「放射 ρ_rad ∝ a⁻⁴」が `(6e-6, 1e13)` で赤線から離れて浮いていた → `(8e-5, 5e12)` = 放射優勢域の赤線すぐ上に移動 (M-R 等価マーカーとも分離)
+4. **再電離カード (Card 7)**: 「紫外光が中性ガスを再電離」だけ `\bfseries` で太字化していた (他カードは plain) → `\bfseries` 除去で統一
+
 ## 直近の変更 (2026-05-19)
 
 **LaTeX/TikZ への primary 移行 + editorial light theme への refactor**:
