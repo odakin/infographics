@@ -55,7 +55,7 @@ HTML は数式 (KaTeX) の clip 問題・font の OS 依存・ベースライン
 1. `<topic>/` を mkdir、 `index.html` + `style.css` + `NOTES.md` を作成
 2. preview MCP で見栄え確認 (= `preview_screenshot` で記録)
 3. README.md の index に entry を追加
-4. SESSION.md の「直近の変更」 に記録、 commit + push
+4. SESSION.md のその entry の現在地の行を置き換え (経緯は git log)、 commit + push
 
 ## 現在の entry
 
