@@ -12,7 +12,7 @@ infographics/
 ├── .gitignore
 └── <topic>/                             # 1 entry = 1 directory
     ├── <topic>.tex                      # LuaLaTeX 印刷版 (= primary)
-    ├── <topic>.pdf                      # commit する deliverable
+    ├── <topic>.pdf                      # deliverable。 commit は公開する版だけ (途中の build は commit しない)
     ├── Makefile                         # make / make view / make png / make clean
     ├── index.html                       # HTML web 版 (= 任意、 web 配布用)
     ├── style.css
