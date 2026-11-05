@@ -14,20 +14,24 @@
 - 単一 entry が肥大化 (= 50 ファイル / 5000 行超) → 切り出し検討
 - 別 contributor が join + entry に独立 maintainership が必要 → split
 
-## なぜ HTML + 埋め込み SVG か (= 単独 SVG / TikZ にしない)
+## 出力形式: LuaLaTeX + TikZ + pgfplots の PDF が本体
 
-判断: **HTML + CSS + inline SVG**。
+判断: **LuaLaTeX + TikZ + pgfplots で A4 の PDF に組む**。 HTML + CSS + inline SVG の版は web で link を渡す用に併置する (cosmology-history の `index.html` は第 2 版のまま)。
 
-| 候補 | Pros | Cons | 採否 |
-|---|---|---|---|
-| **HTML + inline SVG** | preview server で HMR、 modern CSS (gradient/shadow/var font)、 dark mode、 export 可 | print-to-PDF で font 埋め込みに注意 | ✓ |
-| 単独 SVG | LaTeX `\includegraphics` に直接、 single file | CSS 表現が限定的、 iteration 遅い (= 座標電卓化) | × |
-| TikZ (LaTeX) | 論文取り込みに最強 | 自由度低、 modern design (gradient/glassmorphism) が困難 | × |
-| Mermaid | 軽量、 markdown 内 inline | layout 制御不能、 美麗化困難 | × |
+理由 = A4 の印刷の忠実さ。 HTML 版では、 数式 (KaTeX) が CSS の layout と計測の順序の都合で clip する・web font の字形が OS と renderer で変わる・CSS Grid では baseline の揃えと 1mm 単位の配置が効かない・browser の印刷で 0.5mm 程度ずれる、 が起きた。 LaTeX ではそれぞれ、 数式は native で clip しない・Hiragino と Libertinus を subset で埋め込む・TikZ の絶対座標と baseline の anchor で揃う・注記は plot の座標 (axis cs) に置ける。 経緯の全文 = [`cosmology-history/NOTES.md` §LaTeX 移行](cosmology-history/NOTES.md)。
 
-HTML 起点なら → SVG / PNG / PDF いずれにも export 可能 (= chromium headless)。 逆方向 (= SVG → HTML reconstruction) は CSS 表現を失うため不可逆。
+初版 (2026-05-19 の第 1・2 版) は次の比較で HTML を選んでいた。 LaTeX 版は cream の紙の editorial 調 (tex の冒頭の注記) で、 表の TikZ の Cons にある gradient/glassmorphism は使っていない:
+
+| 候補 | Pros | Cons |
+|---|---|---|
+| HTML + inline SVG | preview server で HMR、 modern CSS (gradient/shadow/var font)、 dark mode、 export 可 | print-to-PDF で font 埋め込みに注意 (→ 上の印刷の問題) |
+| 単独 SVG | LaTeX `\includegraphics` に直接、 single file | CSS 表現が限定的、 iteration 遅い (= 座標電卓化) |
+| TikZ (LaTeX) | 論文取り込みに最強、 印刷が正確 | 自由度低、 gradient/glassmorphism が困難 |
+| Mermaid | 軽量、 markdown 内 inline | layout 制御不能、 美麗化困難 |
 
 ## design system
+
+> 下の「色 palette」「typography」「layout」「dark mode」 の値は HTML 版 (第 2 版、 8 段) のもの。 LaTeX 版の値は `cosmology-history/cosmology-history.tex` の preamble が正本: 色 = 9 段の暖色→寒色 (`c0`〜`c8`、 cream の紙に合わせて彩度を落とす)、 font = Libertinus Serif/Sans/Math + ヒラギノ明朝・角ゴ、 紙 = A4 横 (297mm × 210mm)。 「温度勾配を色に写す」 考え方は両方で同じ。
 
 ### 色 palette
 

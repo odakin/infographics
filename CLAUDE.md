@@ -1,7 +1,7 @@
 # infographics
 
 科学・物理・数学系の **インフォグラフィック (図解 1 枚もの)** を蓄積する monorepo。
-1 トピック = 1 サブディレクトリ、 HTML + CSS + inline SVG で実装。
+1 トピック = 1 サブディレクトリ、 LuaLaTeX + TikZ + pgfplots で A4 の PDF に組む (HTML + CSS + inline SVG の web 版を併置する entry もある)。
 
 ## ディレクトリ構造
 
@@ -52,11 +52,11 @@ HTML は数式 (KaTeX) の clip 問題・font の OS 依存・ベースライン
 
 ## 新規 entry 追加手順
 
-1. `<topic>/` を mkdir、 `index.html` + `style.css` + `NOTES.md` を作成
-2. preview MCP で見栄え確認 (= `preview_screenshot` で記録)
-3. README.md の index に entry を追加
+1. `<topic>/` を mkdir、 `<topic>.tex` + `Makefile` (cosmology-history のものを写す) + `NOTES.md` を作成 (web 版が要るときだけ `index.html` + `style.css`)
+2. `make && make png` で組み、 PNG を開いて見栄えを確かめる (compile が通っただけでは見た目の確認にならない = 層1 `claude-config/conventions/tikz-pgfplots.md` の「サイクル」 の節)
+3. README.md と README.ja.md の index に entry を追加
 4. SESSION.md のその entry の現在地の行を置き換え (経緯は git log)、 commit + push
 
 ## 現在の entry
 
-- **cosmology-history/** — 宇宙の歴史 (赤方偏移・年齢・温度・主な出来事を 8 段で並べる)。 2026-05-19 作成
+- **cosmology-history/** — 宇宙の歴史の年表 (赤方偏移・年齢・温度・主な出来事を 9 段で並べ、 下に主要成分のエネルギー密度の log-log プロット)。 2026-05-19 作成。 web 版 `index.html` は LaTeX に移る前の第 2 版 (8 段) のまま
