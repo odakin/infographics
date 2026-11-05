@@ -572,11 +572,11 @@
   % Plot scope: shifted inward + explicit xshift/yshift on axis labels so they
   % render WELL INSIDE the card frame (pgfplots default places labels just
   % outside the width/height bounding box).
-  \begin{scope}[shift={(106.9, 27.3)}]
+  \begin{scope}[shift={(106.9, 26.6)}]
     \begin{axis}[
-      width=187mm, height=92mm,
-      title={\fontsize{10}{12}\selectfont\sffamily\bfseries\color{fgstrong}宇宙の主要成分のエネルギー密度\\[-0.5mm]\fontsize{7.5}{9.5}\selectfont\normalfont\itshape\color{fgmute}対数-対数 plot。 era 境界の $z$ は $\Lambda$CDM ($\Omega_{m}=0.3$, $\Omega_{\Lambda}=0.7$) より},
-      title style={anchor=south west, at={(rel axis cs:0, 1)}, align=left, yshift=0.5mm, inner sep=0pt},
+      width=187mm, height=89mm,
+      title={\fontsize{10}{12}\selectfont\sffamily\bfseries\color{fgstrong}宇宙の主要成分のエネルギー密度\\[-0.5mm]\fontsize{7.5}{9.5}\selectfont\normalfont\itshape\color{fgmute}対数-対数 plot。 縦軸の単位 = 現在の臨界密度 $\rho_{c,0} = 3H_{0}^{2}/8\pi G$ (= $a=1$ での値が密度パラメータ $\Omega$)。 era 境界の $z$ は $\Lambda$CDM ($\Omega_{m}=0.3$, $\Omega_{\Lambda}=0.7$) より},
+      title style={anchor=south west, at={(rel axis cs:0, 1)}, align=left, yshift=4.8mm, inner sep=0pt},
       xmode=log, ymode=log,
       xmin=1e-9, xmax=10,
       ymin=1e-5, ymax=1e35,
@@ -586,9 +586,11 @@
       xlabel style={font=\fontsize{8.5}{10}\selectfont, text=fg, yshift=0mm},
       ylabel style={font=\fontsize{8.5}{10}\selectfont, text=fg, xshift=3mm},
       xlabel={スケール因子 $a$ \quad(現在 $a_{0} = 1$)},
-      ylabel={エネルギー密度 (相対値)},
+      ylabel={エネルギー密度 \;$\rho/\rho_{c,0}$},
       xtick={1e-9, 1e-8, 1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1, 1, 1e1},
       ytick={1e-5, 1, 1e5, 1e10, 1e15, 1e20, 1e25, 1e30, 1e35},
+      xtick pos=lower,  % top edge carries the redshift ticks drawn below
+      /tikz/ztick/.style={anchor=south, inner sep=0pt, yshift=0.9mm, font=\fontsize{7.5}{9}\selectfont, text=fgmute},
       grid=major,
       grid style={grid, line width=0.2pt, dashed},
       clip mode=individual,
@@ -607,27 +609,27 @@
       % NOTE: \closedcycle only joins the curve's endpoints (it does NOT drop to
       % the floor), so we close the path explicitly via the two bottom corners.
       \addplot[fill=plotrad, fill opacity=0.16, draw=none, domain=1e-9:10, samples=80]
-        {1.22e-4 * x^(-4)} -- (axis cs:10,1e-5) -- (axis cs:1e-9,1e-5) -- cycle;
+        {8.8e-5 * x^(-4)} -- (axis cs:10,1e-5) -- (axis cs:1e-9,1e-5) -- cycle;
       \addplot[fill=plotmat, fill opacity=0.14, draw=none, domain=1e-9:10, samples=80]
-        {0.43 * x^(-3)} -- (axis cs:10,1e-5) -- (axis cs:1e-9,1e-5) -- cycle;
-      % DE = const ρ_Λ=1: its "under the line" area is the rectangle below y=1.
-      \fill[plotde, fill opacity=0.16] (axis cs:1e-9,1e-5) rectangle (axis cs:10,1);
+        {0.3 * x^(-3)} -- (axis cs:10,1e-5) -- (axis cs:1e-9,1e-5) -- cycle;
+      % DE = const ρ_Λ/ρ_c0 = Ω_Λ = 0.7: its "under the line" area is the rectangle below y=0.7.
+      \fill[plotde, fill opacity=0.16] (axis cs:1e-9,1e-5) rectangle (axis cs:10,0.7);
 
       \addplot[plotrad, line width=1.3pt, domain=1e-9:10, samples=80]
-        {1.22e-4 * x^(-4)};
+        {8.8e-5 * x^(-4)};
       \addplot[plotmat, line width=1.3pt, domain=1e-9:10, samples=80]
-        {0.43 * x^(-3)};
+        {0.3 * x^(-3)};
       \addplot[plotde, line width=1.3pt, domain=1e-9:10, samples=2]
-        {1};
+        {0.7};
       % Line labels: explicit placement so 放射 sits in the radiation-dominant
       % band on the left. Rotation matches each line's visual slope on the
-      % log-log axes (≈ -34° for ρ_rad, -27° for ρ_m, 0° for ρ_Λ).
-      \node[anchor=center, rotate=-25, inner sep=0.7mm,
+      % log-log axes (axis box 171.2 x 73.2 mm: atan(n*(73.2/40)/(171.2/10)) = 23.2° for ρ_rad, 17.8° for ρ_m, 0° for ρ_Λ).
+      \node[anchor=center, rotate=-23, inner sep=0.7mm,
             fill=bgcard, fill opacity=0.95, text opacity=1, rounded corners=0.5mm,
             draw=plotrad!30!bgcard, line width=0.25pt,
             font=\fontsize{8.5}{10.5}\selectfont\sffamily\bfseries, text=plotrad]
         at (axis cs:5.4e-7, 2e21) {放射 $\rho_{\text{rad}} \propto a^{-4}$};
-      \node[anchor=center, rotate=-19, inner sep=0.7mm,
+      \node[anchor=center, rotate=-18, inner sep=0.7mm,
             fill=bgcard, fill opacity=0.95, text opacity=1, rounded corners=0.5mm,
             draw=plotmat!30!bgcard, line width=0.25pt,
             font=\fontsize{8.5}{10.5}\selectfont\sffamily\bfseries, text=plotmat]
@@ -636,26 +638,30 @@
             fill=bgcard, fill opacity=0.95, text opacity=1, rounded corners=0.5mm,
             draw=plotde!30!bgcard, line width=0.25pt,
             font=\fontsize{8.5}{10.5}\selectfont\sffamily\bfseries, text=plotde]
-        at (axis cs:1e-4, 1) {暗黒エネルギー $\rho_{\Lambda} = $ const};
+        at (axis cs:1e-4, 0.7) {暗黒エネルギー $\rho_{\Lambda} = $ const};
 
       % Crossover markers
       \node[circle, fill=bgcard, draw=fgstrong, line width=0.6pt, inner sep=0pt, minimum size=1.9mm]
-        at (axis cs:2.9e-4, 1.7e10) {};
+        at (axis cs:2.9e-4, 1.24e10) {};
       \node[circle, fill=fgstrong, inner sep=0pt, minimum size=0.9mm]
-        at (axis cs:2.9e-4, 1.7e10) {};
+        at (axis cs:2.9e-4, 1.24e10) {};
       \node[circle, fill=bgcard, draw=plotde, line width=0.6pt, inner sep=0pt, minimum size=1.7mm]
-        at (axis cs:0.59, 2.05) {};
+        at (axis cs:0.6, 1.4) {};
       \node[circle, fill=bgcard, draw=plotde, line width=0.6pt, inner sep=0pt, minimum size=1.9mm]
-        at (axis cs:0.75, 1) {};
+        at (axis cs:0.75, 0.7) {};
 
       % "現在" marker on right edge
-      \draw[fgfaint, dashed, line width=0.35pt] (axis cs:1, 1e-5) -- (axis cs:1, 5e12);
-      \node[font=\fontsize{7.5}{9}\selectfont, text=fgmute, anchor=south] at (axis cs:1, 5e12) {現在};
+      \draw[fgfaint, dashed, line width=0.35pt] (axis cs:1, 1e-5) -- (axis cs:1, 5e13);
+      \node[font=\fontsize{7.5}{9}\selectfont, text=fgmute, anchor=south] at (axis cs:1, 5e13) {現在};
+      % Density parameters today = the curves' values at a = 1 (y unit = ρ_c0).
+      \node[font=\fontsize{6.3}{7.5}\selectfont, text=fgmute, anchor=north, align=center, inner sep=0.6mm,
+            fill=bgcard, fill opacity=0.9, text opacity=1, rounded corners=0.5mm]
+        at ([yshift=-0.6mm]axis cs:1, 5e13) {$a=1$ での値\\$\Omega_{\Lambda}=0.7$\\$\Omega_{m}=0.3$\\$\Omega_{r}\approx 8.8\times10^{-5}$};
 
       % Era labels (= just below ymax, close to plot top edge)
-      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotrad] at (axis cs:5.4e-7, 5e34) {放射優勢};
-      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotmat] at (axis cs:1.5e-2, 5e34) {物質優勢};
-      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde] at (axis cs:2.74, 5e34) {DE 優勢};
+      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotrad] at (axis cs:5.4e-7, 1.5e33) {放射優勢};
+      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotmat] at (axis cs:1.5e-2, 1.5e33) {物質優勢};
+      \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde] at (axis cs:2.74, 1.5e33) {DE 優勢};
 
       % Stage badges mapping cards to the a-axis. Stages 4-9 sit at their
       % actual a (BBN ~ 3e-9). Stages 1-3 (a ≪ 10⁻⁹, off chart) are drawn
@@ -673,22 +679,50 @@
       % Annotations: SOLID lines with Stealth arrowheads pointing from label TO marker
       % M-R equality
       \draw[fgmute, -{Stealth[length=1.3mm,width=1mm]}, line width=0.45pt]
-        (axis cs:8e-3, 5e13) -- (axis cs:2.9e-4, 1.7e10);
+        (axis cs:8e-3, 5e13) -- (axis cs:2.9e-4, 1.24e10);
       \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=fgstrong, anchor=west] at (axis cs:8e-3, 5e13) {物質-放射等価};
       \node[font=\fontsize{8}{10}\selectfont, text=fgmute, anchor=west] at (axis cs:8e-3, 1e12) {$z \approx 3\,400$};
 
       % Acceleration onset: label lifted into the empty area above the DE line,
       % to the right of the markers (un-crowds the now-compressed bottom).
       \draw[plotde, -{Stealth[length=1.3mm,width=1mm]}, line width=0.5pt]
-        (axis cs:1.1, 5e4) -- (axis cs:0.59, 2.05);
+        (axis cs:1.1, 5e4) -- (axis cs:0.6, 1.4);
       \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde, anchor=west] at (axis cs:1.3, 3e5) {加速膨張開始};
-      \node[font=\fontsize{8}{10}\selectfont, text=plotde, anchor=west] at (axis cs:1.3, 1e4) {$z \approx 0.7$, $a \approx 0.59$};
+      \node[font=\fontsize{8}{10}\selectfont, text=plotde, anchor=west] at (axis cs:1.3, 1e4) {$z \approx 0.7$, $a \approx 0.6$};
 
       % DE dominance: stacked below the onset label (1.5 decade gaps), same area.
       \draw[plotde, -{Stealth[length=1.3mm,width=1mm]}, line width=0.5pt]
-        (axis cs:1.1, 1e2) -- (axis cs:0.75, 1);
+        (axis cs:1.1, 1e2) -- (axis cs:0.75, 0.7);
       \node[font=\fontsize{9}{11}\selectfont\sffamily\bfseries, text=plotde, anchor=west] at (axis cs:1.3, 3e2) {DE 優勢};
       \node[font=\fontsize{8}{10}\selectfont, text=plotde, anchor=west] at (axis cs:1.3, 10) {$z \approx 0.33$, $a \approx 0.75$};
+
+      % Redshift axis on the top edge: z ticks at a = 1/(1+z), drawn by hand in the
+      %  SAME axis coordinates (a twin axis would need identical bounding boxes).
+      %  (Written out one by one: a \foreach inside an axis is expanded only at
+      %  \end{axis}, so its loop variables are undefined there.)
+      \draw[fgmute, line width=0.3pt] (axis cs:1e-9, 1e35) -- ([yshift=-1.1mm]axis cs:1e-9, 1e35);
+      \draw[fgmute, line width=0.3pt] (axis cs:1e-8, 1e35) -- ([yshift=-1.1mm]axis cs:1e-8, 1e35);
+      \node[ztick] at (axis cs:1e-8, 1e35) {$10^{8}$};
+      \draw[fgmute, line width=0.3pt] (axis cs:1e-7, 1e35) -- ([yshift=-1.1mm]axis cs:1e-7, 1e35);
+      \node[ztick] at (axis cs:1e-7, 1e35) {$10^{7}$};
+      \draw[fgmute, line width=0.3pt] (axis cs:1e-6, 1e35) -- ([yshift=-1.1mm]axis cs:1e-6, 1e35);
+      \node[ztick] at (axis cs:1e-6, 1e35) {$10^{6}$};
+      \draw[fgmute, line width=0.3pt] (axis cs:1e-5, 1e35) -- ([yshift=-1.1mm]axis cs:1e-5, 1e35);
+      \node[ztick] at (axis cs:1e-5, 1e35) {$10^{5}$};
+      \draw[fgmute, line width=0.3pt] (axis cs:9.999e-5, 1e35) -- ([yshift=-1.1mm]axis cs:9.999e-5, 1e35);
+      \node[ztick] at (axis cs:9.999e-5, 1e35) {$10^{4}$};
+      \draw[fgmute, line width=0.3pt] (axis cs:9.99e-4, 1e35) -- ([yshift=-1.1mm]axis cs:9.99e-4, 1e35);
+      \node[ztick] at (axis cs:9.99e-4, 1e35) {$10^{3}$};
+      \draw[fgmute, line width=0.3pt] (axis cs:9.901e-3, 1e35) -- ([yshift=-1.1mm]axis cs:9.901e-3, 1e35);
+      \node[ztick] at (axis cs:9.901e-3, 1e35) {$100$};
+      \draw[fgmute, line width=0.3pt] (axis cs:9.0909e-2, 1e35) -- ([yshift=-1.1mm]axis cs:9.0909e-2, 1e35);
+      \node[ztick] at (axis cs:9.0909e-2, 1e35) {$10$};
+      \draw[fgmute, line width=0.3pt] (axis cs:0.5, 1e35) -- ([yshift=-1.1mm]axis cs:0.5, 1e35);
+      \node[ztick] at (axis cs:0.5, 1e35) {$1$};
+      \draw[fgmute, line width=0.3pt] (axis cs:1, 1e35) -- ([yshift=-1.1mm]axis cs:1, 1e35);
+      \node[ztick] at (axis cs:1, 1e35) {$0$};
+      \node[anchor=south east, inner sep=0pt, yshift=0.9mm, font=\fontsize{8.5}{10}\selectfont, text=fg]
+        at (axis cs:10, 1e35) {赤方偏移 $z$};
 
       % (Title + subtitle are set via the `title=` axis option above.)
 
